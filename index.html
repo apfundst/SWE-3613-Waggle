@@ -22,6 +22,24 @@
 </head>
 
 <body>
+<script>
+        var publicKeyHeader = 'X-StackMob-API-Key-ae924762-6432-41d7-88ca-5f034661e46b';
+        var requestHeaders = {};
+        requestHeaders['Accept'] = 'application/vnd.stackmob+json; version=0';
+        requestHeaders[publicKeyHeader] = 1;
+        requestHeaders['Range'] = 'objects=0-49'; //set pagination to first 10
+		
+		$.ajax({
+                    url: 'https://api.stackmob.com/orders',
+                    headers: requestHeaders, //set the headers
+                    type: 'GET',
+                    async: false,
+                    success: function (data, textStatus, xhr) {
+						//data is an associative array that you use to interactwith data
+						}
+					
+				});
+
 
     <div id="wrapper">
 
@@ -33,7 +51,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                <a class="navbar-brand" href="index.html">Waggle</a>
             </div>
             <!-- /.navbar-header -->
 
