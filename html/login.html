@@ -47,6 +47,25 @@ $('#lgin').click(function(){
 	un= $('#un').val();
 	pass = $('#pass').val();
 	console.log(pass);
+	
+	var publicKeyHeader = 'X-StackMob-API-Key-ae924762-6432-41d7-88ca-5f034661e46b';
+        var requestHeaders = {};
+        requestHeaders['Accept'] = 'application/vnd.stackmob+json; version=0';
+        requestHeaders[publicKeyHeader] = 1;
+        //requestHeaders['Range'] = 'objects=0-49'; //set pagination to first 10
+		
+		$.ajax({
+				url: 'https://api.stackmob.com/user',
+				headers: requestHeaders, //set the headers
+				type: 'GET',
+				body: 'username=' + un + '&password=' + pass + '&token_type=mac',
+				success: function(data, textStatus, xhr) {
+					console.log(data);
+				},
+				error: function(xhr, textStatus, error) {
+					console.log(error);
+				}
+				});
 });
 </script>
 </html>
