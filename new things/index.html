@@ -119,6 +119,7 @@ body {
   color: #444;
   background-color: #DCDCDC;
   border-color: #ddd;
+  padding: 10px;
 }
 nav {
   display: block;
@@ -127,12 +128,21 @@ nav {
 <!--<div id="header"> header </div>
 <div id="left-sidebar"> left-sidebar </div>
 <div id="content"> content </div>-->
-<!--<div class="container-fluid">
+<div class="container-fluid">
 <nav class="navbar-default navbar" role="navigation"></nav>
 <div class="col-lg-8">
   <div class="panel panel-default">
     <div class="panel-heading">Group memebers</div>
-    <div class="panel-body">this is some thing </div>
+    <div class="panel-body">
+
+<form action="fileupload.php" method="post"
+enctype="multipart/form-data">
+<label for="file">Filename:</label>
+<input type="file" name="file" id="file"><br>
+<input type="submit" name="submit" value="Submit">
+</form>
+
+ </div>
   </div>
 </div>
 <div class="col-lg-4">
@@ -141,12 +151,6 @@ nav {
     <div class="panel-body">this is some thing </div>
   </div>
 </div>
-</div>-->
-<div id="wrapper">
-  <nav class="navbar navbar-default"></nav>
-  <nav  class="navbar navbar-static-side"></nav>
-  <div id="page-wrapper"></div>
-
 </div>
 
 
