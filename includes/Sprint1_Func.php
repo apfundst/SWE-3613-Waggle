@@ -26,10 +26,11 @@ function do_login($email , $password) {
 	$con = mysqli_connect("localhost","jsalvo_group8","waggle_password","jsavlo_waggle");
 
 	$sql = "
-		SELECT email, password
+		SELECT *
 		FROM user
-		WHERE spsuEmail = '$email'
+		WHERE email = '$email'
 		AND password = '$password'
+
 	";
 
 	$result = mysqli_query($con,$sql);

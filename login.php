@@ -1,3 +1,47 @@
+<?
+
+session_start();
+$error_message = null;
+if ($_POST) {
+  $con = mysqli_connect("localhost","jsalvo_group8","waggle_password","jsavlo_waggle");
+  if (!$con) {
+    die('Could not connect: ' . mysql_error());
+  }
+  else{
+    $userid = check_param('userid', 'string', null, null);
+    $pass = check_param('pass', 'string', null, null);
+
+    $sql = "
+      SELECT *
+      FROM user
+      WHERE email = '$email'
+      AND password = '$password'
+    ";
+
+    $result = mysql_query($sql);
+    if (!$result) {
+      preit(mysql_error());
+    }
+    else {
+      if (mysql_num_rows($result) == 0) {
+        $error_message = "Login failed.  Please check your userid and password.";
+      }
+      else {
+        header("Location: /index.php");
+        /*$row = mysql_fetch_assoc($result);
+        $email = $row['email'];
+        $doctor_name = $row['doctor_name'];
+        $_SESSION['doctor_id'] = $doctor_id;
+        $_SESSION['doctor_name'] = $doctor_name;*/
+
+      }
+    }
+  }
+}
+
+
+if (!array_key_exists('doctor_id', $_SESSION)) {
+?>
 <html>
 <head>
 </head>
@@ -164,11 +208,12 @@ border: 1px solid #ddd;
       </div>
       <div class="panel-body">
         <center>
+          <p><?= $error_message ?></p>
         <form action="login.php" method="post"enctype="multipart/form-data">
-        <label for="file">User Name:</label>
-        <input type="text" name="email" id="email"><br>
+        <label for="file">Email:</label>
+        <input type="text" name="email" for="userid"><br>
         <label for="file">Password:</label>
-        <input type="text" name="password" id="pass"><br>
+        <input type="text" name="password" for="pass"><br>
         <input type="submit" name="submit" value="Submit">
         </form></center>
       </div>
