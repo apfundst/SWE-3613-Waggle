@@ -1,10 +1,29 @@
 <?
 
-include_once('connect.php');
+//include_once('connect.php');
+if (!mysql_connect('localhost', 'jsalvo_icd910', '5+7TH-P*a.qM')) {
+    preit("Failed to connect: " . mysql_error());
+    die;
+}
+else {
+    #preit("connected");
+}
 
-function do_login() {
-	$userid = check_param('userid', 'string');
-	$password = check_param('password', 'string');
+if (!mysql_select_db('jsalvo_icd9_icd10_converter')) {
+    preit("Failed to select db: " . mysql_error());
+    die;
+}
+else {
+    #preit("db selected");
+}
+
+
+function do_login($email , $password) {
+	//$userid = check_param('userid', 'string');
+	//$password = check_param('password', 'string');
+
+	// db name is jsalvo_Waggle
+	$con = mysqli_connect("localhost","jsalvo_group8","waggle_password","jsavlo_waggle");
 
 	$sql = "
 		SELECT email, password
@@ -13,14 +32,36 @@ function do_login() {
 		AND password = '$password'
 	";
 
-	$result = check_result($sql);
-	if (mysql_num_rows($result) == 0) {
-		json_failure("Login failed");
-	}
+	$result = mysqli_query($con,$sql);
 	$row = mysql_fetch_assoc($result);
+	if( is_null($row) ){
+		return false;
+	}
+	else{
+		return true;
+	}
 
-	json_success($row);
+	//json_success($row);
 }
+
+function check_result($sql) {
+	$function = 'json_failure';
+	if ($nojson === true) {
+		$function = 'preit';
+	}
+
+	$result = mysql_query($sql);
+	if (!$result) {
+		mysql_query('ROLLBACK');
+		$function(mysql_error());
+	}
+	return $result;
+}
+
+
+
+
+
 
 function do_post_message(){
 	$fileNamePath = check_param('text','string');
