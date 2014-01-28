@@ -3,7 +3,7 @@
 session_start();
 $error_message = null;
 if ($_POST) {
-  $con = mysqli_connect("localhost","jsalvo_group8","waggle_password","jsavlo_waggle");
+  $con = mysqli_connect("localhost","jsalvo_group8","waggle_password");
   if (!$con) {
     die('Could not connect: ' . mysql_error());
   }
@@ -40,7 +40,7 @@ if ($_POST) {
 }
 
 
-if (!array_key_exists('doctor_id', $_SESSION)) {
+//if (!array_key_exists('doctor_id', $_SESSION)) {}
 ?>
 <html>
 <head>
@@ -208,7 +208,7 @@ border: 1px solid #ddd;
       </div>
       <div class="panel-body">
         <center>
-          <p><?= $error_message ?></p>
+          <p><? echo $error_message; ?></p>
         <form action="login.php" method="post"enctype="multipart/form-data">
         <label for="file">Email:</label>
         <input type="text" name="email" for="userid"><br>
