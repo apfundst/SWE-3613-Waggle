@@ -21,10 +21,10 @@ else
   {
     //check if it exists
     echo "filename: " . $file_name . $counter;
-    if(file_exists("upload/" . ($file_name . $counter))
+    if (file_exists("upload/" . ($file_name . $counter)))
     {
       //if it does exist, counter++ and try again
-      $counter++;
+      $counter = $counter + 1;
       echo "counter: " . $counter;
       upload_file_check($file_name, $counter);
     }
@@ -32,7 +32,7 @@ else
     {
       //file doesn't exist, successfully uploads
       move_uploaded_file($_FILES["file"]["tmp_name"],
-       "upload/" . $_FILES["file"]["name"] . );
+       "upload/" . $_FILES["file"]["name"];
        echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
     }
     
