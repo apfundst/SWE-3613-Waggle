@@ -39,8 +39,6 @@ if ($_POST) {
   }
 }
 
-
-//if (!array_key_exists('doctor_id', $_SESSION)) {}
 ?>
 <html>
 <head>
