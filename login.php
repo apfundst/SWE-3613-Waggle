@@ -1,4 +1,40 @@
 <?
+function check_param($param, $type, $args = null, $nojson = false) {
+
+  if (is_null($args)) {
+    $args = $_REQUEST;
+  }
+
+  $error_handler = 'json_failure';
+  if ($nojson === true) {
+    $error_handler = 'preit';
+  }
+  else if (is_null($nojson)) {
+    $error_handler = 'noop';
+  }
+
+  if (!array_key_exists($param, $args)) {
+    $error_handler("param $param was expected but was not passed");
+    return;
+  }
+
+  $value = trim($args[$param]);
+
+  if (empty($value) || ($value == '')) {
+    $error_handler("param $param was present but was null or empty");
+    return;
+  }
+
+  if ($type == 'int') {
+    $int_value = (int)$value;
+    if (!is_int($int_value)) {
+      $error_handler("param $param was expected to be an int, and it isn't");
+      return;
+    }
+  }
+
+  return mysql_real_escape_string($value);
+} 
 
 session_start();
 $error_message = null;
@@ -20,7 +56,7 @@ if ($_POST) {
 
     $result = mysql_query($sql);
     if (!$result) {
-      preit(mysql_error());
+      die('No Result: ' . mysql_error());
     }
     else {
       if (mysql_num_rows($result) == 0) {
