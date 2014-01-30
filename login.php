@@ -28,11 +28,16 @@ if ($_POST) {
       }
       else {
         header("Location: /index.php");
-        /*$row = mysql_fetch_assoc($result);
+        // Get the information from the result set
+        $row = mysql_fetch_assoc($result);
+        // Put information into temp variables
         $email = $row['email'];
-        $doctor_name = $row['doctor_name'];
-        $_SESSION['doctor_id'] = $doctor_id;
-        $_SESSION['doctor_name'] = $doctor_name;*/
+        $first_name = $row['first_name'];
+        $last_name = $row['last_name'];
+        // Create session variables to use throughout login
+        $_SESSION['email'] = $email;
+        $_SESSION['first_name'] = $first_name;
+        $_SESSION['last_name'] = $last_name;
 
       }
     }
