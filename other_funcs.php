@@ -1,4 +1,5 @@
 <?
+//include_once('connection.php');
 
 function do_post_message($thread_id, $creator,$text){
 // needs to post message into database
@@ -26,10 +27,20 @@ function do_get_messages($thread_id){
 		   WHERE '$thread_id' = thread_id
 		   ORDER BY date_created  ASC		
 	";
-	// Run the query
 	$result = mysql_query($sql);
-	// Give result set back to caller
-	return mysql_fetch_assoc($result);
+	if(!$result){
+		die("Invalid query: " .mysql_error());
+	}	
+	else{
+		if(mysql_num_rows($result)==0){
+				$error_message = $email. "There are no messages!";
+		}
+		else{
+     		// Get the information from the result set
+			$cleaned_result = mysql_fetch_assoc($result);
+    		return $cleaned_result;
+    	}
+    }
 }
 
 
@@ -63,8 +74,11 @@ function do_get_groups($email){
 			}
 			else{
      			// Get the information from the result set
-				$cleaned_result = mysql_fetch_assoc($result);
-    			return $cleaned_result;
+     			while($row = mysql_fetch_assoc($result)){
+     				$data[$row['group_id']] = "{$row[group_name]}";
+     			}
+				
+    			return $data;
     		}
     	}
 	}
