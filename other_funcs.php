@@ -52,13 +52,18 @@ function do_get_groups($email){
 		   FROM group
 		   INNER JOIN membership
 		   ON group.group_id = membership.group_id 
-		   AND $email = membership.email   
+		   AND '$email' = membership.email   
 		   ORDER BY group.group_name ASC		
 	";
 	$result = mysql_query(sql);
-     // Get the information from the result set
-	$cleaned_result = mysql_fetch_array($result);
-    return $cleaned_result;
+	if(!result){
+		die("Invalid query: " .mysql_error());
+	}
+	else{
+     	// Get the information from the result set
+		$cleaned_result = mysql_fetch_assoc($result);
+    	return $cleaned_result;
+    }
     }
     die;
 }
