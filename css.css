@@ -147,3 +147,15 @@ border: 1px solid #ddd;
 #listItem:hover{
   background-color: #6dc378; 
 }
+#threadItem{
+ position: relative;
+display: block;
+padding: 20px;
+margin-bottom: 4px;
+background-color: #fff;
+border: 1px solid #ddd;
+}
+.postInfo{
+  float: right;
+  color: #CC0066;
+}
