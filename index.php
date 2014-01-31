@@ -23,13 +23,13 @@ if(isset($_GET["group_id"])){
   $current_threads = do_get_threads($current_group_id);
   $threads_html = '';
 
-  /*for($i = 0; i< count($current_threads); $i++){
-    $threads_html .= '<a href="http://www.waggle.myskiprofile.com/index.php?thread_id='. $current_threads[$i][0];
-    $threads_html .= '"><li id="listItem">'. $current_threads[$i][3] . '<span class="postInfo">';
-    $threads_html .= $current_threads[$i][2] . ' - '. $current_threads[$i][4]. '</li></a>';
+  foreach($current_threads as $things){
+    $threads_html .= '<a href="http://www.waggle.myskiprofile.com/index.php?thread_id='. $things[0];
+    $threads_html .= '"><li id="listItem">'. $things[3] . '<span class="postInfo">';
+    $threads_html .= $things[2] . ' - '. $things[4]. '</li></a>';
 
 
-  }*/
+  }
 
 }
 
