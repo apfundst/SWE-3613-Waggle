@@ -1,4 +1,5 @@
 <?php
+ob_start();
 function rename_file($file_name, $counter)
   {
     $extension = strpos($file_name, '.');
@@ -60,9 +61,10 @@ else
   
   upload_file_check($_FILES["file"]["name"], 0);
 
-  //header("Location: /index.php");
+  header('Location: http://www.waggle.myskiprofile.com/index.php');
+  exit();
   }
-
+ob_flush();
   
   
 ?>
