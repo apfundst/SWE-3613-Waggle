@@ -7,6 +7,10 @@ if(!isset($_SESSION["email"])) {
 }else{
 
 $groups = do_get_groups($_SESSION["email"]);
+if(is_null($groups)){
+  $groups_html = 'You are not in any groups yet!';
+}
+else{
 $groups_html = '';
 foreach ($groups as $key => $value) {
   
@@ -15,6 +19,7 @@ foreach ($groups as $key => $value) {
     $groups_html .= $value . '</li></a>';
   
  
+}
 }
 
 if(isset($_GET["group_id"])){
@@ -56,12 +61,12 @@ if(isset($_GET["group_id"])){
 <div id="content"> content </div>-->
 <div class="container-fluid">
 <nav class="navbar-default navbar" role="navigation">
-<img src="http://www.thetachi.org/clientuploads/News/SPSU_LOGO_RGB.jpg" height="60">
-Waggle
+<img src="LOGOWAGGLEv2.3.png" height="60">
+
 <div style="float: right;">
   <ul>
     
-    <li><a href="#">Log Out</a></li>
+    <li><a href="logout.php">Log Out</a></li>
   </ul>
 </div>
 </nav>
