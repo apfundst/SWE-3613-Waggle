@@ -1,5 +1,7 @@
 <?php 
+session_start();
 include 'other_funcs.php';
+if($_GET){
 
 $thread_id = $_GET["thread_id"];
 $thread = do_get_messages($thread_id);
@@ -10,10 +12,14 @@ foreach ($thread as $value) {
   $messages_html .= '</span></li>';
  
 }
-
-if ($_POST) {
-  do_post_message($thread_id, $_SESSION['email'],$_POST['new_message'];
 }
+if ($_POST) {
+  do_post_message($thread_id, $_SESSION["email"], $_POST['new_message']);
+  $current_url = '"http://www.waggle.myskiprofile.com/thread.php?thread_id='.$thread_id.'"';
+  header('Location: http://www.waggle.myskiprofile.com/thread.php?thread_id='.$thread_id);
+  exit();
+}
+
 ?>
 
 <html>
@@ -48,7 +54,7 @@ Waggle
       <ul >
       <?=$messages_html ?>
       </ul>
-      <form method="post" action="thread.php">
+      <form method="post" action=<?=$current_url ?>>
       <label>Enter your comments here...</label><br>
         <textarea name="new_message" cols="50" rows="7">
         
