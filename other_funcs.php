@@ -34,41 +34,39 @@ function do_get_messages($thread_id){
 
 
 function do_get_groups($email){
-  $con = mysql_connect("localhost","jsalvo_group8","waggle_password");
-  $db = mysql_select_db('jsalvo_waggle');
-  if (!$con || !$db ){
-    die('Could not connect: ' . mysql_error());
-  }
-  else{
-
-
-	// gets groups from db for user
-
-	// get the group_name from the group table
-	// where the email matches the email in the membership table
-	// and the group_id matches the group_id in the group table
-	$sql = "
-		   SELECT group.group_name 
-		   FROM group
-		   INNER JOIN membership
-		   ON group.group_id = membership.group_id 
-		   AND '$email' = membership.email   
-		   ORDER BY group.group_name ASC		
-	";
-	$result = mysql_query(sql);
-	if(!result){
-		die("Invalid query: " .mysql_error());
+ 	$con = mysql_connect("localhost","jsalvo_group8","waggle_password");
+  	$db = mysql_select_db('jsalvo_waggle');
+  	if (!$con || !$db ){
+    	die('Could not connect: ' . mysql_error());
+  	}
+  	else{
+		// gets groups from db for user
+		// get the group_name from the group table
+		// where the email matches the email in the membership table
+		// and the group_id matches the group_id in the group table
+		$sql = "
+		   	SELECT group.group_name 
+		   	FROM group
+		   	INNER JOIN membership
+		   	ON group.group_id = membership.group_id 
+		   	AND '$email' = membership.email   
+		   	ORDER BY group.group_name ASC		
+		";
+		$result = mysql_query(sql);
+		if(!result){
+			die("Invalid query: " .mysql_error());
+		}	
+		else{
+			if(mysql_num_rows($result)==0){
+				$error_message = $email. " You're not in any Groups!.";
+			}
+			else{
+     			// Get the information from the result set
+				$cleaned_result = mysql_fetch_assoc($result);
+    			return $cleaned_result;
+    		}
+    	}
 	}
-	if(mysql_num_rows($result)==0){
-		$error_message = $email. " You're not in any Groups!.";
-	}
-	else{
-
-     	// Get the information from the result set
-		$cleaned_result = mysql_fetch_assoc($result);
-    	return $cleaned_result;
-    }
-    }
     die;
 }
 
