@@ -1,4 +1,5 @@
 <?
+
 function do_post_message($thread_id, $creator,$text){
 // needs to post message into database
 // will require
@@ -33,6 +34,14 @@ function do_get_messages($thread_id){
 
 
 function do_get_groups($email){
+  $con = mysql_connect("localhost","jsalvo_group8","waggle_password");
+  $db = mysql_select_db('jsalvo_waggle');
+  if (!$con || !$db ){
+    die('Could not connect: ' . mysql_error());
+  }
+  else{
+
+
 	// gets groups from db for user
 
 	// get the group_name from the group table
@@ -49,6 +58,8 @@ function do_get_groups($email){
 	$result = mysql_query(sql);
      // Get the information from the result set
     return mysql_fetch_assoc($result);
+    }
+    die;
 }
 
 
