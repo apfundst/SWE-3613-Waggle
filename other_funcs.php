@@ -1,5 +1,5 @@
 <?
-func do_post_message(){
+func do_post_message($thread_id, $creator,$text){
 // needs to post message into database
 // will require
 
@@ -22,17 +22,50 @@ $thread_id;
 // with oldest at top
 $sql_query = "
 		   SELECT *
-		   FROM messages
+		   FROM group
 		   WHERE $thread_id = thread_id
 		   ORDER BY date_created  ASC		
 ";
+}
+
+func do_get_groups($email){
+	// gets groups from db for user
 
 
+	// get the group_name from the group table
+	// where the email matches the email in the membership table
+	// and the group_id matches the group_id in the group table
+	$sql_query = "
+		   SELECT group_id
+		   FROM membership
+		   WHERE $e
 
+
+		   SELECT group.group_name 
+		   FROM group
+		   INNER JOIN membership
+		   ON group.group_id = membership.group_id 
+		   AND $email =   
+
+		   ORDER BY group.group_name ASC		
+";
 
 }
 
 
 
+
+
+func do_get_threads($group){
+// gets threads from group from db
+
+
+
+
+
+
+
+
+}
 
 ?>
