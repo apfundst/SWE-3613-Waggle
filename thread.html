@@ -1,4 +1,5 @@
 
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -45,6 +46,12 @@ Waggle
     <span class="postInfo">Author Name | Timestamp</span>
     </li>
   </ul>
+  <form method="post" action="new_post.php">
+<textarea name="new_message" cols="50" rows="7">
+Enter your comments here...
+</textarea><br>
+<input type="submit" value="Submit" />
+</form>
 
 
   </div>
@@ -75,7 +82,7 @@ Waggle
   </div>
   <div class="panel panel-default">
     <div class="panel-heading">Group memebers</div>
-    <div class="panel-body"><form action="fileupload.php" method="post"
+    <div class="panel-body"><form action="thread.php" method="post"
 enctype="multipart/form-data">
 <label for="file">Filename:</label>
 <input type="file" name="file" id="file"><br>
