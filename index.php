@@ -24,7 +24,7 @@ if(isset($_GET["group_id"])){
   $threads_html = '';
 
   foreach($current_threads as $things){
-    $threads_html .= '<a href="http://www.waggle.myskiprofile.com/index.php?thread_id='. $things[0];
+    $threads_html .= '<a href="http://www.waggle.myskiprofile.com/thread.php?thread_id='. $things[0];
     $threads_html .= '"><li id="listItem">'. $things[3] . '<span class="postInfo">';
     $threads_html .= $things[2] . ' - '. $things[4]. '</li></a>';
 
