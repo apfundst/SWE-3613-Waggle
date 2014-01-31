@@ -7,8 +7,13 @@ if(!isset($_SESSION["email"])) {
 }else{
 $groups = do_get_groups($_SESSION["email"]);
 $groups_html = '';
-foreach ($groups as $value) {
-  $groups_html .= '<li id="listItem"><a href="http://www.waggle.myskiprofile.com/index.php?group_id='. $value['group_id'] . '">' . $value['group_name'] . '</a></li>';
+foreach ($groups as $key => $value) {
+  if($key == 'group_id'){
+  $groups_html .= '<li id="listItem"><a href="http://www.waggle.myskiprofile.com/index.php?group_id='. $value . '">';
+}
+else{
+  $groups_html .= $value . '</a></li>';
+}
  
 }
 
