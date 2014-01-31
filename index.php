@@ -73,7 +73,9 @@ Waggle
 <div class="panel panel-default">
     <div class="panel-heading">User Details</div>
     <div class="panel-body">
-    User details go here I guess
+   <? echo $_SESSION["first_name"] ;
+      echo $_SESSION["last_name"] ;
+       ?>
     </div>
   </div>
   <div class="panel panel-default">
