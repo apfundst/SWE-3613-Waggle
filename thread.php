@@ -41,9 +41,15 @@ Waggle
     <div class="panel-heading">Thread Name</div>
     <div class="panel-body">
 
-<ul >
-    <?php=$messages_html ?>
-  </ul>
+      <ul >
+      <?php=$messages_html ?>
+      </ul>
+      <form method="post" action="thread.php">
+        <textarea name="new_message" cols="50" rows="7">
+        Enter your comments here...
+        </textarea><br>
+        <input type="submit" value="Submit" />
+      </form>
 
 
   </div>
