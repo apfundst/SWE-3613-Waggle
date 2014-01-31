@@ -116,9 +116,10 @@ function do_get_threads($group_id){
     			return $data;
     		}
     	}
+    	die;
 	}
-    die;	
+    	
 
-}
+
 
 ?>

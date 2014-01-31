@@ -17,8 +17,17 @@ foreach ($groups as $key => $value) {
  
 }
 
+if(isset($_GET['group_id'])){
+  $current_group_id = $_GET['group_id'];
+
+  $current_threads = do_get_threads($current_group_id);
 
 }
+
+
+
+}
+
 
 
 
@@ -63,7 +72,7 @@ Waggle
     <div class="panel-body">
 
 <ul >
-    <li id="listItem">item 1<span class="postInfo">Creator</span> </li>
+    <li id="listItem">item 1 <span class="postInfo">Creator</span> </li>
     <li id="listItem">item 2</li>
     <li id="listItem">item 3</li>
     <li id="listItem">item 1</li>
@@ -84,6 +93,7 @@ Waggle
       echo " ";
       echo count($groups);
       echo("<script>console.log('PHP: ". json_encode($groups)."');</script>");
+      echo("<script>console.log('PHP: ". json_encode($current_threads)."');</script>");
        ?>
     </div>
   </div>
