@@ -1,11 +1,17 @@
-<?php
+<?
 session_start();
+include 'other_funcs.php';
 if(!isset($_SESSION["email"])) {
   header('Location: http://www.waggle.myskiprofile.com/login.php');
   exit();
 }else{
+$groups = do_get_groups($_SESSION["email"]);
+$groups_html = '';
+foreach ($groups as $value) {
+  $groups_html .= '<li id="listItem"><a href="http://www.waggle.myskiprofile.com/index.php?group_id='. $value['group_id'] . '">' . $value['group_name'] . '</a></li>';
+ 
+}
 
-  //get loads of data
 }
 
 
@@ -37,14 +43,11 @@ Waggle
 </nav>
 <div class="col-lg-8">
   <div class="panel panel-default">
-    <div class="panel-heading">Group memebers</div>
+    <div class="panel-heading">Groups</div>
     <div class="panel-body">
 
 <ul >
-    <li id="listItem">item 1</li>
-    <li id="listItem">item 2</li>
-    <li id="listItem">item 3</li>
-    <li id="listItem"><a href="#">Log Out</a></li>
+   <?=$groups_html ?>
   </ul>
 
  </div>
