@@ -5,17 +5,19 @@ if(!isset($_SESSION["email"])) {
   header('Location: http://www.waggle.myskiprofile.com/login.php');
   exit();
 }else{
+
 $groups = do_get_groups($_SESSION["email"]);
 $groups_html = '';
 foreach ($groups as $key => $value) {
   if($key == 'group_id'){
   $groups_html .= '<li id="listItem"><a href="http://www.waggle.myskiprofile.com/index.php?group_id='. $value . '">';
-}
-else{
-  $groups_html .= $value . '</a></li>';
-}
+  }
+  else{
+    $groups_html .= $value . '</a></li>';
+  }
  
 }
+
 
 }
 
@@ -80,6 +82,9 @@ Waggle
     <div class="panel-body">
    <? echo $_SESSION["first_name"] ;
       echo $_SESSION["last_name"] ;
+      echo " ";
+      echo count($groups);
+      echo("<script>console.log('PHP: ". json_encode($groups)."');</script>");
        ?>
     </div>
   </div>
