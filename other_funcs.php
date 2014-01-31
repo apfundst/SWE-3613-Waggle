@@ -6,14 +6,18 @@ function do_post_message($thread_id, $creator,$text){
 // will require
 
 // message_id, and date_created autogenerate
-$sql_insert = "
+$sql = "
 		 	INSERT INTO `message`(`thread_id`,`creator`,`message_text`)
 		 	VALUES('$thread_id','$creator','$text')
 	";
 
-
-
+	$result = mysql_query($sql);
+	if (!$result) {
+		mysql_query('ROLLBACK');
+		die("Invalid query: " .mysql_error());
+	}
 }
+
 
 function do_get_messages($thread_id){
 	// loads messages on to page
