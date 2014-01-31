@@ -10,6 +10,10 @@ foreach ($thread as $value) {
   $messages_html .= '</span></li>';
  
 }
+
+if ($_POST) {
+  do_post_message($thread_id, $_SESSION['email'],$_POST['new_message'];
+}
 ?>
 
 <html>
@@ -45,8 +49,9 @@ Waggle
       <?=$messages_html ?>
       </ul>
       <form method="post" action="thread.php">
+      <label>Enter your comments here...</label><br>
         <textarea name="new_message" cols="50" rows="7">
-        Enter your comments here...
+        
         </textarea><br>
         <input type="submit" value="Submit" />
       </form>
@@ -75,7 +80,10 @@ Waggle
 <div class="panel panel-default">
     <div class="panel-heading">User Details</div>
     <div class="panel-body">
-    User details go here I guess
+    <? 
+    echo $_SESSION["first_name"];
+      echo $_SESSION["last_name"];
+      ?>
     </div>
   </div>
   <div class="panel panel-default">
