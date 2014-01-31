@@ -98,10 +98,26 @@ function do_get_threads($group_id){
 		   WHERE '$group_id' = group_id
 		   ORDER BY date_created ASC		
 	";
-	// Send query to db
 	$result = mysql_query($sql);
-	// Give result set back to caller
-	return mysql_fetch_assoc($result);
+		if(!$result){
+			die("Invalid query: " .mysql_error());
+		}	
+		else{
+			if(mysql_num_rows($result)==0){
+				$error_message = $email. " There are no threads!.";
+			}
+			else{
+     			// Get the information from the result set
+				$i = 0;
+     			while($row = mysql_fetch_row($result)){
+     				$data[$i] = $row;
+     				$i++; 
+     			}
+    			return $data;
+    		}
+    	}
+	}
+    die;	
 
 }
 
