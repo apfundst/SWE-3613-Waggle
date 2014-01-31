@@ -5,9 +5,9 @@ $thread_id = $_GET["thread_id"];
 $thread = do_get_messages($thread_id);
 $messages_html = '';
 foreach ($thread as $value) {
-  $messages_html .= '<li id="threadItem">' . $value['message_text'] . '<br><br>';
-  $messages_html .= '<span class="postInfo">' . $value['owner'] . ' -- ' . $value['date_created'];
-  $messages_html .= '</span></li>'
+  $messages_html .= '<li id="threadItem">' . $value['3'] . '<br><br>';
+  $messages_html .= '<span class="postInfo">' . $value['2'] . ' -- ' . $value['4'];
+  $messages_html .= '</span></li>';
  
 }
 ?>
@@ -42,7 +42,7 @@ Waggle
     <div class="panel-body">
 
       <ul >
-      <?php=$messages_html ?>
+      <?=$messages_html ?>
       </ul>
       <form method="post" action="thread.php">
         <textarea name="new_message" cols="50" rows="7">
