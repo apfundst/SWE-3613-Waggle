@@ -41,8 +41,7 @@ if ($_POST) {
 <div id="content"> content </div>-->
 <div class="container-fluid">
 <nav class="navbar-default navbar" role="navigation">
-<img src="http://www.thetachi.org/clientuploads/News/SPSU_LOGO_RGB.jpg" height="60">
-Waggle
+<img class="logoImg"src="LOGOWAGGLEv2.3.png" height="60">
 <div style="float: right;">
   <ul>
     

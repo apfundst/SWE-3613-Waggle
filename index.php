@@ -61,7 +61,7 @@ if(isset($_GET["group_id"])){
 <div id="content"> content </div>-->
 <div class="container-fluid">
 <nav class="navbar-default navbar" role="navigation">
-<img src="LOGOWAGGLEv2.3.png" height="60">
+<img class="logoImg"src="LOGOWAGGLEv2.3.png" height="60">
 
 <div style="float: right;">
   <ul>

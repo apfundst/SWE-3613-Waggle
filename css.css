@@ -2,6 +2,7 @@ body{
   margin:0;
   padding:header-<length> 0 0 left-sidebar-<length>;
   font-family: 'Inconsolata', serif;
+  color: #ecf0f1;
  }
  div#header{
   position:absolute;
@@ -48,8 +49,7 @@ body {
     background-color: #fff;
 }
 .container-fluid {
-  padding-right: 15px;
-  padding-left: 15px;
+  
   margin-right: auto;
   margin-left: auto;
 }
@@ -81,17 +81,14 @@ body {
   background-color: #0e855b;
   padding: 10px
 }
-.navbar-default {
-  background-color: #0e855b;
-  border-color: #e7e7e7;
-}
+
 .navbar-static-side {
   z-index: 1;
   position: absolute;
   width: 250px;
 }
 .navbar-default {
-  background-color: #f8f8f8;
+  background-color: #222222;
   border-color: #e7e7e7;
 }
 .panel {
@@ -108,14 +105,16 @@ body {
   border-color: #ddd;
 }
 .panel-heading {
-  color: #333;
-  background-color: #6dc378;
+  color: #ffffff;
+  font-size: 20px;
+  font-style: bold;
+  background-color: #0cb270;
   border-color: #ddd;
   padding: 15px;
 }
 .panel-body {
-  color: #333;
-  background-color: #ffffff;
+  color:#ecf0f1;
+  background-color: #444444;
   border-color: #ddd;
   padding: 10px;
 }
@@ -126,14 +125,14 @@ nav {
 nav li{
   display: inline;
   border: 1px solid #ddd;
-  background-color: #6dc378;
+  background-color: #0cb270;
   padding: 8px;
   margin-left: 10px;
   font-size: 20px;
 }
 a{
   text-decoration:none;
-  color: #3399CC;
+  color: #444444;
 
 }
 #listItem{
@@ -141,14 +140,16 @@ a{
 display: block;
 padding: 10px 15px;
 margin-bottom: -1px;
-background-color: #fff;
+background-color: #ecf0f1;
 border: 1px solid #ddd;
+color: #444444;
 }
 #listItem:hover{
-  background-color: #6dc378; 
+  background-color: #0cb270; 
 }
 #threadItem{
  position: relative;
+ color: #444444;
 display: block;
 padding: 20px;
 margin-bottom: 4px;
@@ -158,4 +159,9 @@ border: 1px solid #ddd;
 .postInfo{
   float: right;
   color: #CC0066;
+}
+.logoImg{
+  padding-left: 20px;
+  margin-left: 20px
+
 }
