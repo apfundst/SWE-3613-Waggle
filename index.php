@@ -1,6 +1,6 @@
 <?php
-
-if(session_id() == '' || !isset($_SESSION)) {
+session_start();
+if(!isset($_SESSION["email"])) {
   header('Location: http://www.waggle.myskiprofile.com/login.php');
   exit();
 }else{

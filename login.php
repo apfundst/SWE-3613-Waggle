@@ -38,11 +38,12 @@ if ($_POST) {
         $email = $row['email'];
         $first_name = $row['first_name'];
         $last_name = $row['last_name'];
-        $error_message = $email . $first_name . $last_name;
+        //$error_message = $email . $first_name . $last_name;
         // Create session variables to use throughout login
-        $_SESSION['email'] = $email;
-        $_SESSION['first_name'] = $first_name;
-        $_SESSION['last_name'] = $last_name;
+        
+        $_SESSION["email"] = $email;
+        $_SESSION["first_name"] = $first_name;
+        $_SESSION["last_name"] = $last_name;
 
         header('Location: http://www.waggle.myskiprofile.com/index.php');
   exit();
