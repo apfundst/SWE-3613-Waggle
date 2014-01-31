@@ -44,6 +44,7 @@ function do_get_groups($email){
 		// get the group_name from the group table
 		// where the email matches the email in the membership table
 		// and the group_id matches the group_id in the group table
+
 		$sql = "
 		   	SELECT group.group_name 
 		   	FROM group
@@ -53,7 +54,7 @@ function do_get_groups($email){
 		   	ORDER BY group.group_name ASC		
 		";
 		$result = mysql_query($sql);
-		if(!result){
+		if(!$result){
 			die("Invalid query: " .mysql_error());
 		}	
 		else{
