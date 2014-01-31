@@ -46,9 +46,9 @@ function do_get_groups($email){
 		// and the group_id matches the group_id in the group table
 
 		$sql = "
-		   	SELECT group.group_name 
-		   	FROM group
-		   	INNER JOIN membership
+		   	SELECT group.group_name, group.group_id 
+		   	FROM `group`
+		   	INNER JOIN `membership`
 		   	ON group.group_id = membership.group_id 
 		   	AND '$email' = membership.email   
 		   	ORDER BY group.group_name ASC		
