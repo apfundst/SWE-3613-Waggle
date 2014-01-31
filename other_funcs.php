@@ -37,7 +37,7 @@ function do_get_messages($thread_id){
 		}	
 		else{
 			if(mysql_num_rows($result)==0){
-				$error_message = $email. " There are no messages!.";
+				return NULL;
 			}
 			else{
      			// Get the information from the result set
@@ -74,7 +74,7 @@ function do_get_groups($email){
 		}	
 		else{
 			if(mysql_num_rows($result)==0){
-				$error_message = $email. " You're not in any Groups!.";
+				return NULL;
 			}
 			else{
      			// Get the information from the result set
@@ -108,7 +108,7 @@ function do_get_threads($group_id){
 		}	
 		else{
 			if(mysql_num_rows($result)==0){
-				$error_message = $email. " There are no threads!.";
+				return NULL;
 			}
 			else{
      			// Get the information from the result set
