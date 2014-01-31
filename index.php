@@ -63,7 +63,7 @@ Waggle
     <div class="panel-body">
 
 <ul >
-    <li id="listItem">item 1</li>
+    <li id="listItem">item 1<span class="postInfo">Creator</span> </li>
     <li id="listItem">item 2</li>
     <li id="listItem">item 3</li>
     <li id="listItem">item 1</li>
