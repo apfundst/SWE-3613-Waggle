@@ -17,10 +17,19 @@ foreach ($groups as $key => $value) {
  
 }
 
-if(isset($_GET['group_id'])){
-  $current_group_id = $_GET['group_id'];
+if(isset($_GET["group_id"])){
+  $current_group_id = $_GET["group_id"];
 
   $current_threads = do_get_threads($current_group_id);
+  $threads_html = '';
+
+  /*for($i = 0; i< count($current_threads); $i++){
+    $threads_html .= '<a href="http://www.waggle.myskiprofile.com/index.php?thread_id='. $current_threads[$i][0];
+    $threads_html .= '"><li id="listItem">'. $current_threads[$i][3] . '<span class="postInfo">';
+    $threads_html .= $current_threads[$i][2] . ' - '. $current_threads[$i][4]. '</li></a>';
+
+
+  }*/
 
 }
 
@@ -72,12 +81,7 @@ Waggle
     <div class="panel-body">
 
 <ul >
-    <li id="listItem">item 1 <span class="postInfo">Creator</span> </li>
-    <li id="listItem">item 2</li>
-    <li id="listItem">item 3</li>
-    <li id="listItem">item 1</li>
-    <li id="listItem">item 2</li>
-    <li id="listItem">item 3</li>
+    <?=$threads_html ?>
   </ul>
 </form>
 
@@ -92,6 +96,7 @@ Waggle
       echo $_SESSION["last_name"] ;
       echo " ";
       echo count($groups);
+      echo count($current_threads);
       echo("<script>console.log('PHP: ". json_encode($groups)."');</script>");
       echo("<script>console.log('PHP: ". json_encode($current_threads)."');</script>");
        ?>
