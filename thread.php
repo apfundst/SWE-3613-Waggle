@@ -5,12 +5,17 @@ if($_GET){
 
 $thread_id = $_GET["thread_id"];
 $thread = do_get_messages($thread_id);
+if(is_null($thread)){
+  $messages_html = 'No Posts Yet';
+}
+else{
 $messages_html = '';
 foreach ($thread as $value) {
   $messages_html .= '<li id="threadItem">' . $value['3'] . '<br><br>';
   $messages_html .= '<span class="postInfo">' . $value['2'] . ' -- ' . $value['4'];
   $messages_html .= '</span></li>';
  
+}
 }
 }
 if ($_POST) {
