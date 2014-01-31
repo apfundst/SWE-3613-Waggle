@@ -1,4 +1,3 @@
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -23,37 +22,50 @@ Waggle
 </div>
 </nav>
 <div class="col-lg-8">
+  
   <div class="panel panel-default">
-    <div class="panel-heading">Group memebers</div>
+    <div class="panel-heading">Thread Name</div>
     <div class="panel-body">
 
 <ul >
-    <li id="listItem">item 1</li>
-    <li id="listItem">item 2</li>
-    <li id="listItem">item 3</li>
-    <li id="listItem"><a href="#">Log Out</a></li>
+    <li id="threadItem">A quantum computer (also known as a quantum supercomputer) is a computation device that makes direct use of quantum-mechanical phenomena, such as superposition and entanglement, to perform operations on data. Quantum computers are different from digital computers based on transistors. Whereas digital computers require data to be encoded into binary digits (bits), quantum computation uses quantum properties to represent data and perform operations on these data.[1] A theoretical model is the quantum Turing machine, also known as the universal quantum computer. Quantum computers share theoretical similarities with non-deterministic and probabilistic computers. One example is the ability to be in more than one state simultaneously. The field of quantum computing was first introduced by Yuri Manin in 1980[2] and Richard Feynman in 1982.[3][4] A quantum computer with spins as quantum bits was also formulated for use as a quantum space–time in 1969.[5]
+    <br>
+    <br>
+    <span class="postInfo">Author Name | Timestamp</span>
+    </li>
+    <li id="threadItem">A quantum computer (also known as a quantum supercomputer) is a computation device that makes direct use of quantum-mechanical phenomena, such as suld of quantum computing was first introduced by Yuri Manin in 1980[2] and Richard Feynman in 1982.[3][4] A quantum computer with spins as quantum bits was also formulated for use as a quantum space–time in 1969.[5]
+    <br>
+    <br>
+    <span class="postInfo">Author Name | Timestamp</span>
+    </li>
+    <li id="threadItem">A quantum computer (also known as a quantum supercomputer) is a computation device that makes direct use of quantum-mechanical phenomena, such as superposition and entanglement, to perform operations on data. Quantum computers are different from digital computers based on transistors. Whereas digital computers require data to be encoded into binary digits (bits), quantum computation uses quantum properties to represent data and perform operations on g was first introduced by Yuri Manin in 1980[2] and Richard Feynman in 1982.[3][4] A quantum computer with spins as quantum bits was also formulated for use as a quantum space–time in 1969.[5]
+    <br>
+    <br>
+    <span class="postInfo">Author Name | Timestamp</span>
+    </li>
   </ul>
 
- </div>
+
   </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">Disscusion Threads</div>
-    <div class="panel-body">
-
-<ul >
-    <li id="listItem">item 1</li>
-    <li id="listItem">item 2</li>
-    <li id="listItem">item 3</li>
-    <li id="listItem">item 1</li>
-    <li id="listItem">item 2</li>
-    <li id="listItem">item 3</li>
-  </ul>
-</form>
-
- </div>
   </div>
 </div>
 <div class="col-lg-4">
+<div class="panel panel-default">
+<div class="panel-heading">Disscusion Threads</div>
+    <div class="panel-body">
+
+<ul >
+    <li id="listItem">item 1</li>
+    <li id="listItem">item 2</li>
+    <li id="listItem">item 3</li>
+    <li id="listItem">item 1</li>
+    <li id="listItem">item 2</li>
+    <li id="listItem">item 3</li>
+  </ul>
+
+
+ </div>
+  </div>
 <div class="panel panel-default">
     <div class="panel-heading">User Details</div>
     <div class="panel-body">
