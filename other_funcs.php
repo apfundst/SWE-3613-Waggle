@@ -6,8 +6,8 @@ function do_post_message($thread_id, $creator,$text){
 
 // message_id, and date_created autogenerate
 $sql_insert = "
-		 	INSERT INTO message(thread_id,creator,message_text)
-		 	VALUES($thread_id,$creator,$text)
+		 	INSERT INTO `message`(`thread_id`,`creator`,`message_text`)
+		 	VALUES('$thread_id','$creator','$text')
 	";
 
 
@@ -22,8 +22,8 @@ function do_get_messages($thread_id){
 	// with oldest at top
 	$sql = "
 		   SELECT *
-		   FROM message
-		   WHERE $thread_id = thread_id
+		   FROM `message`
+		   WHERE '$thread_id' = thread_id
 		   ORDER BY date_created  ASC		
 	";
 	// Run the query
@@ -46,7 +46,7 @@ function do_get_groups($email){
 		// and the group_id matches the group_id in the group table
 
 		$sql = "
-		   	SELECT group.group_name, group.group_id 
+		   	SELECT group.group_id, group.group_name 
 		   	FROM `group`
 		   	INNER JOIN `membership`
 		   	ON group.group_id = membership.group_id 
@@ -80,8 +80,8 @@ function do_get_threads($group_id){
 	// and the group_id matches the group_id in the group table
 	$sql = "
 		   SELECT * 
-		   FROM thread
-		   WHERE $group_id = group_id
+		   FROM `thread`
+		   WHERE '$group_id' = group_id
 		   ORDER BY date_created ASC		
 	";
 	// Send query to db
