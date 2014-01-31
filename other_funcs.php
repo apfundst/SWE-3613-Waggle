@@ -57,7 +57,7 @@ function do_get_groups($email){
 	";
 	$result = mysql_query(sql);
      // Get the information from the result set
-	$cleaned_result = mysql_fetch_assoc($result);
+	$cleaned_result = mysql_fetch_array($result);
     return $cleaned_result;
     }
     die;
