@@ -8,8 +8,8 @@ if ($_POST) {
     die('Could not connect: ' . mysql_error());
   }
   else{
-    $userid = check_param('userid', 'string', null, null);
-    $pass = check_param('pass', 'string', null, null);
+    $userid = $_POST['email']
+    $pass = $_POST['password']
 
     $sql = "
       SELECT *
@@ -20,14 +20,15 @@ if ($_POST) {
 
     $result = mysql_query($sql);
     if (!$result) {
-      preit(mysql_error());
+      die('Could not connect: ' . mysql_error());
+     
     }
     else {
       if (mysql_num_rows($result) == 0) {
         $error_message = "Login failed.  Please check your userid and password.";
       }
       else {
-        header("Location: /index.php");
+        
         // Get the information from the result set
         $row = mysql_fetch_assoc($result);
         // Put information into temp variables
@@ -38,6 +39,8 @@ if ($_POST) {
         $_SESSION['email'] = $email;
         $_SESSION['first_name'] = $first_name;
         $_SESSION['last_name'] = $last_name;
+
+        header("Location: /index.php");
 
       }
     }
@@ -216,7 +219,7 @@ border: 1px solid #ddd;
         <label for="file">Email:</label>
         <input type="text" name="email" for="userid"><br>
         <label for="file">Password:</label>
-        <input type="text" name="password" for="pass"><br>
+        <input type="password" name="password" for="pass"><br>
         <input type="submit" name="submit" value="Submit">
         </form></center>
       </div>
