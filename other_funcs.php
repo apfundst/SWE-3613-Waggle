@@ -27,7 +27,7 @@ function do_get_messages($thread_id){
 		   ORDER BY date_created  ASC		
 	";
 	// Run the query
-	$result = mysql_query(sql);
+	$result = mysql_query($sql);
 	// Give result set back to caller
 	return mysql_fetch_assoc($result);
 }
@@ -52,7 +52,7 @@ function do_get_groups($email){
 		   	AND '$email' = membership.email   
 		   	ORDER BY group.group_name ASC		
 		";
-		$result = mysql_query(sql);
+		$result = mysql_query($sql);
 		if(!result){
 			die("Invalid query: " .mysql_error());
 		}	
@@ -84,7 +84,7 @@ function do_get_threads($group_id){
 		   ORDER BY date_created ASC		
 	";
 	// Send query to db
-	$result = mysql_query(sql);
+	$result = mysql_query($sql);
 	// Give result set back to caller
 	return mysql_fetch_assoc($result);
 
