@@ -1,5 +1,5 @@
 <?
-
+ob_start();
 session_start();
 $error_message = null;
 if ($_POST) {
@@ -11,7 +11,7 @@ if ($_POST) {
   else{
 
     $email = $_POST['email'];
-    $pass = $_POST['password'];
+    $password = $_POST['password'];
 
     $sql = "
       SELECT *
@@ -27,23 +27,26 @@ if ($_POST) {
     }
     else {
       if (mysql_num_rows($result) == 0) {
-        $error_message = "Login failed.  Please check your userid and password.";
+        $error_message = $email . " " . $password . "Login failed.  Please check your userid and password.";
       }
       else {
         
         // Get the information from the result set
         $row = mysql_fetch_assoc($result);
         // Put information into temp variables
+        //echo $row;
         $email = $row['email'];
         $first_name = $row['first_name'];
         $last_name = $row['last_name'];
+        $error_message = $email . $first_name . $last_name;
         // Create session variables to use throughout login
         $_SESSION['email'] = $email;
         $_SESSION['first_name'] = $first_name;
         $_SESSION['last_name'] = $last_name;
 
-        header("Location: /index.php");
-
+        header('Location: http://www.waggle.myskiprofile.com/index.php');
+  exit();
+ob_flush();
       }
     }
   }
