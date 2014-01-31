@@ -59,7 +59,11 @@ function do_get_groups($email){
 	if(!result){
 		die("Invalid query: " .mysql_error());
 	}
+	if(mysql_num_rows($result)==0){
+		$error_message = $email. " You're not in any Groups!.";
+	}
 	else{
+
      	// Get the information from the result set
 		$cleaned_result = mysql_fetch_assoc($result);
     	return $cleaned_result;
