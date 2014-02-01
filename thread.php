@@ -41,11 +41,11 @@ if ($_POST) {
 <div id="content"> content </div>-->
 <div class="container-fluid">
 <nav class="navbar-default navbar" role="navigation">
-<img class="logoImg"src="LOGOWAGGLEv2.3.png" height="60">
+<a href="index.php"><img class="logoImg"src="LOGOWAGGLEv2.3.png" height="60"></a>
 <div style="float: right;">
   <ul>
     
-    <li><a href="#">Log Out</a></li>
+    <li><a href="logout.php">Log Out</a></li>
   </ul>
 </div>
 </nav>

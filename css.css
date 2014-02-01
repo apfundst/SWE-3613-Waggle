@@ -143,6 +143,7 @@ margin-bottom: -1px;
 background-color: #ecf0f1;
 border: 1px solid #ddd;
 color: #444444;
+cursor:hand;
 }
 #listItem:hover{
   background-color: #0cb270; 
@@ -164,4 +165,21 @@ border: 1px solid #ddd;
   padding-left: 20px;
   margin-left: 20px
 
+}
+#input_a{
+  text-align: left;
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #ecf0f1;
+  border: 1px solid #ddd;
+  color: #444444;
+  
+}
+#input_a:hover{
+  background-color: #0cb270; 
+cursor:pointer;
+      cursor:hand;
 }

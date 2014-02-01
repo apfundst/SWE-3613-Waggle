@@ -5,7 +5,7 @@ if(!isset($_SESSION["email"])) {
   header('Location: http://www.waggle.myskiprofile.com/login.php');
   exit();
 }else{
-
+$_SESSION['current_group_id'] = '';
 $groups = do_get_groups($_SESSION["email"]);
 if(is_null($groups)){
   $groups_html = 'You are not in any groups yet!';
@@ -14,16 +14,18 @@ else{
 $groups_html = '';
 foreach ($groups as $key => $value) {
   
-  $groups_html .= '<a href="http://www.waggle.myskiprofile.com/index.php?group_id='. $key . '"><li id="listItem">';
+  $groups_html .= '<form enctype="multipart/form-data" action="index.php" method="post">
+                        <input type="hidden" name="group_id" value="'. $key . '"><input type="submit" name="submit" id="input_a" value="';
   
-    $groups_html .= $value . '</li></a>';
+    $groups_html .= $value . '"/></form>';
   
  
 }
 }
 
-if(isset($_GET["group_id"])){
-  $current_group_id = $_GET["group_id"];
+if(isset($_POST["group_id"])){
+  $current_group_id = $_POST["group_id"];
+  $_SESSION['current_group_id'] = $current_group_id;
 
   $current_threads = do_get_threads($current_group_id);
   $threads_html = '';
@@ -99,11 +101,12 @@ if(isset($_GET["group_id"])){
     <div class="panel-body">
    <? echo $_SESSION["first_name"] ;
       echo $_SESSION["last_name"] ;
-      echo " ";
-      echo count($groups);
+      echo "<br> ";
+      echo $_SESSION['current_group_id'];
+      /*echo count($groups);
       echo count($current_threads);
       echo("<script>console.log('PHP: ". json_encode($groups)."');</script>");
-      echo("<script>console.log('PHP: ". json_encode($current_threads)."');</script>");
+      echo("<script>console.log('PHP: ". json_encode($current_threads)."');</script>");*/
        ?>
     </div>
   </div>
