@@ -26,6 +26,7 @@ foreach ($groups as $key => $value) {
 if(isset($_POST["group_id"])){
   $current_group_id = $_POST["group_id"];
   $_SESSION['current_group_id'] = $current_group_id;
+  $current_group_name = do_get_group_name($current_group_id);
 
   $current_threads = do_get_threads($current_group_id);
   $threads_html = '';
@@ -84,7 +85,7 @@ if(isset($_POST["group_id"])){
  </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading">Disscusion Threads</div>
+    <div class="panel-heading">Disscusion Threads for <?=$current_group_name ?></div>
     <div class="panel-body">
 
 <ul >

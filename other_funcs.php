@@ -87,6 +87,40 @@ function do_get_groups($email){
     	}
     	die;
 	}
+
+	function do_get_group_name($group_id){
+		// gets groups from db for user
+		// get the group_name from the group table
+		// where the email matches the email in the membership table
+		// and the group_id matches the group_id in the group table
+
+		$sql = "
+		   	SELECT group_name 
+		   	FROM `group`
+		   	WHERE group_id = '$group_id'
+		   	
+		   	
+		";
+		$result = mysql_query($sql);
+		if(!$result){
+			die("Invalid query: " .mysql_error());
+		}	
+		else{
+			if(mysql_num_rows($result)==0){
+				return NULL;
+			}
+			else{
+     			// Get the information from the result set
+     			$row = mysql_fetch_assoc($result);
+     			$data = $row['group_name'];
+     				
+     			
+				
+    			return $data;
+    		}
+    	}
+    	die;
+	}
     
 
 
