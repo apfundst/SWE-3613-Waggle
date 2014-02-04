@@ -1,6 +1,10 @@
 <?php 
 session_start();
 include 'other_funcs.php';
+if(!isset($_SESSION["email"])) {
+  header('Location: http://www.waggle.myskiprofile.com/login.php');
+  exit();
+}else{
 if($_GET){
 
 $thread_id = $_GET["thread_id"];
@@ -24,7 +28,7 @@ if ($_POST) {
   header('Location: http://www.waggle.myskiprofile.com/thread.php?thread_id='.$thread_id);
   exit();
 }
-
+}
 ?>
 
 <html>

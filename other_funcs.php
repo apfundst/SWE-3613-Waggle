@@ -51,7 +51,88 @@ function do_get_messages($thread_id){
     	}
     	die;
 }
- 
+
+function do_create_membership($email, $group_id){
+	// Will create a membership for a user if that user
+	// does not already belong to group
+
+	// NOT THREAD SAFE 
+	// NEEDS TO HAVE MORE ROBUST FAIL SAFE IF COMMITT FAILS
+
+	$sql = "
+		INSERT INTO `membership`(`group_id`,`email`)
+		VALUES('$group_id','$email')	
+	";
+	$result = mysql_query($sql);
+	if(!$result){
+		return false;
+	}
+	else{
+		return true;
+	}
+
+
+}
+
+function do_get_group_id($creator, $group_name){
+	// Gets group_id from group table
+
+	// NOT THREAD SAFE 
+	// NEEDS TO HAVE MORE ROBUST FAIL SAFE IF COMMITT FAILS
+
+	$sql = "
+		SELECT group_id 
+		FROM `group` 
+		WHERE '$group_name'= group_name AND
+			  '$creator' = creator
+		";
+	$result = mysql_query($sql);
+	if(!$result){
+		return false;
+	}
+	else{
+		$row = mysql_fetch_array($result);
+		return $row['group_id'];
+	}
+}
+
+
+
+function do_create_group($email, $group_name, $group_description){
+	// WIll insert into database but kick out an insert
+	// that has a group name that already exists in db
+	// NOTE: WILL NEED TO CHECK IF QUERY FAILS OR IF
+	// THE CONNECTION TO DB WAS UNSUCCESSFUL
+
+	// NINJA EDIT: 3 Feb 2014 23:29 made 
+	//			   group_name unique
+
+
+	$sql_check = "
+			SELECT * 
+			FROM `group` 
+			WHERE '$group_name'= group_name
+	";
+	$check_result = mysql_query($sql_check);
+	if(!$check_result){
+		return false;
+	}
+	else {
+		$sql = "
+		    INSERT INTO `group`(`creator`,`group_name`,`group_description`)
+		 	VALUES('$email','$group_name','$group_description')
+		";
+		$result = mysql_query($sql);
+		if(!$result){
+			return false;
+		}
+		else{
+			do_create_membership($email, do_get_group_id($email,$group_name) );
+			return true;
+		}
+
+    }
+}
 
 
 function do_get_groups($email){
