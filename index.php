@@ -23,12 +23,23 @@ foreach ($groups as $key => $value) {
 }
 }
  $threads_html = 'Select a Group!';
+ $file_upload_html = 'Select a Group!';
 if(isset($_POST["group_id"])){
   $current_group_id = $_POST["group_id"];
   $_SESSION['current_group_id'] = $current_group_id;
   $current_group_name = do_get_group_name($current_group_id);
 
   $current_threads = do_get_threads($current_group_id);
+  $file_upload_html = '  <div class="panel panel-default">
+    <div class="panel-heading">Upload Files to '. $current_group_name .'</div>
+    <div class="panel-body"><form action="fileupload.php" method="post"
+enctype="multipart/form-data">
+<label for="file">Filename:</label>
+<input type="file" name="file" id="file"><br>
+<input type="submit" name="submit" value="Submit">
+</form>
+    </div>
+  </div>';
   if (is_null($current_threads)){
     $threads_html = 'No Threads in this group Yet!';
   }
@@ -42,6 +53,8 @@ if(isset($_POST["group_id"])){
 
 
   }
+  
+
 }
 
 }
@@ -127,16 +140,7 @@ if(isset($_POST["group_id"])){
        ?>
     </div>
   </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">Group memebers</div>
-    <div class="panel-body"><form action="fileupload.php" method="post"
-enctype="multipart/form-data">
-<label for="file">Filename:</label>
-<input type="file" name="file" id="file"><br>
-<input type="submit" name="submit" value="Submit">
-</form>
-    </div>
-  </div>
+<?=$file_upload_html;?>
 </div>
 </div>
 

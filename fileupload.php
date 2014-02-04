@@ -1,4 +1,5 @@
 <?php
+session_start();
 ob_start();
 include_once('connection.php');
 
@@ -45,17 +46,18 @@ function rename_file($file_name, $counter)
       $fileNamePath = "upload/" . $temp_name;
       $creator = $_SESSION["email"];
       $thread_id = $_SESSION['current_group_id'];
-      $bool = upload_to_database($thread_id, $fileNamePath, $creator);
-      if($bool==TRUE){
+      $bool_returned = upload_to_database($thread_id, $fileNamePath, $creator);
+      if($bool_returned==TRUE){
         header('Location: http://www.waggle.myskiprofile.com/index.php');
-    exit();
+        exit();
 
       }
-      elseif($bool==FALSE){
-        echo "peter screwed up somewhere else!!!!!!!";
+      else{
+        echo "peter screwed up somewhere else!!!!!!!<br>";
+        echo $bool_returned;
 
       }
-       echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
+       //echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
     }
   }
 
@@ -63,7 +65,7 @@ function rename_file($file_name, $counter)
   {
     //*****************
       $sql = "
-          INSERT INTO `file`(`thread_id`,`fileNamePath`,`creator`)
+          INSERT INTO `file`(`group_id`,`file_name_path`,`creator`)
           VALUES('$thread_id','$fileNamePath','$creator')
       ";
 
@@ -71,11 +73,11 @@ function rename_file($file_name, $counter)
       if (!$result)
       {
         mysql_query('ROLLBACK');
-        return false;
+        return "Invalid query: " .mysql_error();
       }
       else
       {
-        return true;
+        return $result;
       }
     //***************
   }
