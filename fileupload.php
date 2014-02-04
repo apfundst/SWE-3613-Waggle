@@ -1,5 +1,6 @@
 <?php
 ob_start();
+include_once('connection.php');
 
 function rename_file($file_name, $counter)
   {
