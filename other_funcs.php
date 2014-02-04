@@ -65,10 +65,10 @@ function do_create_membership($email, $group_id){
 	";
 	$result = mysql_query($sql);
 	if(!$result){
-		return false;
+		return FALSE;
 	}
 	else{
-		return true;
+		return TRUE;
 	}
 
 
@@ -88,7 +88,7 @@ function do_get_group_id($creator, $group_name){
 		";
 	$result = mysql_query($sql);
 	if(!$result){
-		return false;
+		return FALSE;
 	}
 	else{
 		$row = mysql_fetch_array($result);
@@ -115,7 +115,7 @@ function do_create_group($email, $group_name, $group_description){
 	";
 	$check_result = mysql_query($sql_check);
 	if(!$check_result){
-		return false;
+		return FALSE;
 	}
 	else {
 		$sql = "
@@ -124,11 +124,11 @@ function do_create_group($email, $group_name, $group_description){
 		";
 		$result = mysql_query($sql);
 		if(!$result){
-			return false;
+			return FALSE;
 		}
 		else{
 			do_create_membership($email, do_get_group_id($email,$group_name) );
-			return true;
+			return TRUE;
 		}
 
     }
@@ -142,7 +142,7 @@ function do_get_groups($email){
 		// and the group_id matches the group_id in the group table
 
 		$sql = "
-		   	SELECT group.group_id, group.group_name 
+		   	SELECT group.group_id, group.group_name, group.creator
 		   	FROM `group`
 		   	INNER JOIN `membership`
 		   	ON group.group_id = membership.group_id 
@@ -159,8 +159,10 @@ function do_get_groups($email){
 			}
 			else{
      			// Get the information from the result set
+     			$i = 0;
      			while($row = mysql_fetch_assoc($result)){
-     				$data[$row['group_id']] = "{$row[group_name]}";
+     				$data[$i] = $row;
+     				$i++;
      			}
 				
     			return $data;
