@@ -16,12 +16,12 @@ if(is_null($groups))
 }
 else{
 $groups_html = '';
-foreach ($groups as $key => $value) {
+foreach ($groups as $stuff) {
   
   $groups_html .= '<form enctype="multipart/form-data" action="index.php" method="post">
-                        <input type="hidden" name="group_id" value="'. $key . '"><input type="submit" name="submit" id="input_a" value="';
+                        <input type="hidden" name="group_id" value="'. $stuff[0] . '"><input type="submit" name="submit" id="input_a" value="';
   
-  $groups_html .= $value . '"/></form>';
+  $groups_html .= $stuff[1] . '        --      '.$stuff[2].'"/></form>';
   
  
 }
@@ -53,7 +53,7 @@ if(isset($_POST["group_id"])){
   foreach($current_threads as $things)
   {
     $threads_html .= '<form enctype="multipart/form-data" action="thread.php" method="post">
-                        <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
+                        <input type="hidden" name="thread_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
     $threads_html .= $things[3] . '"/></form>';
 
   }
