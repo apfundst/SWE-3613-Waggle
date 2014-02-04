@@ -1,6 +1,7 @@
 <?php
 session_start();
 ob_start();
+$error_message = '';
 include 'other_funcs.php';
 if(!isset($_SESSION["email"])) {
   header('Location: http://www.waggle.myskiprofile.com/login.php');
@@ -20,11 +21,11 @@ if(isset($_POST["group_name"])){
     exit();
 
   }
-  elseif(bool == FALSE){
-    $error_message = "Name already taken, Try again!";
+  elseif($bool == FALSE){
+    $error_message = 'Name already taken, Try again!';
   }
   else{
-    $error_message = $bool;
+    $error_message = 'else block';
   }
 
   
