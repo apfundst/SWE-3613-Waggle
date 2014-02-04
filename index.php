@@ -29,6 +29,10 @@ if(isset($_POST["group_id"])){
   $current_group_name = do_get_group_name($current_group_id);
 
   $current_threads = do_get_threads($current_group_id);
+  if (is_null($current_threads)){
+    $threads_html = 'No Threads in this group Yet!';
+  }
+  else{
   $threads_html = '';
 
   foreach($current_threads as $things){
@@ -38,8 +42,10 @@ if(isset($_POST["group_id"])){
 
 
   }
+}
 
 }
+
 
 
 
