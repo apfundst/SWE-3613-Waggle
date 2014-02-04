@@ -56,16 +56,39 @@ function do_create_membership($email, $group_id){
 	// Will create a membership for a user if that user
 	// does not already belong to group
 	$sql = "
-		INSERT INTO `group`(`creator`,`group_name`,`group_description`)
-		VALUES('$email','$group_name','$group_description')	
+		INSERT INTO `membership`(`group_id`,`email`)
+		VALUES('$group_id','$email')	
 	";
-
-
-
-
+	$result = mysql_query($sql);
+	if(!$result){
+		return false;
+	}
+	else{
+		return true;
+	}
 
 
 }
+
+function do_get_group_id($creator, $group_name){
+	// Gets group_id from group table
+
+	$sql = "
+		SELECT group_id 
+		FROM `group` 
+		WHERE '$group_name'= group_name AND
+			  '$creator' = creator
+		";
+	$result = mysql_query($sql);
+	if(!$result){
+		return false;
+	}
+	else{
+		$row = mysql_fetch_array($result);
+		return $row['group_id'];
+	}
+}
+
 
 
 function do_create_group($email, $group_name, $group_description){
@@ -97,6 +120,7 @@ function do_create_group($email, $group_name, $group_description){
 			return false;
 		}
 		else{
+			do_create_membership($email, do_get_group_id($email,$group_name) );
 			return true;
 		}
 
