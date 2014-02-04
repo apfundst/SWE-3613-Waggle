@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_start();
 include 'other_funcs.php';
 if(!isset($_SESSION["email"])) {
   header('Location: http://www.waggle.myskiprofile.com/login.php');
@@ -14,8 +15,10 @@ if(!isset($_SESSION["email"])) {
 if(isset($_POST["group_name"])){
   $bool = do_create_group($_SESSION["email"], $_POST["group_name"], $_POST["group_desc"]);
   if($bool == TRUE){
+    ob_clean();
     header('Location: http://www.waggle.myskiprofile.com/index.php');
     exit();
+
   }
   elseif(bool == FALSE){
     $error_message = "Name already taken, Try again!";
