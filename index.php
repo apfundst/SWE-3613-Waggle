@@ -22,7 +22,7 @@ foreach ($groups as $key => $value) {
  
 }
 }
-
+ $threads_html = 'Select a Group!';
 if(isset($_POST["group_id"])){
   $current_group_id = $_POST["group_id"];
   $_SESSION['current_group_id'] = $current_group_id;
@@ -75,7 +75,15 @@ if(isset($_POST["group_id"])){
 </nav>
 <div class="col-lg-8">
   <div class="panel panel-default">
-    <div class="panel-heading">Groups</div>
+    <div class="panel-heading">Groups<div style="
+    float:right;
+    display: inline;
+    border: 1px solid #ddd;
+    background-color: #ecf0f1;
+    padding: 3px;
+    color:white;
+    margin-right: 20px;
+    font-size: 15px; "><a href="new_group.php">Create New Group</a></div></div>
     <div class="panel-body">
 
 <ul >
@@ -100,10 +108,12 @@ if(isset($_POST["group_id"])){
 <div class="panel panel-default">
     <div class="panel-heading">User Details</div>
     <div class="panel-body">
-   <? echo $_SESSION["first_name"] ;
+   <? echo "Name: ";
+      echo $_SESSION["first_name"] ;
+      echo " ";
       echo $_SESSION["last_name"] ;
       echo "<br> ";
-      echo $_SESSION['current_group_id'];
+      echo "Email: ".$_SESSION["email"];
       /*echo count($groups);
       echo count($current_threads);
       echo("<script>console.log('PHP: ". json_encode($groups)."');</script>");
