@@ -52,6 +52,22 @@ function do_get_messages($thread_id){
     	die;
 }
 
+function do_create_membership($email, $group_id){
+	// Will create a membership for a user if that user
+	// does not already belong to group
+	$sql = "
+		INSERT INTO `group`(`creator`,`group_name`,`group_description`)
+		VALUES('$email','$group_name','$group_description')	
+	";
+
+
+
+
+
+
+}
+
+
 function do_create_group($email, $group_name, $group_description){
 	// WIll insert into database but kick out an insert
 	// that has a group name that already exists in db
@@ -78,8 +94,7 @@ function do_create_group($email, $group_name, $group_description){
 		";
 		$result = mysql_query($sql);
 		if(!$result){
-			mysql_query('ROLLBACK');
-			die("Invalid query: " .mysql_error());
+			return false;
 		}
 		else{
 			return true;
