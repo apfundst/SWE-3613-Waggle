@@ -57,6 +57,11 @@ function do_create_group($email, $group_name, $group_description){
 	// that has a group name that already exists in db
 	// NOTE: WILL NEED TO CHECK IF QUERY FAILS OR IF
 	// THE CONNECTION TO DB WAS UNSUCCESSFUL
+
+	// NINJA EDIT: 3 Feb 2014 23:29 made 
+	//			   group_name unique
+
+
 	$sql_check = "
 			SELECT * 
 			FROM `group` 
@@ -64,12 +69,8 @@ function do_create_group($email, $group_name, $group_description){
 	";
 	$check_result = mysql_query($sql_check);
 	if(!$check_result){
-		die("Invalid query: " .mysql_error());
-	}
-	if (!mysql_num_rows($check_result)) {
 		return false;
 	}
-
 	else {
 		$sql = "
 		    INSERT INTO `group`(`creator`,`group_name`,`group_description`)
