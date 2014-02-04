@@ -110,7 +110,7 @@ function do_get_name($email){
 		$row = mysql_fetch_array($result);
 		$fname = $row['first_name'];
 		$lname = $row['last_name'];
-		return $fname + ' ' + $lname;
+		return $fname .' ' . $lname;
 	}
 
 }
