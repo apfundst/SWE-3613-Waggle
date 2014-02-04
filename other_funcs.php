@@ -160,7 +160,7 @@ function do_get_groups($email){
 			else{
      			// Get the information from the result set
      			$i = 0;
-     			while($row = mysql_fetch_assoc($result)){
+     			while($row = mysql_fetch_row($result)){
      				$data[$i] = $row;
      				$i++;
      			}
