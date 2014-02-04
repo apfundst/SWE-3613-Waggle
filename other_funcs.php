@@ -96,6 +96,25 @@ function do_get_group_id($creator, $group_name){
 	}
 }
 
+function do_get_name($email){
+	$sql = "
+		SELECT first_name, last_name 
+		FROM `user` 
+		WHERE '$email'= email
+		";
+	$result = mysql_query($sql);
+	if(!$result){
+		return FALSE;
+	}
+	else{
+		$row = mysql_fetch_array($result);
+		$fname = $row['first_name'];
+		$lname = $row['last_name'];
+		return $fname + ' ' + $lname;
+	}
+
+}
+
 
 
 function do_create_group($email, $group_name, $group_description){
