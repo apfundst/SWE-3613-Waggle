@@ -74,13 +74,10 @@ if(isset($_POST["group_name"])){
       <center>
         <p><? echo $error_message; ?></p>
         <form action="new_group.php" method="post"enctype="multipart/form-data">
-        <label for="group_name">Group Name:</label>
-        <input type="text" name="group_name" for="group_name" maxlength="50"><br>
-        <label for="group_desc">Group Description:</label>
-       <textarea name="group_desc" cols="50" rows="7">
+        <label for="thread_name">Thread Name:</label>
+        <input type="text" name="thread_name" for="thread_name" maxlength="50"><br>
         
-        </textarea><br>
-        <input type="submit" name="submit" value="Create Group">
+        <input type="submit" name="submit" value="Create Thread">
         <a href="/index.php">
         <input type="button" value="Cancel"/></a>
         </form>
