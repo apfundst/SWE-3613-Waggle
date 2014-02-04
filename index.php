@@ -19,8 +19,8 @@ $groups_html = '';
 foreach ($groups as $things) {
   
   $groups_html .= '<form enctype="multipart/form-data" action="index.php" method="post">
-                        <input type="hidden" name="thread_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
-    $groups_html .= $things[1] . '"/></form>';
+                        <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
+    $groups_html .= $things[1] . '          --       '. $things[2].'"/></form>';
   
  
 }
@@ -131,6 +131,7 @@ if(isset($_POST["group_id"])){
     <div class="panel-heading">User Details</div>
     <div class="panel-body">
    <? echo "Name: ";
+      echo do_get_name($_SESSION['email']);
       echo $_SESSION["first_name"] ;
       echo " ";
       echo $_SESSION["last_name"] ;
