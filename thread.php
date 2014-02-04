@@ -5,9 +5,9 @@ if(!isset($_SESSION["email"])) {
   header('Location: http://www.waggle.myskiprofile.com/login.php');
   exit();
 }else{
-if($_GET){
+if($_POST['thread_id']){
 
-$thread_id = $_GET["thread_id"];
+$thread_id = $_POST["thread_id"];
 $thread = do_get_messages($thread_id);
 if(is_null($thread)){
   $messages_html = 'No Posts Yet';
@@ -22,7 +22,7 @@ foreach ($thread as $value) {
 }
 }
 }
-if ($_POST) {
+if ($_POST['new_message']) {
   do_post_message($thread_id, $_SESSION["email"], $_POST['new_message']);
   $current_url = '"http://www.waggle.myskiprofile.com/thread.php?thread_id='.$thread_id.'"';
   header('Location: http://www.waggle.myskiprofile.com/thread.php?thread_id='.$thread_id);
