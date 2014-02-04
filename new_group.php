@@ -1,41 +1,30 @@
-?
+<?php
 session_start();
 include 'other_funcs.php';
 if(!isset($_SESSION["email"])) {
   header('Location: http://www.waggle.myskiprofile.com/login.php');
   exit();
 }else{
-$_SESSION['current_group_id'] = '';
-$groups = do_get_groups($_SESSION["email"]);
-if(is_null($groups)){
-  $groups_html = 'You are not in any groups yet!';
-}
-else{
-$groups_html = '';
-foreach ($groups as $key => $value) {
-  
-  $groups_html .= '<form enctype="multipart/form-data" action="index.php" method="post">
-                        <input type="hidden" name="group_id" value="'. $key . '"><input type="submit" name="submit" id="input_a" value="';
-  
-    $groups_html .= $value . '"/></form>';
+
   
  
-}
-}
 
-if(isset($_POST["group_id"])){
-  $current_group_id = $_POST["group_id"];
-  $_SESSION['current_group_id'] = $current_group_id;
-  $current_group_name = do_get_group_name($current_group_id);
 
-  $current_threads = do_get_threads($current_group_id);
-  $threads_html = '';
 
-  foreach($current_threads as $things){
-    $threads_html .= '<a href="http://www.waggle.myskiprofile.com/thread.php?thread_id='. $things[0];
-    $threads_html .= '"><li id="listItem">'. $things[3] . '<span class="postInfo">';
-    $threads_html .= $things[2] . ' - '. $things[4]. '</li></a>';
+if(isset($_POST["group_name"])){
+  $bool = do_create_group($_SESSION["email"], $_POST["group_name"], $_POST["group_desc"]);
+  if($bool == TRUE){
+    header('Location: http://www.waggle.myskiprofile.com/index.php');
+    exit();
+  }
+  elseif(bool == FALSE){
+    $error_message = "Name already taken, Try again!";
+  }
+  else{
+    $error_message = $bool;
+  }
 
+  
 
   }
 
@@ -43,7 +32,7 @@ if(isset($_POST["group_id"])){
 
 
 
-}
+
 
 
 
@@ -75,12 +64,12 @@ if(isset($_POST["group_id"])){
 </nav>
 <div class="col-lg-8">
   <div class="panel panel-default">
-    <div class="panel-heading">Creat Group</div>
+    <div class="panel-heading">Create Group</div>
     <div class="panel-body">
 
       <center>
         <p><? echo $error_message; ?></p>
-        <form action="login.php" method="post"enctype="multipart/form-data">
+        <form action="new_group.php" method="post"enctype="multipart/form-data">
         <label for="group_name">Group Name:</label>
         <input type="text" name="group_name" for="group_name"><br>
         <label for="group_desc">Group Description:</label>
@@ -88,9 +77,12 @@ if(isset($_POST["group_id"])){
         
         </textarea><br>
         <input type="submit" name="submit" value="Create Group">
+        <a href="/index.php">
+        <input type="button" value="Cancel"/></a>
         </form>
       </center>
  </div>
+  </div>
   </div>
   
 <div class="col-lg-4">
@@ -98,7 +90,7 @@ if(isset($_POST["group_id"])){
     <div class="panel-heading">User Details</div>
     <div class="panel-body">
    <? 
-      echo "Name: "
+      echo "Name: ";
       echo $_SESSION["first_name"] ;
       echo " ";
       echo $_SESSION["last_name"] ;
