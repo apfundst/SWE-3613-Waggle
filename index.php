@@ -16,12 +16,11 @@ if(is_null($groups))
 }
 else{
 $groups_html = '';
-foreach ($groups as $stuff) {
+foreach ($groups as $things) {
   
   $groups_html .= '<form enctype="multipart/form-data" action="index.php" method="post">
-                        <input type="hidden" name="group_id" value="'. $stuff[0] . '"><input type="submit" name="submit" id="input_a" value="';
-  
-  $groups_html .= $stuff[1] . '        --      '.$stuff[2].'"/></form>';
+                        <input type="hidden" name="thread_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
+    $groups_html .= $things[1] . '"/></form>';
   
  
 }
