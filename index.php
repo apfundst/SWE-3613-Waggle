@@ -131,7 +131,9 @@ if(isset($_POST["group_id"])){
     <div class="panel-heading">User Details</div>
     <div class="panel-body">
    <? echo "Name: ";
-      echo do_get_name($_SESSION['email']);
+      $name = do_get_name($_SESSION['email']);
+      echo $name;
+      echo '<br>';
       echo $_SESSION["first_name"] ;
       echo " ";
       echo $_SESSION["last_name"] ;
