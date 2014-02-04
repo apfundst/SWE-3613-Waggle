@@ -1,13 +1,17 @@
 <?
 session_start();
 include 'other_funcs.php';
-if(!isset($_SESSION["email"])) {
+if(!isset($_SESSION["email"]))
+{
   header('Location: http://www.waggle.myskiprofile.com/login.php');
   exit();
-}else{
-$_SESSION['current_group_id'] = '';
-$groups = do_get_groups($_SESSION["email"]);
-if(is_null($groups)){
+}
+else
+{
+  $_SESSION['current_group_id'] = '';
+  $groups = do_get_groups($_SESSION["email"]);
+if(is_null($groups))
+{
   $groups_html = 'You are not in any groups yet!';
 }
 else{
@@ -17,7 +21,7 @@ foreach ($groups as $key => $value) {
   $groups_html .= '<form enctype="multipart/form-data" action="index.php" method="post">
                         <input type="hidden" name="group_id" value="'. $key . '"><input type="submit" name="submit" id="input_a" value="';
   
-    $groups_html .= $value . '"/></form>';
+  $groups_html .= $value . '"/></form>';
   
  
 }
@@ -33,11 +37,11 @@ if(isset($_POST["group_id"])){
   $file_upload_html = '  <div class="panel panel-default">
     <div class="panel-heading">Upload Files to '. $current_group_name .'</div>
     <div class="panel-body"><form action="fileupload.php" method="post"
-enctype="multipart/form-data">
-<label for="file">Filename:</label>
-<input type="file" name="file" id="file"><br>
-<input type="submit" name="submit" value="Submit">
-</form>
+  enctype="multipart/form-data">
+  <label for="file">Filename:</label>
+  <input type="file" name="file" id="file"><br>
+  <input type="submit" name="submit" value="Submit">
+  </form>
     </div>
   </div>';
   if (is_null($current_threads)){
@@ -46,11 +50,11 @@ enctype="multipart/form-data">
   else{
   $threads_html = '';
 
-  foreach($current_threads as $things){
-    $threads_html .= '<a href="http://www.waggle.myskiprofile.com/thread.php?thread_id='. $things[0];
-    $threads_html .= '"><li id="listItem">'. $things[3] . '<span class="postInfo">';
-    $threads_html .= $things[2] . ' - '. $things[4]. '</li></a>';
-
+  foreach($current_threads as $things)
+  {
+    $threads_html .= '<form enctype="multipart/form-data" action="thread.php" method="post">
+                        <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
+    $threads_html .= $things[3] . '"/></form>';
 
   }
   
