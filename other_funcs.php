@@ -51,7 +51,41 @@ function do_get_messages($thread_id){
     	}
     	die;
 }
- 
+
+function do_create_groups($email, $group_name, $group_description){
+	// WIll insert into database but kick out an insert
+	// that has a group name that already exists in db
+	// NOTE: WILL NEED TO CHECK IF QUERY FAILS OR IF
+	// THE CONNECTION TO DB WAS UNSUCCESSFUL
+	$sql_check = "
+			SELECT * 
+			FROM `group` 
+			WHERE '$group_name'= group_name
+	";
+	$check_result = mysql_query($sql_check);
+	if(!$check_result){
+		die("Invalid query: " .mysql_error());
+	}
+	if (!mysql_num_rows($check_result)) {
+		return false;
+	}
+
+	else {
+		$sql = "
+		    INSERT INTO `group`(`creator`,`group_name`,`group_description`)
+		 	VALUES('$email','$group_name','$group_description')
+		";
+		$result = mysql_query($sql);
+		if(!$result){
+			mysql_query('ROLLBACK');
+			die("Invalid query: " .mysql_error());
+		}
+		else{
+			return true;
+		}
+
+    }
+}
 
 
 function do_get_groups($email){
