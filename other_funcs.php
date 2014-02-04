@@ -52,7 +52,7 @@ function do_get_messages($thread_id){
     	die;
 }
 
-function do_create_groups($email, $group_name, $group_description){
+function do_create_group($email, $group_name, $group_description){
 	// WIll insert into database but kick out an insert
 	// that has a group name that already exists in db
 	// NOTE: WILL NEED TO CHECK IF QUERY FAILS OR IF
