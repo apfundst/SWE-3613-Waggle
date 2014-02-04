@@ -45,7 +45,16 @@ function rename_file($file_name, $counter)
       $fileNamePath = "upload/" . $temp_name;
       $creator = $_SESSION["email"];
       $thread_id = $_SESSION['current_group_id'];
-      upload_to_database($thread_id, $fileNamePath, $creator);
+      $bool = upload_to_database($thread_id, $fileNamePath, $creator);
+      if($bool==TRUE){
+        header('Location: http://www.waggle.myskiprofile.com/index.php');
+    exit();
+
+      }
+      elseif($bool==FALSE){
+        echo "peter screwed up somewhere else!!!!!!!";
+
+      }
        echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
     }
   }
@@ -71,6 +80,7 @@ function rename_file($file_name, $counter)
     //***************
   }
   //actual execution of uploading file to database
+
   if ($_FILES["file"]["error"] > 0)
     {
       echo "Error: " . $_FILES["file"]["error"] . "<br>";
@@ -86,9 +96,9 @@ function rename_file($file_name, $counter)
   
     upload_file_check($_FILES["file"]["name"], 0);
 
-    header('Location: http://www.waggle.myskiprofile.com/index.php');
-    exit();
-    }
+    
+    
+  }
 
 ob_flush();  
 ?>
