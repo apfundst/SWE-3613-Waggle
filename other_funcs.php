@@ -55,6 +55,10 @@ function do_get_messages($thread_id){
 function do_create_membership($email, $group_id){
 	// Will create a membership for a user if that user
 	// does not already belong to group
+
+	// NOT THREAD SAFE 
+	// NEEDS TO HAVE MORE ROBUST FAIL SAFE IF COMMITT FAILS
+
 	$sql = "
 		INSERT INTO `membership`(`group_id`,`email`)
 		VALUES('$group_id','$email')	
@@ -72,6 +76,9 @@ function do_create_membership($email, $group_id){
 
 function do_get_group_id($creator, $group_name){
 	// Gets group_id from group table
+
+	// NOT THREAD SAFE 
+	// NEEDS TO HAVE MORE ROBUST FAIL SAFE IF COMMITT FAILS
 
 	$sql = "
 		SELECT group_id 
