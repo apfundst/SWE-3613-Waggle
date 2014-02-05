@@ -37,19 +37,20 @@ if(isset($_POST["group_id"])){
   $file_upload_html = '  <div class="panel panel-default">
     <div class="panel-heading">Upload Files to '. $current_group_name .'</div>
     <div class="panel-body"><form action="fileupload.php" method="post"
-  enctype="multipart/form-data">
-  <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
-  <input type="submit" name="submit" value="Leave Group">
+  enctype="multipart/form-data"><label for="file">Filename:</label>
+  <input type="file" name="file" id="file"><br>
+  <input type="submit" name="submit" value="Submit">
+  
   </form>
     </div>
   </div>';
   $group_setting_html = '  <div class="panel panel-default">
     <div class="panel-heading">Group Settings for '. $current_group_name .'</div>
-    <div class="panel-body"><form action="fileupload.php" method="post"
+    <div class="panel-body"><form action="leave_group.php" method="post"
   enctype="multipart/form-data">
-  <label for="file">Filename:</label>
-  <input type="file" name="file" id="file"><br>
-  <input type="submit" name="submit" value="Submit">
+  <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
+  <input type="submit" name="submit" value="Leave Group">
+  
   </form>
     </div>
   </div>';
