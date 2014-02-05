@@ -42,33 +42,20 @@ $sql = "
 
 
 function do_create_thread($group_id, $creator, $subject){
-	$sql_check = "
-			SELECT * 
-			FROM `thread` 
-			WHERE '$subject'= subject AND '$group_id' = group_id
+	$sql = "
+		INSERT INTO `thread`(`group_id`,`creator`,`subject`)
+		VALUES('$group_id','$creator','$subject')
 	";
-	$check_result = mysql_query($sql_check);
-	if(!$check_result){
+	$result = mysql_query($sql);
+	if(!$result){
+		mysql_query('ROLLBACK');
 		return FALSE;
 	}
-	else {
-		$sql = "
-		    INSERT INTO `group`(`creator`,`group_name`,`group_description`)
-		 	VALUES('$email','$group_name','$group_description')
-		";
-		$result = mysql_query($sql);
-		if(!$result){
-			return FALSE;
-		}
-		else{
-			do_create_membership($email, do_get_group_id($email,$group_name) );
-			return TRUE;
-		}
-
-    }
-
-
+	else{
+		return TRUE;
+	}
 }
+
 
 
 function do_get_messages($thread_id){
@@ -84,25 +71,22 @@ function do_get_messages($thread_id){
 		   ORDER BY date_created  ASC		
 	";
 	$result = mysql_query($sql);
-		if(!$result){
-			die("Invalid query: " .mysql_error());
-		}	
-		else{
-			if(mysql_num_rows($result)==0){
-				return NULL;
-			}
-			else{
-     			// Get the information from the result set
-				$i = 0;
-     			while($row = mysql_fetch_row($result)){
-     				$data[$i] = $row;
-     				$i++; 
-     			}
-    			return $data;
-    		}
-    	}
-    	die;
+	if(mysql_num_rows($result)==0){
+		return NULL;
+	}
+	else{
+     	// Get the information from the result set
+		$i = 0;
+     	while($row = mysql_fetch_row($result)){
+     		$data[$i] = $row;
+     		$i++; 
+     	}
+    	return $data;
+    }
+    die;
 }
+
+
 
 function do_create_membership($email, $group_id){
 	// Will create a membership for a user if that user
