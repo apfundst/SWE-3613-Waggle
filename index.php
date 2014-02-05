@@ -72,7 +72,51 @@ if(isset($_POST["group_id"])){
 }
 
 }
+elseif(isset($_SESSION['current_group_id'])){
 
+    $current_group_id = $_SESSION['current_group_id'];
+  $current_group_name = do_get_group_name($current_group_id);
+
+  $current_threads = do_get_threads($current_group_id);
+  $file_upload_html = '  <div class="panel panel-default">
+    <div class="panel-heading">Upload Files to '. $current_group_name .'</div>
+    <div class="panel-body"><form action="fileupload.php" method="post"
+  enctype="multipart/form-data"><label for="file">Filename:</label>
+  <input type="file" name="file" id="file"><br>
+  <input type="submit" name="submit" value="Submit">
+  
+  </form>
+    </div>
+  </div>';
+  $group_setting_html = '  <div class="panel panel-default">
+    <div class="panel-heading">Group Settings for '. $current_group_name .'</div>
+    <div class="panel-body"><form action="leave_group.php" method="post"
+  enctype="multipart/form-data">
+  <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
+  <input type="submit" name="submit" value="Leave Group">
+  
+  </form>
+    </div>
+  </div>';
+  if (is_null($current_threads)){
+    $threads_html = 'No Threads in this group Yet!<br>';
+    echo $_SESSION['current_group_id'];
+  }
+  else{
+  $threads_html = '';
+
+  foreach($current_threads as $things)
+  {
+    $threads_html .= '<form enctype="multipart/form-data" action="thread.php" method="post">
+                        <input type="hidden" name="thread_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
+    $threads_html .= $things[3] . '"/></form>';
+
+  }
+  
+
+}
+
+}
 
 
 
