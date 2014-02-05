@@ -26,7 +26,7 @@ foreach ($groups as $things) {
 }
 }
  $threads_html = 'Select a Group!';
- $file_upload_html = 'Select a Group!';
+ $file_upload_html = '';
 if(isset($_POST["group_id"])){
   $current_group_id = $_POST["group_id"];
   $_SESSION['current_group_id'] = $current_group_id;
