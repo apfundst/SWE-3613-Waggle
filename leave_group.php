@@ -17,4 +17,5 @@ if($_POST['group_id']){
 
 
 }
+}
 ?>
