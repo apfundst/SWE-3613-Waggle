@@ -8,6 +8,7 @@ if(!isset($_SESSION["email"])) {
 if($_POST['thread_id']){
 
 $thread_id = $_POST["thread_id"];
+$_SESSION['current_thread_id'] = $thread_id;
 $thread = do_get_messages($thread_id);
 if(is_null($thread)){
   $messages_html = 'No Posts Yet';
@@ -22,10 +23,28 @@ foreach ($thread as $value) {
 }
 }
 }
+elseif(isset($_SESSION['current_thread_id']))
+{
+  $thread_id = $_SESSION['current_thread_id'];
+ 
+  $thread = do_get_messages($thread_id);
+  if(is_null($thread)){
+    $messages_html = 'No Posts Yet';
+  }
+  else{
+    $messages_html = '';
+    foreach ($thread as $value) {
+      $messages_html .= '<li id="threadItem">' . $value['3'] . '<br><br>';
+      $messages_html .= '<span class="postInfo">' . $value['2'] . ' -- ' . $value['4'];
+      $messages_html .= '</span></li>';
+     
+    }
+  }
+}
 if ($_POST['new_message']) {
-  do_post_message($thread_id, $_SESSION["email"], $_POST['new_message']);
-  $current_url = '"http://www.waggle.myskiprofile.com/thread.php?thread_id='.$thread_id.'"';
-  header('Location: http://www.waggle.myskiprofile.com/thread.php?thread_id='.$thread_id);
+  do_post_message($_SESSION['current_thread_id'], $_SESSION["email"], $_POST['new_message']);
+  //$current_url = '"http://www.waggle.myskiprofile.com/thread.php?thread_id='.$thread_id.'"';
+  header('Location: http://www.waggle.myskiprofile.com/thread.php');
   exit();
 }
 }
@@ -60,7 +79,7 @@ if ($_POST['new_message']) {
       <ul >
       <?=$messages_html ?>
       </ul>
-      <form method="post" action=<?=$current_url ?>>
+      <form method="post" action="thread.php">
       <label>Enter your comments here...</label><br>
         <textarea name="new_message" cols="50" rows="7">
         
