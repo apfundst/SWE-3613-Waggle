@@ -19,7 +19,7 @@ else{
 $groups_html = '';
 foreach ($groups as $things) {
   
-  $groups_html .= '<form enctype="multipart/form-data" action="index.php" method="post">
+  $groups_html .= '<form enctype="multipart/form-data" action="admin.php" method="post">
                         <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
     $groups_html .= $things[1] . '          --       '. $things[2].'"/></form>';
   
@@ -36,16 +36,7 @@ if(isset($_POST["group_id"])){
 
   $current_threads = do_get_threads($current_group_id);
   
-  $group_setting_html = '  <div class="panel panel-default">
-    <div class="panel-heading">Group Settings for '. $current_group_name .'</div>
-    <div class="panel-body"><form action="leave_group.php" method="post"
-  enctype="multipart/form-data">
-  <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
-  <input type="submit" name="submit" value="Leave Group">
   
-  </form>
-    </div>
-  </div>';
   if (is_null($current_threads)){
     $threads_html = 'No Threads in this group Yet!';
   }
@@ -87,17 +78,9 @@ if(isset($_POST["group_id"])){
 <!--<div id="header"> header </div>
 <div id="left-sidebar"> left-sidebar </div>
 <div id="content"> content </div>-->
+<? include('nav.php'); ?>
 <div class="container-fluid">
-<nav class="navbar-default navbar" role="navigation">
-<img class="logoImg"src="LOGOWAGGLEv3.3.png" height="75">
 
-<div style="float: right;">
-  <ul>
-    
-    <li><a href="logout.php">Log Out</a></li>
-  </ul>
-</div>
-</nav>
 <div class="col-lg-8">
   <div class="panel panel-default">
     <div class="panel-heading">Groups<div style="
