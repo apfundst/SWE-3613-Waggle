@@ -15,9 +15,10 @@ if(!isset($_SESSION["email"])) {
 
 if(isset($_POST["thread_name"])){
   $bool = do_create_thread($_SESSION["current_group_id"], $_SESSION['email'], $_POST['thread_name']);
-  if($bool == TRUE){
+  if($bool){
     ob_clean();
-    header('Location: http://www.waggle.myskiprofile.com/index.php');
+    $_SESSION['current_thread_id'] = $bool;
+    header('Location: http://www.waggle.myskiprofile.com/thread.php');
     exit();
 
   }

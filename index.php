@@ -24,7 +24,7 @@ foreach ($groups as $things) {
   
  
 }
-}
+
  $threads_html = 'Select a Group!';
  $file_upload_html = '';
  $group_setting_html ='';
@@ -119,7 +119,7 @@ elseif(isset($_SESSION['current_group_id'])){
 }
 
 
-
+}
 }
 
 

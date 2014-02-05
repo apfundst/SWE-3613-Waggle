@@ -9,6 +9,7 @@ if($_POST['thread_id']){
 
 $thread_id = $_POST["thread_id"];
 $_SESSION['current_thread_id'] = $thread_id;
+$thread_name = do_get_thread_subject($_SESSION['current_thread_id']);
 $thread = do_get_messages($thread_id);
 if(is_null($thread)){
   $messages_html = 'No Posts Yet';
@@ -26,7 +27,7 @@ foreach ($thread as $value) {
 elseif(isset($_SESSION['current_thread_id']))
 {
   $thread_id = $_SESSION['current_thread_id'];
- 
+  $thread_name = do_get_thread_subject($_SESSION['current_thread_id']);
   $thread = do_get_messages($thread_id);
   if(is_null($thread)){
     $messages_html = 'No Posts Yet';
@@ -73,7 +74,7 @@ if ($_POST['new_message']) {
 <div class="col-lg-8">
   
   <div class="panel panel-default">
-    <div class="panel-heading">Thread Name</div>
+    <div class="panel-heading">Thread: <?=$thread_name;?></div>
     <div class="panel-body">
 
       <ul >

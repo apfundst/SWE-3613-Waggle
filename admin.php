@@ -78,7 +78,7 @@ if(isset($_POST["group_id"])){
 <!--<div id="header"> header </div>
 <div id="left-sidebar"> left-sidebar </div>
 <div id="content"> content </div>-->
-<? include('nav.php'); ?>
+<? include('admin_nav.php'); ?>
 <div class="container-fluid">
 
 <div class="col-lg-8">
