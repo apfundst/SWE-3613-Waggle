@@ -117,7 +117,15 @@ if(isset($_POST["group_id"])){
  </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading">Disscusion Threads for <?=$current_group_name ?></div>
+    <div class="panel-heading">Disscusion Threads for <?=$current_group_name ?><div style="
+    float:right;
+    display: inline;
+    border: 1px solid #ddd;
+    background-color: #ecf0f1;
+    padding: 3px;
+    color:white;
+    margin-right: 20px;
+    font-size: 15px; "><a href="new_thread.php">Create New Thread</a></div></div>
     <div class="panel-body">
 
 <ul >

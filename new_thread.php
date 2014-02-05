@@ -13,8 +13,8 @@ if(!isset($_SESSION["email"])) {
 
 
 
-if(isset($_POST["group_name"])){
-  $bool = do_create_group($_SESSION["email"], $_POST["group_name"], $_POST["group_desc"]);
+if(isset($_POST["thread_name"])){
+  $bool = do_create_group($_SESSION["current_group_id"], $_SESSION['email'], $_POST['thread_name']);
   if($bool == TRUE){
     ob_clean();
     header('Location: http://www.waggle.myskiprofile.com/index.php');
@@ -56,16 +56,7 @@ if(isset($_POST["group_name"])){
 <div id="left-sidebar"> left-sidebar </div>
 <div id="content"> content </div>-->
 <div class="container-fluid">
-<nav class="navbar-default navbar" role="navigation">
-<img class="logoImg"src="LOGOWAGGLEv2.3.png" height="60">
-
-<div style="float: right;">
-  <ul>
-    
-    <li><a href="logout.php">Log Out</a></li>
-  </ul>
-</div>
-</nav>
+<? include('nav.php');?>
 <div class="col-lg-8">
   <div class="panel panel-default">
     <div class="panel-heading">Create Group</div>
