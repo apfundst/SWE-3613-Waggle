@@ -24,8 +24,11 @@ function do_admin_get_groups(){
 }
 
 function do_admin_remove_group(){
+	// Removes group from User view
+	// Retains group in db for records
 
 }
+
 
 function do_admin_ban_user_site(){
 	// Time based ban
@@ -41,15 +44,21 @@ function do_admin_ban_user_group(){
 }
 
 function do_admin_remove_file(){
+	// Removes file from User view
+	// Retains file in db for records
 
 }
 
-function do_admin_remove_post(){
+function do_admin_remove_message(){
+	// Removes message from User view
+	// Retains message in db for records
+	// Indicates in thread message was banned
 
 }
 
 function do_admin_remove_thread(){
-
+	// Removes thread from User view
+	// Retains thread in db for records
 }
 
 

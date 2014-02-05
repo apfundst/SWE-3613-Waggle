@@ -41,6 +41,36 @@ $sql = "
 }
 
 
+function do_create_thread($group_id, $creator, $subject){
+	$sql_check = "
+			SELECT * 
+			FROM `thread` 
+			WHERE '$subject'= subject AND '$group_id' = group_id
+	";
+	$check_result = mysql_query($sql_check);
+	if(!$check_result){
+		return FALSE;
+	}
+	else {
+		$sql = "
+		    INSERT INTO `group`(`creator`,`group_name`,`group_description`)
+		 	VALUES('$email','$group_name','$group_description')
+		";
+		$result = mysql_query($sql);
+		if(!$result){
+			return FALSE;
+		}
+		else{
+			do_create_membership($email, do_get_group_id($email,$group_name) );
+			return TRUE;
+		}
+
+    }
+
+
+}
+
+
 function do_get_messages($thread_id){
 	// loads messages on to page
 	// need to pass thread_id from session
@@ -147,33 +177,22 @@ function do_create_group($email, $group_name, $group_description){
 
 	// NINJA EDIT: 3 Feb 2014 23:29 made 
 	//			   group_name unique
-
-
-	$sql_check = "
-			SELECT * 
-			FROM `group` 
-			WHERE '$group_name'= group_name
+	
+	$sql = "
+		   INSERT INTO `group`(`creator`,`group_name`,`group_description`)
+		   VALUES('$email','$group_name','$group_description')
 	";
-	$check_result = mysql_query($sql_check);
-	if(!$check_result){
+	$result = mysql_query($sql);
+	if(!$result){
 		return FALSE;
 	}
-	else {
-		$sql = "
-		    INSERT INTO `group`(`creator`,`group_name`,`group_description`)
-		 	VALUES('$email','$group_name','$group_description')
-		";
-		$result = mysql_query($sql);
-		if(!$result){
-			return FALSE;
-		}
-		else{
-			do_create_membership($email, do_get_group_id($email,$group_name) );
-			return TRUE;
-		}
+	else{
+		do_create_membership($email, do_get_group_id($email,$group_name) );
+		return TRUE;
+	}
 
-    }
-}
+   }
+
 
 
 function do_get_groups($email){
