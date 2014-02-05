@@ -14,7 +14,7 @@ if(!isset($_SESSION["email"])) {
 
 
 if(isset($_POST["thread_name"])){
-  $bool = do_create_group($_SESSION["current_group_id"], $_SESSION['email'], $_POST['thread_name']);
+  $bool = do_create_thread($_SESSION["current_group_id"], $_SESSION['email'], $_POST['thread_name']);
   if($bool == TRUE){
     ob_clean();
     header('Location: http://www.waggle.myskiprofile.com/index.php');
@@ -64,7 +64,7 @@ if(isset($_POST["thread_name"])){
 
       <center>
         <p><? echo $error_message; ?></p>
-        <form action="new_group.php" method="post"enctype="multipart/form-data">
+        <form action="new_thread.php" method="post"enctype="multipart/form-data">
         <label for="thread_name">Thread Name:</label>
         <input type="text" name="thread_name" for="thread_name" maxlength="50"><br>
         
