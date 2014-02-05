@@ -44,15 +44,13 @@ if ($_POST['new_message']) {
 <div id="left-sidebar"> left-sidebar </div>
 <div id="content"> content </div>-->
 <div class="container-fluid">
-<nav class="navbar-default navbar" role="navigation">
-<a href="index.php"><img class="logoImg"src="LOGOWAGGLEv2.3.png" height="60"></a>
-<div style="float: right;">
-  <ul>
-    
-    <li><a href="logout.php">Log Out</a></li>
-  </ul>
-</div>
-</nav>
+<? if($_SESSION['email'] == 'admin@spsu.edu'){
+  include('admin_nav.php');
+}else{
+  include('nav.php');
+}
+ ?>
+
 <div class="col-lg-8">
   
   <div class="panel panel-default">

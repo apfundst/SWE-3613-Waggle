@@ -56,16 +56,7 @@ if(isset($_POST["group_name"])){
 <div id="left-sidebar"> left-sidebar </div>
 <div id="content"> content </div>-->
 <div class="container-fluid">
-<nav class="navbar-default navbar" role="navigation">
-<img class="logoImg"src="LOGOWAGGLEv2.3.png" height="60">
-
-<div style="float: right;">
-  <ul>
-    
-    <li><a href="logout.php">Log Out</a></li>
-  </ul>
-</div>
-</nav>
+<? include('nav.php'); ?>
 <div class="col-lg-8">
   <div class="panel panel-default">
     <div class="panel-heading">Create Group</div>

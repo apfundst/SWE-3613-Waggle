@@ -83,15 +83,7 @@ if(isset($_POST["group_id"])){
 
 <div class="col-lg-8">
   <div class="panel panel-default">
-    <div class="panel-heading">Groups<div style="
-    float:right;
-    display: inline;
-    border: 1px solid #ddd;
-    background-color: #ecf0f1;
-    padding: 3px;
-    color:white;
-    margin-right: 20px;
-    font-size: 15px; "><a href="new_group.php">Create New Group</a></div></div>
+    <div class="panel-heading">Groups</div>
     <div class="panel-body">
 
 <ul >
