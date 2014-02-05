@@ -76,12 +76,6 @@ function do_get_thread_subject($thread_id){
 
 
 
-
-
-}
-
-
-
 function do_get_messages($thread_id){
 	// loads messages on to page
 	// need to pass thread_id from session
