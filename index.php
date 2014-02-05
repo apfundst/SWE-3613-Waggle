@@ -27,6 +27,7 @@ foreach ($groups as $things) {
 }
  $threads_html = 'Select a Group!';
  $file_upload_html = '';
+ $group_setting_html ='';
 if(isset($_POST["group_id"])){
   $current_group_id = $_POST["group_id"];
   $_SESSION['current_group_id'] = $current_group_id;
@@ -35,6 +36,15 @@ if(isset($_POST["group_id"])){
   $current_threads = do_get_threads($current_group_id);
   $file_upload_html = '  <div class="panel panel-default">
     <div class="panel-heading">Upload Files to '. $current_group_name .'</div>
+    <div class="panel-body"><form action="fileupload.php" method="post"
+  enctype="multipart/form-data">
+  <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
+  <input type="submit" name="submit" value="Leave Group">
+  </form>
+    </div>
+  </div>';
+  $group_setting_html = '  <div class="panel panel-default">
+    <div class="panel-heading">Group Settings for '. $current_group_name .'</div>
     <div class="panel-body"><form action="fileupload.php" method="post"
   enctype="multipart/form-data">
   <label for="file">Filename:</label>
@@ -147,6 +157,7 @@ if(isset($_POST["group_id"])){
     </div>
   </div>
 <?=$file_upload_html;?>
+<?= $group_setting_html; ?>
 </div>
 </div>
 
