@@ -21,11 +21,11 @@ function do_leave_group($email, $group_id){
 
 
 function do_post_message($thread_id, $creator,$text){
-// needs to post message into database
-// will require
+	// needs to post message into database
+	// will require
 
-// message_id, and date_created autogenerate
-$sql = "
+	// message_id, and date_created autogenerate
+	$sql = "
 		 	INSERT INTO `message`(`thread_id`,`creator`,`message_text`)
 		 	VALUES('$thread_id','$creator','$text')
 	";
@@ -52,8 +52,32 @@ function do_create_thread($group_id, $creator, $subject){
 		return FALSE;
 	}
 	else{
-		return TRUE;
+		return mysql_insert_id();
 	}
+}
+
+function do_get_thread_subject($thread_id){
+	$sql = "
+		   SELECT subject
+		   FROM `thread`
+		   WHERE '$thread_id' = thread_id	
+	";
+	$result = mysql_query($sql);
+	if(mysql_num_rows($result)==0){
+		return NULL;
+	}
+	else{
+     	// Get the information from the result set
+		$row = mysql_fetch_array($result);
+    	return $row['subject'];
+    }
+    die;
+}
+
+
+
+
+
 }
 
 
@@ -214,7 +238,7 @@ function do_get_groups($email){
     	die;
 	}
 
-	function do_get_group_name($group_id){
+function do_get_group_name($group_id){
 		// gets groups from db for user
 		// get the group_name from the group table
 		// where the email matches the email in the membership table
