@@ -27,7 +27,7 @@ if ($_POST) {
     }
     else {
       if (mysql_num_rows($result) == 0) {
-        $error_message = $email . " " . $password . "Login failed.  Please check your userid and password.";
+        $error_message =  "Login failed.  Please check your userid and password.";
       }
       else {
         
@@ -44,10 +44,16 @@ if ($_POST) {
         $_SESSION["email"] = $email;
         $_SESSION["first_name"] = $first_name;
         $_SESSION["last_name"] = $last_name;
+        if($email == 'admin@spsu.edu')
+        {
+          header('Location: http://www.waggle.myskiprofile.com/admin.php');
+          exit();
+        }else{
 
         header('Location: http://www.waggle.myskiprofile.com/index.php');
   exit();
 ob_flush();
+}
       }
     }
   }
