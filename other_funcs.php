@@ -1,6 +1,25 @@
 <?
 include_once('connection.php');
 
+function do_leave_group($email, $group_id){
+	// Removes user from group by deleting membership
+	$sql = "
+		DELETE FROM `membership`
+		WHERE '$email' = email AND '$group_id' = group_id
+	";
+	$result = mysql_query($sql);
+	if (!$result) {
+		mysql_query('ROLLBACK');
+		return FALSE;
+	}
+	else{
+		return TRUE;
+	}
+}
+
+
+
+
 function do_post_message($thread_id, $creator,$text){
 // needs to post message into database
 // will require
@@ -14,7 +33,10 @@ $sql = "
 	$result = mysql_query($sql);
 	if (!$result) {
 		mysql_query('ROLLBACK');
-		die("Invalid query: " .mysql_error());
+		return FALSE;
+	}
+	else{
+		return TRUE;
 	}
 }
 
