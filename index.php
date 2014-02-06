@@ -31,6 +31,7 @@ foreach ($groups as $things) {
  /*$threads_html = 'Select a Group!';
  $file_upload_html = '';
  $group_setting_html ='';*/
+ $create_thread_button_html ='';
 if($_POST["group_id"]){
   $current_group_id = $_POST["group_id"];
   $_SESSION['current_group_id'] = $current_group_id;
@@ -57,6 +58,15 @@ if($_POST["group_id"]){
   </form>
     </div>
   </div>';
+  $create_thread_button_html ='<div style="
+    float:right;
+    display: inline;
+    border: 1px solid #ddd;
+    background-color: #ecf0f1;
+    padding: 3px;
+    color:white;
+    margin-right: 20px;
+    font-size: 15px; "><a href="new_thread.php">Create New Thread</a></div>';
   if (is_null($current_threads)){
     $threads_html = 'No Threads in this group Yet!';
   }
@@ -101,9 +111,18 @@ elseif($_SESSION['current_group_id']){
   </form>
     </div>
   </div>';
+  $create_thread_button_html ='<div style="
+    float:right;
+    display: inline;
+    border: 1px solid #ddd;
+    background-color: #ecf0f1;
+    padding: 3px;
+    color:white;
+    margin-right: 20px;
+    font-size: 15px; "><a href="new_thread.php">Create New Thread</a></div>';
   if (is_null($current_threads)){
     $threads_html = 'No Threads in this group Yet!<br>';
-    echo $_SESSION['current_group_id'];
+    //echo $_SESSION['current_group_id'];
   }
   else{
   $threads_html = '';
@@ -164,15 +183,8 @@ elseif($_SESSION['current_group_id']){
  </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading">Disscusion Threads for <?=$current_group_name ?><div style="
-    float:right;
-    display: inline;
-    border: 1px solid #ddd;
-    background-color: #ecf0f1;
-    padding: 3px;
-    color:white;
-    margin-right: 20px;
-    font-size: 15px; "><a href="new_thread.php">Create New Thread</a></div></div>
+    <div class="panel-heading">Disscusion Threads for <?=$current_group_name ?>
+    <?=$create_thread_button_html ?></div>
     <div class="panel-body">
 
 <ul >
