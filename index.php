@@ -32,10 +32,22 @@ foreach ($groups as $things) {
  $file_upload_html = '';
  $group_setting_html ='';*/
  $create_thread_button_html ='';
+ $group_creator_html = '';
 if($_POST["group_id"]){
   $current_group_id = $_POST["group_id"];
   $_SESSION['current_group_id'] = $current_group_id;
   $current_group_name = do_get_group_name($current_group_id);
+  $group_owner = do_get_creator($current_group_id);
+  if($group_owner == $_SESSION['email']){
+    $group_creator_html = '<br><br><form action="leave_group.php" method="post"
+  enctype="multipart/form-data">
+  <input type="text" name="member_email" maxlength="20"><br>
+  <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
+  <input type="submit" name="submit" value="Add Member">
+  
+  </form>';
+
+  }
 
   $current_threads = do_get_threads($current_group_id);
   $file_upload_html = '  <div class="panel panel-default">
@@ -55,7 +67,7 @@ if($_POST["group_id"]){
   <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
   <input type="submit" name="submit" value="Leave Group">
   
-  </form>
+  </form>'.$group_creator_html.'
     </div>
   </div>';
   $create_thread_button_html ='<div style="
@@ -91,6 +103,17 @@ elseif($_SESSION['current_group_id']){
   $current_group_name = do_get_group_name($current_group_id);
 
   $current_threads = do_get_threads($current_group_id);
+  $group_owner = do_get_creator($current_group_id);
+  if($group_owner == $_SESSION['email']){
+    $group_creator_html = '<br><br><form action="leave_group.php" method="post"
+  enctype="multipart/form-data">
+  <input type="text" name="member_email" maxlength="20"><br>
+  <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
+  <input type="submit" name="submit" value="Add Member">
+  
+  </form>';
+
+  }
   $file_upload_html = '  <div class="panel panel-default">
     <div class="panel-heading">Upload Files to '. $current_group_name .'</div>
     <div class="panel-body"><form action="fileupload.php" method="post"
@@ -108,7 +131,7 @@ elseif($_SESSION['current_group_id']){
   <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
   <input type="submit" name="submit" value="Leave Group">
   
-  </form>
+  </form>'.$group_creator_html.'
     </div>
   </div>';
   $create_thread_button_html ='<div style="
