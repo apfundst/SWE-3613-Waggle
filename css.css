@@ -136,6 +136,17 @@ a{
   color: #444444;
 
 }
+h1 {
+  color:black;
+  font-style: bold;
+  font-size: 30pt;
+
+
+
+}
+.group-name{
+  text-align: center;
+}
 #listItem{
  position: relative;
 display: block;

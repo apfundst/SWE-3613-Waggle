@@ -202,10 +202,7 @@ elseif($_SESSION['current_group_id']){
    <? echo "Name: ";
       $name = do_get_name($_SESSION['email']);
       echo $name;
-      echo '<br>';
-      echo $_SESSION["first_name"] ;
-      echo " ";
-      echo $_SESSION["last_name"] ;
+      
       echo "<br> ";
       echo "Email: ".$_SESSION["email"];
       /*echo count($groups);
