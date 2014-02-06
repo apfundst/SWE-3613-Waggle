@@ -39,11 +39,11 @@ if($_POST["group_id"]){
   $current_group_name = do_get_group_name($current_group_id);
   $group_owner = do_get_creator($current_group_id);
   if($group_owner == $_SESSION['email']){
-    $group_creator_html = '<br><br><form action="leave_group.php" method="post"
+    $group_creator_html = '<br><p>Add Group Members:</p><form action="add_member.php" method="post"
   enctype="multipart/form-data">
-  <input type="text" name="member_email" maxlength="20"><br>
+  <input type="text" name="member_email" maxlength="20">
   <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
-  <input type="submit" name="submit" value="Add Member">
+  <input type="submit" name="submit" value="Add Member to Group">
   
   </form>';
 
@@ -105,11 +105,11 @@ elseif($_SESSION['current_group_id']){
   $current_threads = do_get_threads($current_group_id);
   $group_owner = do_get_creator($current_group_id);
   if($group_owner == $_SESSION['email']){
-    $group_creator_html = '<br><br><form action="leave_group.php" method="post"
+    $group_creator_html = '<br><p>Add Group Members:</p><form action="add_member.php" method="post"
   enctype="multipart/form-data">
-  <input type="text" name="member_email" maxlength="20"><br>
+  <input type="text" name="member_email" maxlength="20">
   <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
-  <input type="submit" name="submit" value="Add Member">
+  <input type="submit" name="submit" value="Add Member To Group">
   
   </form>';
 
