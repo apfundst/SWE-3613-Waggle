@@ -9,6 +9,9 @@ if(!isset($_SESSION["email"]))
 else
 {
   $_SESSION['current_group_id'] = '';
+  $threads_html = 'Select a Group!';
+ $file_upload_html = '';
+ $group_setting_html ='';
   $groups = do_get_groups($_SESSION["email"]);
 if(is_null($groups))
 {
@@ -25,10 +28,10 @@ foreach ($groups as $things) {
  
 }
 
- $threads_html = 'Select a Group!';
+ /*$threads_html = 'Select a Group!';
  $file_upload_html = '';
- $group_setting_html ='';
-if(isset($_POST["group_id"])){
+ $group_setting_html ='';*/
+if($_POST["group_id"]){
   $current_group_id = $_POST["group_id"];
   $_SESSION['current_group_id'] = $current_group_id;
   $current_group_name = do_get_group_name($current_group_id);
@@ -72,7 +75,7 @@ if(isset($_POST["group_id"])){
 }
 
 }
-elseif(isset($_SESSION['current_group_id'])){
+elseif($_SESSION['current_group_id']){
 
     $current_group_id = $_SESSION['current_group_id'];
   $current_group_name = do_get_group_name($current_group_id);
