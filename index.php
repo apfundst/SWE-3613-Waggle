@@ -12,6 +12,7 @@ else
   $threads_html = 'Select a Group!';
  $file_upload_html = '';
  $group_setting_html ='';
+ $files_html = '';
   $groups = do_get_groups($_SESSION["email"]);
 if(is_null($groups))
 {
@@ -110,9 +111,8 @@ if($_POST["group_id"]){
   foreach($current_files as $files)
   {
     //TO DO: html for andrew
-    $files_html .= '<form enctype="multipart/form-data" action="thread.php" method="post">
-                        <input type="hidden" name="thread_id" value="'. $files[0] . '"><input type="submit" name="submit" id="input_a" value="';
-    $files_html .= $files[3] . '"/></form>';
+    $files_html .= '<a href="'.$files[2].'"'
+    
 
   }
   //files section ends
