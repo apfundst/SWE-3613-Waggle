@@ -46,7 +46,9 @@ function rename_file($file_name, $counter)
       $fileNamePath = "upload/" . $temp_name;
       $creator = $_SESSION["email"];
       $thread_id = $_SESSION['current_group_id'];
-      $bool_returned = upload_to_database($thread_id, $fileNamePath, $creator);
+      $file_name = $_SESSION['file_name'];
+      $file_size = $_SESSION['file_size'];
+      $bool_returned = upload_to_database($thread_id, $fileNamePath, $creator, $file_name, $file_size);
       if($bool_returned==TRUE){
         header('Location: http://www.waggle.myskiprofile.com/index.php');
         exit();
@@ -61,12 +63,12 @@ function rename_file($file_name, $counter)
     }
   }
 
-  function upload_to_database($thread_id, $fileNamePath, $creator)
+  function upload_to_database($thread_id, $fileNamePath, $creator, $file_name, $file_size)
   {
     //*****************
       $sql = "
-          INSERT INTO `file`(`group_id`,`file_name_path`,`creator`)
-          VALUES('$thread_id','$fileNamePath','$creator')
+          INSERT INTO `file`(`group_id`,`file_name_path`,`creator`, `file_name`, `file_size`)
+          VALUES('$thread_id','$fileNamePath','$creator', '$file_name', '$file_size')
       ";
 
       $result = mysql_query($sql);
