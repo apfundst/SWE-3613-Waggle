@@ -33,6 +33,7 @@ foreach ($groups as $things) {
  $group_setting_html ='';*/
  $create_thread_button_html ='';
  $group_creator_html = '';
+ $group_member_list = '';
 if($_POST["group_id"]){
   $current_group_id = $_POST["group_id"];
   $_SESSION['current_group_id'] = $current_group_id;
@@ -49,7 +50,7 @@ if($_POST["group_id"]){
 
   }
 
-  $current_threads = do_get_threads($current_group_id);
+  
   $file_upload_html = '  <div class="panel panel-default">
     <div class="panel-heading">Upload Files to '. $current_group_name .'</div>
     <div class="panel-body"><form action="fileupload.php" method="post"
@@ -79,6 +80,8 @@ if($_POST["group_id"]){
     color:white;
     margin-right: 20px;
     font-size: 15px; "><a href="new_thread.php">Create New Thread</a></div>';
+  //start threads
+  $current_threads = do_get_threads($current_group_id);
   if (is_null($current_threads)){
     $threads_html = 'No Threads in this group Yet!';
   }
@@ -92,7 +95,8 @@ if($_POST["group_id"]){
     $threads_html .= $things[3] . '"/></form>';
 
   }
-  
+  //end threads
+  // TODO: Write code similar to above for files
 
 }
 
@@ -131,7 +135,7 @@ elseif($_SESSION['current_group_id']){
   <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
   <input type="submit" name="submit" value="Leave Group">
   
-  </form>'.$group_creator_html.'
+  </form>'.$group_member_list.' '.$group_creator_html.'
     </div>
   </div>';
   $create_thread_button_html ='<div style="
