@@ -46,7 +46,7 @@ function rename_file($file_name, $counter)
       $fileNamePath = "upload/" . $temp_name;
       $creator = $_SESSION["email"];
       $thread_id = $_SESSION['current_group_id'];
-      $file_name = temp_name;
+      $file_name = $temp_name;
       $file_size = ($_FILES["file"]["size"]);
       if($file_size > 1073741824)
       {
