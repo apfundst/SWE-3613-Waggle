@@ -74,6 +74,24 @@ function do_get_thread_subject($thread_id){
     die;
 }
 
+function do_get_creator($group_id){
+
+	$sql = "
+		   SELECT creator
+		   FROM `group`
+		   WHERE '$group_id' = group_id	
+	";
+	$result = mysql_query($sql);
+	if(mysql_num_rows($result)==0){
+		return NULL;
+	}
+	else{
+       	// Get the information from the result set
+		$row = mysql_fetch_array($result);
+    	return $row['creator'];
+    }
+    die;
+}
 
 
 function do_get_messages($thread_id){
