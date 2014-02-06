@@ -320,6 +320,33 @@ function do_get_threads($group_id){
 }
     	
 
+function do_get_members($group_id){
+	// gets first_name and last_name from user table
+	// for users in a specified group
+
+	$sql = "
+		   SELECT user.first_name, user.last_name 
+		   FROM `user`
+		   JOIN `membership`
+		   WHERE membership.group_id = '$group_id' AND user.email = membership.email
+		   ORDER BY membership.date_joined ASC		
+	";
+	$result = mysql_query($sql);
+		if(mysql_num_rows($result)==0){
+			return NULL;
+		}
+		else{
+     		// Get the information from the result set
+			$i = 0;
+     		while($row = mysql_fetch_row($result)){
+     			$data[$i] = $row;
+     			$i++; 
+     		}
+    		return $data;
+    	}
+ }
+
+
 
 
 ?>
