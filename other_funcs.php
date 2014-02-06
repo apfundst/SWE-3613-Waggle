@@ -205,11 +205,12 @@ function do_create_group($email, $group_name, $group_description){
 		return FALSE;
 	}
 	else{
-		do_create_membership($email, do_get_group_id($email,$group_name) );
+		$temp_id = do_get_group_id($email, $group_name);
+		do_create_membership($email, $temp_id );
 		return TRUE;
 	}
 
-   }
+  }
 
 
 
