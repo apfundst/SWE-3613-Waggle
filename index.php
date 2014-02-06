@@ -96,8 +96,26 @@ if($_POST["group_id"]){
 
   }
   //end threads
-  // TODO: Write code similar to above for files
 
+  //begin files
+  $current_files = do_get_file($current_group_id);
+  if (is_null($current_files))
+  {
+    $files_html = 'No files have been uploaded yet!';
+  }
+  else
+  {
+  $files_html = '';
+
+  foreach($current_files as $files)
+  {
+    //TO DO: html for andrew
+    $files_html .= '<form enctype="multipart/form-data" action="thread.php" method="post">
+                        <input type="hidden" name="thread_id" value="'. $files[0] . '"><input type="submit" name="submit" id="input_a" value="';
+    $files_html .= $files[3] . '"/></form>';
+
+  }
+  //files section ends
 }
 
 }
