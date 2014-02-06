@@ -5,6 +5,7 @@ if(!isset($_SESSION["email"])) {
   header('Location: http://www.waggle.myskiprofile.com/login.php');
   exit();
 }else{
+  $thread_id= '';
   $current_group_name = '';
 if($_POST['thread_id']){
 $current_group_name = do_get_group_name($_SESSION['current_group_id']);
@@ -88,9 +89,16 @@ if($_SESSION['current_group_id']){
 
   foreach($current_threads as $things)
   {
-    $threads_html .= '<form enctype="multipart/form-data" action="thread.php" method="post">
-                        <input type="hidden" name="thread_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
-    $threads_html .= $things[3] . '"/></form>';
+    if($things[0] == $thread_id ){
+      $threads_html .= '<form enctype="multipart/form-data" action="thread.php" method="post">
+                          <input type="hidden" name="thread_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a_active" value="';
+      $threads_html .= $things[3] . '"/></form>';
+
+    }else{
+      $threads_html .= '<form enctype="multipart/form-data" action="thread.php" method="post">
+                          <input type="hidden" name="thread_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
+      $threads_html .= $things[3] . '"/></form>';
+    }
 
   }
   

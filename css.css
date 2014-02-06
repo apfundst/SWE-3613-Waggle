@@ -195,3 +195,20 @@ border: 1px solid #ddd;
 cursor:pointer;
       cursor:hand;
 }
+#input_a_active{
+  background-color: #0cb270; 
+  text-align: left;
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  
+  border: 1px solid #ddd;
+  color: #444444;
+}
+#input_a_active:hover{
+  background-color: #ecf0f1; 
+cursor:pointer;
+      cursor:hand;
+}
