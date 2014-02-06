@@ -201,11 +201,12 @@ function do_create_group($email, $group_name, $group_description){
 		   VALUES('$email','$group_name','$group_description')
 	";
 	$result = mysql_query($sql);
+	$temp_id = mysql_insert_id();
 	if(!$result){
 		return FALSE;
 	}
 	else{
-		$temp_id = mysql_insert_id();
+		
 		do_create_membership($email, $temp_id );
 		return TRUE;
 	}
