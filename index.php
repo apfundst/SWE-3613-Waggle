@@ -99,7 +99,7 @@ if($_POST["group_id"]){
   //end threads
 
   //begin files
-  $current_files = do_get_file($current_group_id);
+  $current_files = do_get_files($current_group_id);
   if (is_null($current_files))
   {
     $files_html = 'No files have been uploaded yet!';
@@ -111,13 +111,14 @@ if($_POST["group_id"]){
   foreach($current_files as $files)
   {
     //TO DO: html for andrew
-    $files_html .= '<a href="'.$files[2].'"'
+    $files_html .= '<a href="'.$files[2].'"download="'.$files[3].'>'.$files[3].' '.$files[5].'</a>';
     
 
   }
   //files section ends
 }
 
+}
 }
 elseif($_SESSION['current_group_id']){
 
