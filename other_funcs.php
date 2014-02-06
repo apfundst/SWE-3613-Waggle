@@ -131,7 +131,7 @@ function do_create_membership($email, $group_id){
 
 	$sql = "
 		INSERT INTO `membership`(`group_id`,`email`)
-		VALUES('$groud_id', (SELECT email FROM `user` WHERE '$email' = email) )
+		VALUES('$groud_id', '(SELECT email FROM `user` WHERE '$email' = email)' )
 	";
 
 	$result = mysql_query($sql);
@@ -206,7 +206,6 @@ function do_create_group($email, $group_name, $group_description){
 		return FALSE;
 	}
 	else{
-		
 		do_create_membership($email, $temp_id );
 		return TRUE;
 	}
