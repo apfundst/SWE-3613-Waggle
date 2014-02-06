@@ -46,8 +46,22 @@ function rename_file($file_name, $counter)
       $fileNamePath = "upload/" . $temp_name;
       $creator = $_SESSION["email"];
       $thread_id = $_SESSION['current_group_id'];
-      $file_name = $_SESSION['file_name'];
-      $file_size = $_SESSION['file_size'];
+      $file_name = temp_name;
+      $file_size = ($_FILES["file"]["size"]);
+      if($file_size > 1073741824)
+      {
+        $file_size = ($_FILES["file"]["size"] / 1073741824) . " gB";
+      }
+      else if($file_size > 1048576)
+      {
+        $file_size = ($_FILES["file"]["size"] / 1048576) . " mB";
+      }
+      else if($file_size > 1024)
+      {
+        $file_size = ($_FILES["file"]["size"] / 1024) . " kB";
+      }
+      
+
       $bool_returned = upload_to_database($thread_id, $fileNamePath, $creator, $file_name, $file_size);
       if($bool_returned==TRUE){
         header('Location: http://www.waggle.myskiprofile.com/index.php');
