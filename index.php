@@ -56,7 +56,7 @@ if($_POST["group_id"]){
   $members = do_get_group_members($current_group_id);
   
   foreach ($members as $yolo) {
-    $group_member_list .= $yolo . '<br>';
+    $group_member_list .= $yolo[0] . '<br>';
   }
   $group_setting_html = '  <div class="panel panel-default">
     <div class="panel-heading">Group Settings for '. $current_group_name .'</div>
@@ -158,7 +158,7 @@ elseif($_SESSION['current_group_id']){
   $members = do_get_group_members($current_group_id);
   
   foreach ($members as $yolo) {
-    $group_member_list .= $yolo . '<br>';
+    $group_member_list .= $yolo[0] . '<br>';
   }
   $group_setting_html = '  <div class="panel panel-default">
     <div class="panel-heading">Group Settings for '. $current_group_name .'</div>
