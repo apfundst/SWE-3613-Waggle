@@ -50,15 +50,15 @@ function rename_file($file_name, $counter)
       $file_size = ($_FILES["file"]["size"]);
       if($file_size > 1073741824)
       {
-        $file_size = ($_FILES["file"]["size"] / 1073741824) . " gB";
+        $file_size = round(($_FILES["file"]["size"] / 1073741824) . " gB", 2);
       }
       else if($file_size > 1048576)
       {
-        $file_size = ($_FILES["file"]["size"] / 1048576) . " mB";
+        $file_size = round(($_FILES["file"]["size"] / 1048576) . " mB", 2);
       }
       else if($file_size > 1024)
       {
-        $file_size = ($_FILES["file"]["size"] / 1024) . " kB";
+        $file_size = round(($_FILES["file"]["size"] / 1024) . " kB", 2);
       }
       
 
