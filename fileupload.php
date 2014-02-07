@@ -46,7 +46,23 @@ function rename_file($file_name, $counter)
       $fileNamePath = "upload/" . $temp_name;
       $creator = $_SESSION["email"];
       $thread_id = $_SESSION['current_group_id'];
-      $bool_returned = upload_to_database($thread_id, $fileNamePath, $creator);
+      $file_name = $temp_name;
+      $file_size = ($_FILES["file"]["size"]);
+      if($file_size > 1073741824)
+      {
+        $file_size = round(($_FILES["file"]["size"] / 1073741824), 2) . " gB";
+      }
+      else if($file_size > 1048576)
+      {
+        $file_size = round(($_FILES["file"]["size"] / 1048576), 2) . " mB";
+      }
+      else if($file_size > 1024)
+      {
+        $file_size = round(($_FILES["file"]["size"] / 1024), 2) . " kB";
+      }
+      
+
+      $bool_returned = upload_to_database($thread_id, $fileNamePath, $creator, $file_name, $file_size);
       if($bool_returned==TRUE){
         header('Location: http://www.waggle.myskiprofile.com/index.php');
         exit();
@@ -61,12 +77,12 @@ function rename_file($file_name, $counter)
     }
   }
 
-  function upload_to_database($thread_id, $fileNamePath, $creator)
+  function upload_to_database($thread_id, $fileNamePath, $creator, $file_name, $file_size)
   {
     //*****************
       $sql = "
-          INSERT INTO `file`(`group_id`,`file_name_path`,`creator`)
-          VALUES('$thread_id','$fileNamePath','$creator')
+          INSERT INTO `file`(`group_id`,`file_name_path`,`creator`, `file_name`, `file_size`)
+          VALUES('$thread_id','$fileNamePath','$creator', '$file_name', '$file_size')
       ";
 
       $result = mysql_query($sql);

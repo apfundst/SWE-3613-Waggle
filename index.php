@@ -12,6 +12,7 @@ else
   $threads_html = 'Select a Group!';
  $file_upload_html = '';
  $group_setting_html ='';
+ $files_html = '';
   $groups = do_get_groups($_SESSION["email"]);
 if(is_null($groups))
 {
@@ -32,22 +33,32 @@ foreach ($groups as $things) {
  $file_upload_html = '';
  $group_setting_html ='';*/
  $create_thread_button_html ='';
+ $group_creator_html = '';
+ $group_member_list = '';
+ $members ='';
 if($_POST["group_id"]){
   $current_group_id = $_POST["group_id"];
   $_SESSION['current_group_id'] = $current_group_id;
   $current_group_name = do_get_group_name($current_group_id);
-
-  $current_threads = do_get_threads($current_group_id);
-  $file_upload_html = '  <div class="panel panel-default">
-    <div class="panel-heading">Upload Files to '. $current_group_name .'</div>
-    <div class="panel-body"><form action="fileupload.php" method="post"
-  enctype="multipart/form-data"><label for="file">Filename:</label>
-  <input type="file" name="file" id="file"><br>
-  <input type="submit" name="submit" value="Submit">
+  $group_owner = do_get_creator($current_group_id);
+  if($group_owner == $_SESSION['email']){
+    $group_creator_html = '<br><p>Add Group Members:</p><form action="add_member.php" method="post"
+  enctype="multipart/form-data">
+  <input type="text" name="member_email" maxlength="20">
+  <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
+  <input type="submit" name="submit" value="Add Member to Group">
   
-  </form>
-    </div>
-  </div>';
+  </form>';
+
+  }
+
+  
+  
+  $members = do_get_group_members($current_group_id);
+  
+  foreach ($members as $yolo) {
+    $group_member_list .= $yolo[0] . '<br>';
+  }
   $group_setting_html = '  <div class="panel panel-default">
     <div class="panel-heading">Group Settings for '. $current_group_name .'</div>
     <div class="panel-body"><form action="leave_group.php" method="post"
@@ -55,7 +66,7 @@ if($_POST["group_id"]){
   <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
   <input type="submit" name="submit" value="Leave Group">
   
-  </form>
+  </form><p>'.$group_member_list.'</p> '.$group_creator_html.'
     </div>
   </div>';
   $create_thread_button_html ='<div style="
@@ -67,6 +78,8 @@ if($_POST["group_id"]){
     color:white;
     margin-right: 20px;
     font-size: 15px; "><a href="new_thread.php">Create New Thread</a></div>';
+  //start threads
+  $current_threads = do_get_threads($current_group_id);
   if (is_null($current_threads)){
     $threads_html = 'No Threads in this group Yet!';
   }
@@ -80,17 +93,59 @@ if($_POST["group_id"]){
     $threads_html .= $things[3] . '"/></form>';
 
   }
+}
+  //end threads
+
+  //begin files
+  $current_files = do_get_files($current_group_id);
+  if (is_null($current_files))
+  {
+    $files_html = 'No files have been uploaded yet!';
+  }
+  else
+  {
   
 
+  foreach($current_files as $files)
+  {
+    //TO DO: html for andrew
+    $files_html .= '<a href="'.$files[2].'"download="'.$files[3].'" id="listItem">'.$files[3].' '.$files[4].'</a><br>';
+    
+
+  }
+  
+  //files section ends
 }
+$file_upload_html = '  <div class="panel panel-default">
+    <div class="panel-heading">Upload Files to '. $current_group_name .'</div>
+    <div class="panel-body"><p>'.$files_html.'</p><form action="fileupload.php" method="post"
+  enctype="multipart/form-data"><label for="file">Filename:</label>
+  <input type="file" name="file" id="file"><br>
+  <input type="submit" name="submit" value="Submit">
+  
+  </form>
+    </div>
+  </div>';
 
 }
+
 elseif($_SESSION['current_group_id']){
 
     $current_group_id = $_SESSION['current_group_id'];
   $current_group_name = do_get_group_name($current_group_id);
 
   $current_threads = do_get_threads($current_group_id);
+  $group_owner = do_get_creator($current_group_id);
+  if($group_owner == $_SESSION['email']){
+    $group_creator_html = '<br><p>Add Group Members:</p><form action="add_member.php" method="post"
+  enctype="multipart/form-data">
+  <input type="text" name="member_email" maxlength="20">
+  <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
+  <input type="submit" name="submit" value="Add Member To Group">
+  
+  </form>';
+
+  }
   $file_upload_html = '  <div class="panel panel-default">
     <div class="panel-heading">Upload Files to '. $current_group_name .'</div>
     <div class="panel-body"><form action="fileupload.php" method="post"
@@ -101,6 +156,11 @@ elseif($_SESSION['current_group_id']){
   </form>
     </div>
   </div>';
+  $members = do_get_group_members($current_group_id);
+  
+  foreach ($members as $yolo) {
+    $group_member_list .= $yolo[0] . '<br>';
+  }
   $group_setting_html = '  <div class="panel panel-default">
     <div class="panel-heading">Group Settings for '. $current_group_name .'</div>
     <div class="panel-body"><form action="leave_group.php" method="post"
@@ -108,7 +168,7 @@ elseif($_SESSION['current_group_id']){
   <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
   <input type="submit" name="submit" value="Leave Group">
   
-  </form>
+  </form><p>'.$group_member_list.'</p> '.$group_creator_html.'
     </div>
   </div>';
   $create_thread_button_html ='<div style="
@@ -137,6 +197,36 @@ elseif($_SESSION['current_group_id']){
   
 
 }
+//begin files
+  $current_files = do_get_files($current_group_id);
+  if (is_null($current_files))
+  {
+    $files_html = 'No files have been uploaded yet!';
+  }
+  else
+  {
+  
+
+  foreach($current_files as $files)
+  {
+    //TO DO: html for andrew
+    $files_html .= '<a href="'.$files[2].'" download="'.$files[3].'"id="listItem">'.$files[3].' '.$files[4].'</a><br>';
+    
+
+  }
+  
+  //files section ends
+}
+$file_upload_html = '  <div class="panel panel-default">
+    <div class="panel-heading">Upload Files to '. $current_group_name .'</div>
+    <div class="panel-body"><p>'.$files_html.'</p><form action="fileupload.php" method="post"
+  enctype="multipart/form-data"><label for="file">Filename:</label>
+  <input type="file" name="file" id="file"><br>
+  <input type="submit" name="submit" value="Submit">
+  
+  </form>
+    </div>
+  </div>';
 
 }
 
@@ -202,6 +292,7 @@ elseif($_SESSION['current_group_id']){
    <? echo "Name: ";
       $name = do_get_name($_SESSION['email']);
       echo $name;
+      echo '<script>console.log('.json_encode($members).');</script>';
       
       echo "<br> ";
       echo "Email: ".$_SESSION["email"];

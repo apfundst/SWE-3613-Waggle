@@ -74,6 +74,24 @@ function do_get_thread_subject($thread_id){
     die;
 }
 
+function do_get_creator($group_id){
+
+	$sql = "
+		   SELECT creator
+		   FROM `group`
+		   WHERE '$group_id' = group_id	
+	";
+	$result = mysql_query($sql);
+	if(mysql_num_rows($result)==0){
+		return NULL;
+	}
+	else{
+       	// Get the information from the result set
+		$row = mysql_fetch_array($result);
+    	return $row['creator'];
+    }
+    die;
+}
 
 
 function do_get_messages($thread_id){
@@ -104,8 +122,6 @@ function do_get_messages($thread_id){
     die;
 }
 
-
-
 function do_create_membership($email, $group_id){
 	// Will create a membership for a user if that user
 	// does not already belong to group
@@ -115,8 +131,9 @@ function do_create_membership($email, $group_id){
 
 	$sql = "
 		INSERT INTO `membership`(`group_id`,`email`)
-		VALUES('$group_id','$email')	
+		VALUES('$group_id', (SELECT email FROM `user` WHERE '$email' = email) )
 	";
+
 	$result = mysql_query($sql);
 	if(!$result){
 		return FALSE;
@@ -124,9 +141,8 @@ function do_create_membership($email, $group_id){
 	else{
 		return TRUE;
 	}
-
-
 }
+
 
 function do_get_group_id($creator, $group_name){
 	// Gets group_id from group table
@@ -149,6 +165,8 @@ function do_get_group_id($creator, $group_name){
 		return $row['group_id'];
 	}
 }
+
+
 
 function do_get_name($email){
 	$sql = "
@@ -185,15 +203,16 @@ function do_create_group($email, $group_name, $group_description){
 		   VALUES('$email','$group_name','$group_description')
 	";
 	$result = mysql_query($sql);
+	$temp_id = mysql_insert_id();
 	if(!$result){
 		return FALSE;
 	}
 	else{
-		do_create_membership($email, do_get_group_id($email,$group_name) );
+		do_create_membership($email, $temp_id);
 		return TRUE;
 	}
 
-   }
+  }
 
 
 
@@ -265,7 +284,29 @@ function do_get_group_name($group_id){
     	}
     	die;
 	}
-    
+   
+function do_get_group_members($group_id){
+	$sql = "
+		SELECT email
+		FROM `membership`
+		WHERE '$group_id' = group_id
+		ORDER BY date_created ASC		
+	";
+	$result = mysql_query($sql);
+	if(mysql_num_rows($result)==0){
+		return NULL;
+	}
+	else{
+     	// Get the information from the result set
+		$i = 0;
+     	while($row = mysql_fetch_row($result)){
+     		$data[$i] = $row;
+     		$i++; 
+  		}
+  		return $data;
+    }
+}
+
 
 
 function do_get_threads($group_id){
@@ -277,6 +318,36 @@ function do_get_threads($group_id){
 	$sql = "
 		   SELECT * 
 		   FROM `thread`
+		   WHERE '$group_id' = group_id
+		   ORDER BY date_created ASC		
+	";
+	$result = mysql_query($sql);
+		if(!$result){
+			die("Invalid query: " .mysql_error());
+		}	
+		else{
+			if(mysql_num_rows($result)==0){
+				return NULL;
+			}
+			else{
+     			// Get the information from the result set
+				$i = 0;
+     			while($row = mysql_fetch_row($result)){
+     				$data[$i] = $row;
+     				$i++; 
+     			}
+    			return $data;
+    		}
+    	}
+    	die;
+}
+
+
+function do_get_files($group_id)
+{
+	$sql = "
+		   SELECT * 
+		   FROM `file`
 		   WHERE '$group_id' = group_id
 		   ORDER BY date_created ASC		
 	";
