@@ -319,7 +319,7 @@ function do_get_threads($group_id){
 }
 
 
-function do_get_files($email, $group_id)
+function do_get_files($group_id)
 {
 	$sql = "
 		   SELECT * 
