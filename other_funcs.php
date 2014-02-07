@@ -284,7 +284,7 @@ function do_get_group_name($group_id){
     	}
     	die;
 	}
-    
+   
 function do_get_group_members($group_id){
 	$sql = "
 		SELECT email
@@ -300,7 +300,7 @@ function do_get_group_members($group_id){
      	// Get the information from the result set
 		$i = 0;
      	while($row = mysql_fetch_row($result)){
-     		$data[$i] = do_get_name($row);
+     		$data[$i] = do_get_name($row['email']);
      		$i++; 
   		}
   		return $data;
