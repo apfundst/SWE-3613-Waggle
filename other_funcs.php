@@ -300,7 +300,7 @@ function do_get_group_members($group_id){
      	// Get the information from the result set
 		$i = 0;
      	while($row = mysql_fetch_row($result)){
-     		$data[$i] = do_get_name($row['email']);
+     		$data[$i] = $row;
      		$i++; 
   		}
   		return $data;
