@@ -61,33 +61,44 @@ ob_flush();
 
 ?>
 <html>
-<head>
-<link rel="stylesheet" type="text/css" href="css.css">
-</head>
-
-<body>
-  <div class="row"
-  <div class="col-lg-4">
-  </div>
-  <div class="col-lg-12">
-    <div class="panel">
-      <div class="panel-heading">
-        <center>Login Here</center>
+  <head>
+    <link rel="stylesheet" type="text/css" href="LOGIN/css.css">
+  </head>
+  <body>
+  <!-- Create Logo at the top of the screen -->
+  <!--Black bar at the top of the screen.-->
+    <div class="navbar">
+      <img class="logoImg"src="LOGIN/LOGOWAGGLEv4.2.png" height="75">
+    </div>
+  <!-- Creates a new row to use -->
+    <div class="row">
+      
+      <div class="col-lg-8" id="welcome">
+        <div id="cf">
+          <img class="bottom" src="LOGIN/beehive2.png"/>
+          <img class="top" src="LOGIN/beehive1.png" />
+        </div>
       </div>
-      <div class="panel-body">
-        <center>
-          <p><? echo $error_message; ?></p>
-        <form action="login.php" method="post"enctype="multipart/form-data">
-        <label for="file">Email:</label>
-        <input type="text" name="email" for="userid"><br>
-        <label for="file">Password:</label>
-        <input type="password" name="password" for="pass"><br>
-        <input type="submit" name="submit" value="Submit">
-        </form></center>
+      <!--Log in bar-->
+      <div class="col-lg-4">
+        <div class="panel">
+          <div class="panel-heading">
+            <center>Login Here</center>
+          </div>
+          <div class="panel-body">
+            <center>
+              <p><? echo $error_message; ?></p>
+              <form action="login.php" method="post"enctype="multipart/form-data">
+                <!--<label for="file">Email:</label>-->
+                <input type="text" name="email" placeholder='SPSU Email' size="40" for="userid"><br>
+                <!--<label for="file">Password:</label>-->
+                <input type="password" name="password" placeholder='Password' size="40" for="pass"><br>
+                <input type="submit" name="submit" value="Submit">
+              </form>
+            </center>
+          </div>
+        </div>
       </div>
     </div>
-
-</div>
-</div>
-</body>
+  </body>
 </html>
