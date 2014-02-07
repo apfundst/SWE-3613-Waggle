@@ -21,10 +21,11 @@ if(is_null($groups))
 else{
 $groups_html = '';
 foreach ($groups as $things) {
+  $name = do_get_name($things[2]);
   
   $groups_html .= '<form enctype="multipart/form-data" action="index.php" method="post">
                         <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
-    $groups_html .= $things[1] . '          --       '. $things[2].'"/></form>';
+    $groups_html .= $things[1] . '          --     Created by:  '. $name.'"/></form>';
   
  
 }
@@ -57,7 +58,8 @@ if($_POST["group_id"]){
   $members = do_get_group_members($current_group_id);
   
   foreach ($members as $yolo) {
-    $group_member_list .= $yolo[0] . '<br>';
+    $name = do_get_name($yolo[0]);
+    $group_member_list .= $name . '<br>';
   }
   $group_setting_html = '  <div class="panel panel-default">
     <div class="panel-heading">Group Settings for '. $current_group_name .'</div>
@@ -66,7 +68,7 @@ if($_POST["group_id"]){
   <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
   <input type="submit" name="submit" value="Leave Group">
   
-  </form><p>'.$group_member_list.'</p> '.$group_creator_html.'
+  </form><p>Group Members:<br>'.$group_member_list.'</p> '.$group_creator_html.'
     </div>
   </div>';
   $create_thread_button_html ='<div style="
@@ -159,7 +161,8 @@ elseif($_SESSION['current_group_id']){
   $members = do_get_group_members($current_group_id);
   
   foreach ($members as $yolo) {
-    $group_member_list .= $yolo[0] . '<br>';
+    $name = do_get_name($yolo[0]);
+    $group_member_list .= $name . '<br>';
   }
   $group_setting_html = '  <div class="panel panel-default">
     <div class="panel-heading">Group Settings for '. $current_group_name .'</div>
@@ -168,7 +171,7 @@ elseif($_SESSION['current_group_id']){
   <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
   <input type="submit" name="submit" value="Leave Group">
   
-  </form><p>'.$group_member_list.'</p> '.$group_creator_html.'
+  </form><p>Group Members: <br>'.$group_member_list.'</p> '.$group_creator_html.'
     </div>
   </div>';
   $create_thread_button_html ='<div style="
