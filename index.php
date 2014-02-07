@@ -98,21 +98,21 @@ if($_POST["group_id"]){
   }
   else
   {
-  $files_html = '<p>';
+  
 
   foreach($current_files as $files)
   {
     //TO DO: html for andrew
-    $files_html .= '<a href="'.$files[2].'"download="'.$files[3].'>'.$files[3].' '.$files[5].'</a><br>';
+    $files_html .= '<a href="'.$files[2].'"download="'.$files[3].'" id="listItem">'.$files[3].' '.$files[4].'</a><br>';
     
 
   }
-  $files_html .= '<p>';
+  
   //files section ends
 }
 $file_upload_html = '  <div class="panel panel-default">
     <div class="panel-heading">Upload Files to '. $current_group_name .'</div>
-    <div class="panel-body">'.$file_html.'<form action="fileupload.php" method="post"
+    <div class="panel-body"><p>'.$files_html.'</p><form action="fileupload.php" method="post"
   enctype="multipart/form-data"><label for="file">Filename:</label>
   <input type="file" name="file" id="file"><br>
   <input type="submit" name="submit" value="Submit">
@@ -194,21 +194,21 @@ elseif($_SESSION['current_group_id']){
   }
   else
   {
-  $files_html = '<p>';
+  
 
   foreach($current_files as $files)
   {
     //TO DO: html for andrew
-    $files_html .= '<a href="'.$files[2].'"download="'.$files[3].'>'.$files[3].' '.$files[5].'</a><br>';
+    $files_html .= '<a href="'.$files[2].'" download="'.$files[3].'"id="listItem">'.$files[3].' '.$files[4].'</a><br>';
     
 
   }
-  $files_html .= '<p>';
+  
   //files section ends
 }
 $file_upload_html = '  <div class="panel panel-default">
     <div class="panel-heading">Upload Files to '. $current_group_name .'</div>
-    <div class="panel-body">'.$file_html.'<form action="fileupload.php" method="post"
+    <div class="panel-body"><p>'.$files_html.'</p><form action="fileupload.php" method="post"
   enctype="multipart/form-data"><label for="file">Filename:</label>
   <input type="file" name="file" id="file"><br>
   <input type="submit" name="submit" value="Submit">
