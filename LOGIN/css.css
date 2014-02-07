@@ -1,0 +1,69 @@
+/*in old CSS!!*/
+body{
+    background-color: #f8f8f8
+}
+/*in old CSS!!*/
+.logoImg{
+  padding-left: 20px;
+  margin-left: 20px;
+}
+/*in old CSS!!Changed*/
+.col-lg-12 {
+    float:right;
+	width:300px;
+ }
+/*in old CSS!!Changed*/
+.panel-heading{
+	background: #0e855b;
+	float:left;
+	width:300px;
+	font-family:Verdana;
+	font-size:large;
+}
+/*in old CSS!!Changed*/
+.col-lg-4{
+background-color:#000000;
+}
+/*in old CSS!!Changed*/
+.panel-body{
+}
+/*Added*/
+#LOGO{
+	background-color: #000000;
+	float:left;
+	width:1249px;
+}
+/*Added*/
+#welcome{
+	background: #0e855b;
+	width:949px;
+	height:100%;
+	float:left;
+}
+/*Added*/
+#cf {
+  position:relative;
+  height:281px;
+  width:450px;
+  margin:0 auto;
+  float:left;
+}
+/*Added*/
+#cf img {
+  position:absolute;
+  left:0;
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+/*Added*/
+#cf img.top:hover {
+  opacity:0;
+}
+/*Added*/
+.panel{
+width:300px;
+height:105px;
+background:#000000;
+}
