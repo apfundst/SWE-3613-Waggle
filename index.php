@@ -35,6 +35,7 @@ foreach ($groups as $things) {
  $create_thread_button_html ='';
  $group_creator_html = '';
  $group_member_list = '';
+ $members ='';
 if($_POST["group_id"]){
   $current_group_id = $_POST["group_id"];
   $_SESSION['current_group_id'] = $current_group_id;
@@ -291,6 +292,7 @@ $file_upload_html = '  <div class="panel panel-default">
    <? echo "Name: ";
       $name = do_get_name($_SESSION['email']);
       echo $name;
+      echo '<script>console.log('.json_encode($members).');</script>';
       
       echo "<br> ";
       echo "Email: ".$_SESSION["email"];
