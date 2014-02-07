@@ -303,7 +303,7 @@ function do_get_group_members($group_id){
      		$data[$i] = do_get_name($row);
      		$i++; 
   		}
-  		return $data
+  		return $data;
     }
 }
 

@@ -53,6 +53,11 @@ if($_POST["group_id"]){
 
   
   
+  $members = do_get_group_members($current_group_id);
+  
+  foreach ($members as $yolo) {
+    $group_member_list .= $yolo . '<br>';
+  }
   $group_setting_html = '  <div class="panel panel-default">
     <div class="panel-heading">Group Settings for '. $current_group_name .'</div>
     <div class="panel-body"><form action="leave_group.php" method="post"
@@ -60,7 +65,7 @@ if($_POST["group_id"]){
   <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
   <input type="submit" name="submit" value="Leave Group">
   
-  </form>'.$group_creator_html.'
+  </form><p>'.$group_member_list.'</p> '.$group_creator_html.'
     </div>
   </div>';
   $create_thread_button_html ='<div style="
@@ -150,6 +155,11 @@ elseif($_SESSION['current_group_id']){
   </form>
     </div>
   </div>';
+  $members = do_get_group_members($current_group_id);
+  
+  foreach ($members as $yolo) {
+    $group_member_list .= $yolo . '<br>';
+  }
   $group_setting_html = '  <div class="panel panel-default">
     <div class="panel-heading">Group Settings for '. $current_group_name .'</div>
     <div class="panel-body"><form action="leave_group.php" method="post"
@@ -157,7 +167,7 @@ elseif($_SESSION['current_group_id']){
   <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
   <input type="submit" name="submit" value="Leave Group">
   
-  </form>'.$group_member_list.' '.$group_creator_html.'
+  </form><p>'.$group_member_list.'</p> '.$group_creator_html.'
     </div>
   </div>';
   $create_thread_button_html ='<div style="
