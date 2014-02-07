@@ -52,16 +52,7 @@ if($_POST["group_id"]){
   }
 
   
-  $file_upload_html = '  <div class="panel panel-default">
-    <div class="panel-heading">Upload Files to '. $current_group_name .'</div>
-    <div class="panel-body"><form action="fileupload.php" method="post"
-  enctype="multipart/form-data"><label for="file">Filename:</label>
-  <input type="file" name="file" id="file"><br>
-  <input type="submit" name="submit" value="Submit">
   
-  </form>
-    </div>
-  </div>';
   $group_setting_html = '  <div class="panel panel-default">
     <div class="panel-heading">Group Settings for '. $current_group_name .'</div>
     <div class="panel-body"><form action="leave_group.php" method="post"
@@ -96,6 +87,7 @@ if($_POST["group_id"]){
     $threads_html .= $things[3] . '"/></form>';
 
   }
+}
   //end threads
 
   //begin files
@@ -106,20 +98,31 @@ if($_POST["group_id"]){
   }
   else
   {
-  $files_html = '';
+  $files_html = '<p>';
 
   foreach($current_files as $files)
   {
     //TO DO: html for andrew
-    $files_html .= '<a href="'.$files[2].'"download="'.$files[3].'>'.$files[3].' '.$files[5].'</a>';
+    $files_html .= '<a href="'.$files[2].'"download="'.$files[3].'>'.$files[3].' '.$files[5].'</a><br>';
     
 
   }
+  $files_html .= '<p>';
   //files section ends
 }
+$file_upload_html = '  <div class="panel panel-default">
+    <div class="panel-heading">Upload Files to '. $current_group_name .'</div>
+    <div class="panel-body">'.$file_html.'<form action="fileupload.php" method="post"
+  enctype="multipart/form-data"><label for="file">Filename:</label>
+  <input type="file" name="file" id="file"><br>
+  <input type="submit" name="submit" value="Submit">
+  
+  </form>
+    </div>
+  </div>';
 
 }
-}
+
 elseif($_SESSION['current_group_id']){
 
     $current_group_id = $_SESSION['current_group_id'];
@@ -183,6 +186,36 @@ elseif($_SESSION['current_group_id']){
   
 
 }
+//begin files
+  $current_files = do_get_files($current_group_id);
+  if (is_null($current_files))
+  {
+    $files_html = 'No files have been uploaded yet!';
+  }
+  else
+  {
+  $files_html = '<p>';
+
+  foreach($current_files as $files)
+  {
+    //TO DO: html for andrew
+    $files_html .= '<a href="'.$files[2].'"download="'.$files[3].'>'.$files[3].' '.$files[5].'</a><br>';
+    
+
+  }
+  $files_html .= '<p>';
+  //files section ends
+}
+$file_upload_html = '  <div class="panel panel-default">
+    <div class="panel-heading">Upload Files to '. $current_group_name .'</div>
+    <div class="panel-body">'.$file_html.'<form action="fileupload.php" method="post"
+  enctype="multipart/form-data"><label for="file">Filename:</label>
+  <input type="file" name="file" id="file"><br>
+  <input type="submit" name="submit" value="Submit">
+  
+  </form>
+    </div>
+  </div>';
 
 }
 
