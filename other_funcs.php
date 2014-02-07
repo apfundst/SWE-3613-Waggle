@@ -166,6 +166,8 @@ function do_get_group_id($creator, $group_name){
 	}
 }
 
+
+
 function do_get_name($email){
 	$sql = "
 		SELECT first_name, last_name 
@@ -283,6 +285,28 @@ function do_get_group_name($group_id){
     	die;
 	}
     
+function do_get_group_members($group_id){
+	$sql = "
+		SELECT email
+		FROM `membership`
+		WHERE '$group_id' = group_id
+		ORDER BY date_created ASC		
+	";
+	$result = mysql_query($sql);
+	if(mysql_num_rows($result)==0){
+		return NULL;
+	}
+	else{
+     	// Get the information from the result set
+		$i = 0;
+     	while($row = mysql_fetch_row($result)){
+     		$data[$i] = do_get_name($row);
+     		$i++; 
+  		}
+  		return $data
+    }
+}
+
 
 
 function do_get_threads($group_id){
