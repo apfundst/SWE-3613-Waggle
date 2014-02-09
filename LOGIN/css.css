@@ -52,6 +52,7 @@ in old CSS!!Changed*/
 	float:left;
 	margin-left: 15px;
 	min-width:600px;
+	min-height:400px;
 	width:64%;
 }
 /*Added*/
@@ -127,6 +128,7 @@ in old CSS!!Changed*/
 .navbar {
   position: relative;
   min-height: 50px;
+  min-width:580px;
   margin-bottom: 20px;
   border: 1px solid transparent;
   background-color: #222222;

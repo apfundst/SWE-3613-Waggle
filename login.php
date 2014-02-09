@@ -93,7 +93,7 @@ ob_flush();
                 <input type="text" name="email" placeholder='SPSU Email' size="40" for="userid"><br>
                 <!--<label for="file">Password:</label>-->
                 <input type="password" name="password" placeholder='Password' size="40" for="pass"><br>
-                <input type="submit" name="submit" value="Submit">
+                <input type="submit" name="submit" value="Login">
               </form>
             </center>
           </div>
