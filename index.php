@@ -111,7 +111,20 @@ if($_POST["group_id"]){
   foreach($current_files as $files)
   {
     //TO DO: html for andrew
-    $files_html .= '<a href="'.$files[2].'"download="'.$files[3].'" id="listItem">'.$files[3].' '.$files[4].'</a><br>';
+    $files_html .= '<a href="'.$files[2].'"download="'.$files[3].'" id="listItem">'.$files[3].' '.$files[4].'<form action="delete_file.php" method="post">
+<input type="hidden" name="file_path" value="'.$files[2].'">
+    <input style="
+    float:right;
+    display: inline;
+    border: 1px solid #ddd;
+    background-color: black;
+    padding: 3px;
+    color:white;
+    height: 100%;
+    padding: 0px 10px;
+    font-size: 15px; 
+    margin-top: 0px;
+" type="submit" value="Delete File"></a><br>';
     
 
   }
@@ -213,7 +226,7 @@ elseif($_SESSION['current_group_id']){
   foreach($current_files as $files)
   {
     //TO DO: html for andrew
-    $files_html .= '<a href="'.$files[2].'" download="'.$files[3].'"id="listItem">'.$files[3].' '.$files[4].'</a><form action="delete_file.php" method="post">
+    $files_html .= '<a href="'.$files[2].'" download="'.$files[3].'"id="listItem">'.$files[3].' '.$files[4].'<form action="delete_file.php" method="post">
 <input type="hidden" name="file_path" value="'.$files[2].'">
     <input style="
     float:right;
@@ -226,7 +239,7 @@ elseif($_SESSION['current_group_id']){
     padding: 0px 10px;
     font-size: 15px; 
     margin-top: 0px;
-" type="submit" value="Delete File">';
+" type="submit" value="Delete File"></a>';
     
 
   }
