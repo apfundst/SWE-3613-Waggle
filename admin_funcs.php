@@ -2,6 +2,7 @@
 include_once('connection.php');
 
 
+
 function do_admin_get_groups(){
 	// Returns all groups
 	$sql = "

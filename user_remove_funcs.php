@@ -1,6 +1,30 @@
 <?
 include_once('connection.php');
 
+function do_leave_group($email, $group_id){
+	// Removes user from group by deleting membership
+	$creator = do_get_creator($group_id);
+
+	if($email != $creator){
+		$sql = "
+			DELETE FROM `membership`
+			WHERE '$email' = email AND '$group_id' = group_id
+		";
+		$result = mysql_query($sql);
+		if (!$result) {
+			mysql_query('ROLLBACK');
+			return FALSE;
+		}
+		else{
+			return TRUE;
+		}
+	}
+	else{
+		return false;
+	}
+}
+
+
 //Delete Messages (only if admin or creator)
 function do_remove_message($email, $message_id, $creator)
 {
