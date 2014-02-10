@@ -51,5 +51,51 @@ function do_remove_file($email, $file_name_path, $creator)
 }
 
 //Ban Method
+function do_ban_user($email, $admin)
+{//function do_remove_file($email, $file_name_path, $creator, $admin)
+	// Deletes files from the database
+	//if email matches the creator OR if admin
+	//if($email == $creator || $admin = true)
+	if($admin)
+	{
+		$sql = "
+			UPDATE `user`
+		 	SET authorized = 0
+		";
+		$result = mysql_query($sql);
+		if (!$result) {
+			mysql_query('ROLLBACK');
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
+}
+
+//Reverse a Ban Method
+function do_unban_user($email, $admin)
+{//function do_remove_file($email, $file_name_path, $creator, $admin)
+	// Deletes files from the database
+	//if email matches the creator OR if admin
+	//if($email == $creator || $admin = true)
+	if($admin)
+	{
+		$sql = "
+			UPDATE `user`
+		 	SET authorized = 1
+		";
+		$result = mysql_query($sql);
+		if (!$result) {
+			mysql_query('ROLLBACK');
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
+}
 
 ?>
