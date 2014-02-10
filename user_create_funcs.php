@@ -2,6 +2,31 @@
 include_once('connection.php');
 
 
+function do_update_password($email,$student_id,$new_password){
+	$email = mysql_real_escape_string($email);
+	$student_id = mysql_real_escape_string($student_id);
+	$new_password = mysql_real_escape_string($new_password);
+
+	$sql = "
+		 	UPDATE `user`
+		 	SET `password` = 
+		 	WHERE
+	"; 
+
+	$result = mysql_query($sql);
+	if (!$result) {
+		mysql_query('ROLLBACK');
+		return FALSE;
+	}
+	else{
+		return TRUE;
+	}
+
+}
+
+
+
+
 function do_post_message($thread_id, $creator,$text){
 	// needs to post message into database
 	// will require
