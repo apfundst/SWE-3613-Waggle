@@ -23,9 +23,12 @@ function do_post_message($thread_id, $creator,$text){
 	// will require
 
 	// message_id, and date_created autogenerate
+	$message = nl2br($text);
+	$message = mysql_real_escape_string($message);
+
 	$sql = "
 		 	INSERT INTO `message`(`thread_id`,`creator`,`message_text`)
-		 	VALUES('$thread_id','$creator','$text')
+		 	VALUES('$thread_id','$creator','$message')
 	";
 
 	$result = mysql_query($sql);
@@ -40,9 +43,12 @@ function do_post_message($thread_id, $creator,$text){
 
 
 function do_create_thread($group_id, $creator, $subject){
+
+	$scrubbed_subject = mysql_real_escape_string($subject);
+
 	$sql = "
 		INSERT INTO `thread`(`group_id`,`creator`,`subject`)
-		VALUES('$group_id','$creator','$subject')
+		VALUES('$group_id','$creator','$scrubbed_subject')
 	";
 	$result = mysql_query($sql);
 	if(!$result){
@@ -83,10 +89,13 @@ function do_create_group($email, $group_name, $group_description){
 
 	// NINJA EDIT: 3 Feb 2014 23:29 made 
 	//			   group_name unique
+
+	$scrubbed_group_name = mysql_real_escape_string($group_name);
+	$scrubbed_group_description = mysql_real_escape_string($group_description);
 	
 	$sql = "
 		   INSERT INTO `group`(`creator`,`group_name`,`group_description`)
-		   VALUES('$email','$group_name','$group_description')
+		   VALUES('$email','$scrubbed_group_name','$scrubbed_group_description')
 	";
 	$result = mysql_query($sql);
 	$temp_id = mysql_insert_id();
