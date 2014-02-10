@@ -60,7 +60,8 @@ function do_ban_user($email, $admin)
 	{
 		$sql = "
 			UPDATE `user`
-		 	SET authorized = 0
+		 	SET `authorized` = '0'
+		 	WHERE '$email' = email
 		";
 		$result = mysql_query($sql);
 		if (!$result) {
@@ -84,7 +85,8 @@ function do_unban_user($email, $admin)
 	{
 		$sql = "
 			UPDATE `user`
-		 	SET authorized = 1
+		 	SET `authorized` = '1'
+		 	WHERE '$email' = email
 		";
 		$result = mysql_query($sql);
 		if (!$result) {
