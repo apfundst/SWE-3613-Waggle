@@ -239,7 +239,7 @@ elseif($_SESSION['current_group_id']){
     padding: 0px 10px;
     font-size: 15px; 
     margin-top: 0px;
-" type="submit" value="Delete File"></a>';
+" type="submit" value="Delete File"></form></a>';
     
 
   }
