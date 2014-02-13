@@ -111,20 +111,10 @@ if($_POST["group_id"]){
   foreach($current_files as $files)
   {
     //TO DO: html for andrew
-    $files_html .= '<a href="'.$files[2].'"download="'.$files[3].'" id="listItem">'.$files[3].' '.$files[4].'<form action="delete_file.php" method="post">
+    $files_html .= '<a href="'.$files[2].'" download="'.$files[3].'"id="listItem">'.$files[3].' '.$files[4].'</a><form action="delete_file.php" method="post">
 <input type="hidden" name="file_path" value="'.$files[2].'">
-    <input style="
-    float:right;
-    display: inline;
-    border: 1px solid #ddd;
-    background-color: black;
-    padding: 3px;
-    color:white;
-    height: 100%;
-    padding: 0px 10px;
-    font-size: 15px; 
-    margin-top: 0px;
-" type="submit" value="Delete File"></a><br>';
+    <input  type="submit" value="Delete File"></form>';
+    
     
 
   }
@@ -133,7 +123,7 @@ if($_POST["group_id"]){
 }
 $file_upload_html = '  <div class="panel panel-default">
     <div class="panel-heading">Upload Files to '. $current_group_name .'</div>
-    <div class="panel-body"><p>'.$files_html.'</p><form action="fileupload.php" method="post"
+    <div class="panel-body">'.$files_html.'<form action="fileupload.php" method="post"
   enctype="multipart/form-data"><label for="file">Filename:</label>
   <input type="file" name="file" id="file"><br>
   <input type="submit" name="submit" value="Submit">
@@ -144,7 +134,7 @@ $file_upload_html = '  <div class="panel panel-default">
 
 }
 
-elseif($_SESSION['current_group_id']){
+/*elseif($_SESSION['current_group_id']){
 
     $current_group_id = $_SESSION['current_group_id'];
   $current_group_name = do_get_group_name($current_group_id);
@@ -226,7 +216,7 @@ elseif($_SESSION['current_group_id']){
   foreach($current_files as $files)
   {
     //TO DO: html for andrew
-    $files_html .= '<a href="'.$files[2].'" download="'.$files[3].'"id="listItem">'.$files[3].' '.$files[4].'<form action="delete_file.php" method="post">
+    $files_html .= '<a href="'.$files[2].'" download="'.$files[3].'">'.$files[3].' '.$files[4].'</a><form action="delete_file.php" method="post">
 <input type="hidden" name="file_path" value="'.$files[2].'">
     <input style="
     float:right;
@@ -239,7 +229,7 @@ elseif($_SESSION['current_group_id']){
     padding: 0px 10px;
     font-size: 15px; 
     margin-top: 0px;
-" type="submit" value="Delete File"></form></a>';
+" type="submit" value="Delete File"></form>';
     
 
   }
@@ -257,7 +247,7 @@ $file_upload_html = '  <div class="panel panel-default">
     </div>
   </div>';
 
-}
+}*/
 
 
 }
