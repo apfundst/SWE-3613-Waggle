@@ -145,37 +145,32 @@ function do_get_groups($email){
 
 
 function do_get_group_name($group_id){
-		// gets groups from db for user
-		// get the group_name from the group table
-		// where the email matches the email in the membership table
-		// and the group_id matches the group_id in the group table
+	// gets groups from db for user
+	// get the group_name from the group table
+	// where the email matches the email in the membership table
+	// and the group_id matches the group_id in the group table
 
-		$sql = "
-		   	SELECT group_name 
-		   	FROM `group`
-		   	WHERE group_id = '$group_id'
-		   	
-		   	
+	$sql = "
+	   	SELECT group_name 
+	   	FROM `group`
+	   	WHERE group_id = '$group_id'	   	
 		";
-		$result = mysql_query($sql);
-		if(!$result){
-			die("Invalid query: " .mysql_error());
-		}	
+	$result = mysql_query($sql);
+	if(!$result){
+		die("Invalid query: " .mysql_error());
+	}	
+	else{
+		if(mysql_num_rows($result)==0){
+			return NULL;
+		}
 		else{
-			if(mysql_num_rows($result)==0){
-				return NULL;
-			}
-			else{
-     			// Get the information from the result set
-     			$row = mysql_fetch_assoc($result);
-     			$data = $row['group_name'];
-     				
-     			
-				
-    			return $data;
-    		}
+     		// Get the information from the result set
+     		$row = mysql_fetch_assoc($result);
+     		$data = $row['group_name'];
+    		return $data;
     	}
-    	die;
+    }
+    die;
 }
 
 function do_get_group_members($group_id){
@@ -233,6 +228,7 @@ function do_get_threads($group_id){
     	die;
 }
 
+//Retreives all files that are posted in the specified group
 function do_get_files($group_id){
 	$sql = "
 		   SELECT * 
@@ -261,5 +257,61 @@ function do_get_files($group_id){
     	die;
 }
 
+//Retreives file creator from database
+function do_get_file_creator($file_name_path){
+	$sql = "
+		   SELECT creator
+		   FROM `files`
+		   WHERE '$file_name_path' = file_name_path	
+	";
+	$result = mysql_query($sql);
+	if(mysql_num_rows($result)==0){
+		return NULL;
+	}
+	else{
+       	// Get the information from the result set
+		$row = mysql_fetch_array($result);
+    	return $row['creator'];
+    }
+    die;
+}
+
+//Retreives message creator from database
+function do_get_message_creator($message_id){
+	$sql = "
+		   SELECT creator
+		   FROM `message`
+		   WHERE '$message_id' = message_id	
+	";
+	$result = mysql_query($sql);
+	if(mysql_num_rows($result)==0){
+		return NULL;
+	}
+	else{
+       	// Get the information from the result set
+		$row = mysql_fetch_array($result);
+    	return $row['creator'];
+    }
+    die;
+}
+
+//Returns true or false based on admin status
+function user_is_admin($email){
+	$sql = "
+		   SELECT creator
+		   FROM `files`
+		   WHERE '$file_name_path' = file_name_path	
+	";
+	$result = mysql_query($sql);
+	if(mysql_num_rows($result)==0){
+		return NULL;
+	}
+	else{
+       	// Get the information from the result set
+		$row = mysql_fetch_array($result);
+    	return $row['creator'];
+    }
+    die;
+}
 
 ?>
