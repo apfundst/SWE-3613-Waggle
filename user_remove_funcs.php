@@ -55,7 +55,7 @@ function do_remove_file($email, $file_name_path)
 	//if($email == $creator || $admin = true)
 	$sql = "
 		DELETE FROM `file`
-		WHERE '$email' = creator AND '$file_name_path' = $file_name_path
+		WHERE '$email' = creator AND '$file_name_path' = file_name_path
 	";
 	$result = mysql_query($sql);
 	if (!$result) {

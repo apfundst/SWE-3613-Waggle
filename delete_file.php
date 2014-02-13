@@ -20,10 +20,12 @@ if($_POST['file_path']){
         	}
 	        else{
 		   			echo "So not File. Much problem.";
+		   			echo $path;
 		   	}
 		}
 	   	else{
 	   			echo "U no have Acess!!!!!";
+	   			echo $path;
 	   		
 
 	
