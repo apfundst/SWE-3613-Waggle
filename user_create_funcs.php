@@ -3,16 +3,19 @@ include_once('connection.php');
 
 
 function do_update_password($email,$student_id,$new_password){
+	// Cleans the text input into fields in html
+	// then checks to see if user exists in db
+	// If user exists will update password
+
 	$email = mysql_real_escape_string($email);
 	$student_id = mysql_real_escape_string($student_id);
 	$new_password = mysql_real_escape_string($new_password);
 
 	$sql = "
-		 	UPDATE `user`
-		 	SET `password` = 
-		 	WHERE
+			UPDATE `user`
+			SET password = '$new_password';
+			WHERE email = '$email' AND student_id = '$student_id'
 	"; 
-
 	$result = mysql_query($sql);
 	if (!$result) {
 		mysql_query('ROLLBACK');
