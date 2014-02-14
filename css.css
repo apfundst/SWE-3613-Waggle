@@ -160,6 +160,23 @@ cursor:hand;
 #listItem:hover{
   background-color: #0cb270; 
 }
+#fileListItem{
+ position: relative;
+display: block;
+padding: 10px 15px;
+margin-bottom: 1px;
+background-color: #ecf0f1;
+border: 1px solid #ddd;
+color: #444444;
+cursor:hand;
+}
+#fileListItem:before{
+  content: url(file_icon_ex_sm.png);
+  margin-right: 5px;
+}
+#fileListItem:hover{
+  background-color: #0cb270; 
+}
 #threadItem{
  position: relative;
  color: #444444;
@@ -211,4 +228,23 @@ cursor:pointer;
   background-color: #ecf0f1; 
 cursor:pointer;
       cursor:hand;
+}
+#btn{
+  float:right;
+  display: inline;
+  border: 1px solid #ddd;
+  background-color: #ecf0f1;
+  padding: 3px;
+  color:white;
+  margin-right: 20px;
+  font-size: 15px; 
+}
+input:hover{
+  
+  cursor:pointer;
+  cursor:hand;
+}
+.deleteFile{
+  background-color: red;
+  margin-bottom: 2px;
 }

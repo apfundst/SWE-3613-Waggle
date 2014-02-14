@@ -44,6 +44,7 @@ if ($_POST) {
         $_SESSION["email"] = $email;
         $_SESSION["first_name"] = $first_name;
         $_SESSION["last_name"] = $last_name;
+        unset($_SESSION['current_group_id']);
         if($email == 'admin@spsu.edu')
         {
           header('Location: http://www.waggle.myskiprofile.com/admin.php');

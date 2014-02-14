@@ -8,6 +8,15 @@ if(!isset($_SESSION["email"]))
 }
 else
 {
+  /**********************Admins*****************
+  //
+  //
+  //We are going to make a table of admins
+  //Then we will check if a user is admin
+  //Then set a $_session['is_admin'] to true or false
+  //YAY
+  //
+  **********************************************/
   $_SESSION['current_group_id'] = '';
   $threads_html = 'Select a Group!';
  $file_upload_html = '';
@@ -42,6 +51,7 @@ if($_POST["group_id"]){
   $_SESSION['current_group_id'] = $current_group_id;
   $current_group_name = do_get_group_name($current_group_id);
   $group_owner = do_get_creator($current_group_id);
+  $_SESSION['current_group_creator'] = $group_owner;
   if($group_owner == $_SESSION['email']){
     $group_creator_html = '<br><p>Add Group Members:</p><form action="add_member.php" method="post"
   enctype="multipart/form-data">
@@ -91,7 +101,8 @@ if($_POST["group_id"]){
   foreach($current_threads as $things)
   {
     $threads_html .= '<form enctype="multipart/form-data" action="thread.php" method="post">
-                        <input type="hidden" name="thread_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
+                        <input type="hidden" name="thread_id" value="'. $things[0] . '">
+                        <input type="submit" name="submit" id="input_a" value="';
     $threads_html .= $things[3] . '"/></form>';
 
   }
@@ -110,10 +121,13 @@ if($_POST["group_id"]){
 
   foreach($current_files as $files)
   {
-    //TO DO: html for andrew
-    $files_html .= '<a href="'.$files[2].'" download="'.$files[3].'"id="listItem">'.$files[3].' '.$files[4].'</a><form action="delete_file.php" method="post">
-<input type="hidden" name="file_path" value="'.$files[2].'">
-    <input  type="submit" value="Delete File"></form>';
+    $file_creator = do_get_file_creator($files[2]);
+    $files_html .= '<a href="'.$files[2].'" download="'.$files[3].'"id="fileListItem">'.$files[3].' '.$files[4].'   Created by: '.$file_creator.'</a>';
+    if($file_creator == $_SESSION['email'] || $_SESSION['email'] == $_SESSION['current_group_creator']){  //add admin to this function checking
+       $files_html .= '<form action="delete_file.php" method="post">
+      <input type="hidden" name="file_path" value="'.$files[2].'">
+      <input  class="deleteFile" type="submit" value="Delete File"></form>';
+    }
     
     
 
@@ -134,33 +148,32 @@ $file_upload_html = '  <div class="panel panel-default">
 
 }
 
-/*elseif($_SESSION['current_group_id']){
+/*elseif($_SESSION['current_group_id'] != NULL){
 
     $current_group_id = $_SESSION['current_group_id'];
   $current_group_name = do_get_group_name($current_group_id);
 
-  $current_threads = do_get_threads($current_group_id);
+  
   $group_owner = do_get_creator($current_group_id);
+
+ 
+  
+  $current_group_name = do_get_group_name($current_group_id);
+  $group_owner = do_get_creator($current_group_id);
+  $_SESSION['current_group_creator'] = $group_owner;
   if($group_owner == $_SESSION['email']){
     $group_creator_html = '<br><p>Add Group Members:</p><form action="add_member.php" method="post"
   enctype="multipart/form-data">
   <input type="text" name="member_email" maxlength="20">
   <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
-  <input type="submit" name="submit" value="Add Member To Group">
+  <input type="submit" name="submit" value="Add Member to Group">
   
   </form>';
 
   }
-  $file_upload_html = '  <div class="panel panel-default">
-    <div class="panel-heading">Upload Files to '. $current_group_name .'</div>
-    <div class="panel-body"><form action="fileupload.php" method="post"
-  enctype="multipart/form-data"><label for="file">Filename:</label>
-  <input type="file" name="file" id="file"><br>
-  <input type="submit" name="submit" value="Submit">
+
   
-  </form>
-    </div>
-  </div>';
+  
   $members = do_get_group_members($current_group_id);
   
   foreach ($members as $yolo) {
@@ -174,7 +187,7 @@ $file_upload_html = '  <div class="panel panel-default">
   <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
   <input type="submit" name="submit" value="Leave Group">
   
-  </form><p>Group Members: <br>'.$group_member_list.'</p> '.$group_creator_html.'
+  </form><p>Group Members:<br>'.$group_member_list.'</p> '.$group_creator_html.'
     </div>
   </div>';
   $create_thread_button_html ='<div style="
@@ -186,9 +199,10 @@ $file_upload_html = '  <div class="panel panel-default">
     color:white;
     margin-right: 20px;
     font-size: 15px; "><a href="new_thread.php">Create New Thread</a></div>';
+  //start threads
+  $current_threads = do_get_threads($current_group_id);
   if (is_null($current_threads)){
-    $threads_html = 'No Threads in this group Yet!<br>';
-    //echo $_SESSION['current_group_id'];
+    $threads_html = 'No Threads in this group Yet!';
   }
   else{
   $threads_html = '';
@@ -196,14 +210,15 @@ $file_upload_html = '  <div class="panel panel-default">
   foreach($current_threads as $things)
   {
     $threads_html .= '<form enctype="multipart/form-data" action="thread.php" method="post">
-                        <input type="hidden" name="thread_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
+                        <input type="hidden" name="thread_id" value="'. $things[0] . '">
+                        <input type="submit" name="submit" id="input_a" value="';
     $threads_html .= $things[3] . '"/></form>';
 
   }
-  
-
 }
-//begin files
+  //end threads
+
+  //begin files
   $current_files = do_get_files($current_group_id);
   if (is_null($current_files))
   {
@@ -215,21 +230,14 @@ $file_upload_html = '  <div class="panel panel-default">
 
   foreach($current_files as $files)
   {
-    //TO DO: html for andrew
-    $files_html .= '<a href="'.$files[2].'" download="'.$files[3].'">'.$files[3].' '.$files[4].'</a><form action="delete_file.php" method="post">
-<input type="hidden" name="file_path" value="'.$files[2].'">
-    <input style="
-    float:right;
-    display: inline;
-    border: 1px solid #ddd;
-    background-color: black;
-    padding: 3px;
-    color:white;
-    height: 100%;
-    padding: 0px 10px;
-    font-size: 15px; 
-    margin-top: 0px;
-" type="submit" value="Delete File"></form>';
+    $file_creator = do_get_file_creator($files[2]);
+    $files_html .= '<a href="'.$files[2].'" download="'.$files[3].'"id="fileListItem">'.$files[3].' '.$files[4].'   Created by: '.$file_creator.'</a>';
+    if($file_creator == $_SESSION['email'] || $_SESSION['email'] == $_SESSION['current_group_creator']){  //add admin to this function checking
+       $files_html .= '<form action="delete_file.php" method="post">
+      <input type="hidden" name="file_path" value="'.$files[2].'">
+      <input  class="deleteFile" type="submit" value="Delete File"></form>';
+    }
+    
     
 
   }
@@ -238,7 +246,7 @@ $file_upload_html = '  <div class="panel panel-default">
 }
 $file_upload_html = '  <div class="panel panel-default">
     <div class="panel-heading">Upload Files to '. $current_group_name .'</div>
-    <div class="panel-body"><p>'.$files_html.'</p><form action="fileupload.php" method="post"
+    <div class="panel-body">'.$files_html.'<form action="fileupload.php" method="post"
   enctype="multipart/form-data"><label for="file">Filename:</label>
   <input type="file" name="file" id="file"><br>
   <input type="submit" name="submit" value="Submit">
@@ -247,8 +255,7 @@ $file_upload_html = '  <div class="panel panel-default">
     </div>
   </div>';
 
-}*/
-
+}**********Not Working like it should**********/ 
 
 }
 }
@@ -324,6 +331,7 @@ $file_upload_html = '  <div class="panel panel-default">
   </div>
 <?=$file_upload_html;?>
 <?= $group_setting_html; ?>
+<div>linkware: <a href="http://www.visualpharm.com">here</a>
 </div>
 </div>
 

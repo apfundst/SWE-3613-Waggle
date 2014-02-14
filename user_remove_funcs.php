@@ -56,13 +56,18 @@ function do_remove_file($email, $file_name_path)
 {//function do_remove_file($email, $file_name_path, $creator, $admin)
 	// Deletes files from the database
 	//if email matches the creator OR if admin
-	$creator = do_get_file_creator($file_name_path);
-	$admin = user_is_admin($email);
-	if($email == $creator || $admin)
-	{
-		$sql = "
+	//******Drew: taking away back end checking
+	//$creator = do_get_file_creator($file_name_path);
+	//$admin = user_is_admin($email);
+	//if($email == $creator || $admin)
+	//{
+		/*$sql = "
 			DELETE FROM `file`
 			WHERE '$email' = creator AND '$file_name_path' = file_name_path
+		";*/
+		$sql = "
+			DELETE FROM `file`
+			WHERE  '$file_name_path' = file_name_path
 		";
 		$result = mysql_query($sql);
 		if (!$result) 
@@ -74,7 +79,7 @@ function do_remove_file($email, $file_name_path)
 		{
 			return TRUE;
 		}
-	}
+	//}
 }
 
 //Ban Method

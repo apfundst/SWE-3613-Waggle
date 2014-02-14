@@ -261,7 +261,7 @@ function do_get_files($group_id){
 function do_get_file_creator($file_name_path){
 	$sql = "
 		   SELECT creator
-		   FROM `files`
+		   FROM `file`
 		   WHERE '$file_name_path' = file_name_path	
 	";
 	$result = mysql_query($sql);
@@ -299,7 +299,7 @@ function do_get_message_creator($message_id){
 function user_is_admin($email){
 	$sql = "
 		   SELECT creator
-		   FROM `files`
+		   FROM `file`
 		   WHERE '$file_name_path' = file_name_path	
 	";
 	$result = mysql_query($sql);
