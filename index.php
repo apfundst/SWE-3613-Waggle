@@ -1,4 +1,5 @@
 <?
+include_once('user_get_funcs.php');
 session_start();
 include 'other_funcs.php';
 if(!isset($_SESSION["email"]))
@@ -9,14 +10,20 @@ if(!isset($_SESSION["email"]))
 else
 {
   /**********************Admins*****************
+<<<<<<< HEAD
+  */
+  $_SESSION['is_admin'] = user_is_admin($_SESSION["email"]);
+=======
   //
   //
   
   //Then we will check if a user is admin
   //Then set a $_session['is_admin'] to true or false
+>>>>>>> 0607fd7023c2a286c5139d71d815e28322a37891
   //YAY
-  //
+  /*
   **********************************************/
+
   $_SESSION['current_group_id'] = '';
   $threads_html = 'Select a Group!';
  $file_upload_html = '';
@@ -282,7 +289,15 @@ $file_upload_html = '  <div class="panel panel-default">
 <div id="left-sidebar"> left-sidebar </div>
 <div id="content"> content </div>-->
 <div class="container-fluid">
-<? include('nav.php'); ?>
+<?
+if($_SESSION["is_admin"] == true){
+  include('admin_nav.php');
+}
+else{ 
+  include('nav.php'); 
+}
+?>
+
 <div class="col-lg-8">
   <div class="panel panel-default">
     <div class="panel-heading">Groups<div style="
