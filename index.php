@@ -11,7 +11,7 @@ else
   /**********************Admins*****************
   //
   //
-  //We are going to make a table of admins
+  
   //Then we will check if a user is admin
   //Then set a $_session['is_admin'] to true or false
   //YAY
@@ -22,7 +22,11 @@ else
  $file_upload_html = '';
  $group_setting_html ='';
  $files_html = '';
+
+ //if statement to check if admin
+ //if admin call $groups = do_admin_get_groups();
   $groups = do_get_groups($_SESSION["email"]);
+  //endif
 if(is_null($groups))
 {
   $groups_html = 'You are not in any groups yet!';
