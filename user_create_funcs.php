@@ -17,12 +17,14 @@ function do_update_password($email,$student_id,$new_password){
 			WHERE email = '$email' AND student_id = '$student_id'
 	"; 
 	$result = mysql_query($sql);
+	$last_inserted = mysql_insert_id();
 	if (!$result) {
 		mysql_query('ROLLBACK');
 		return FALSE;
 	}
 	else{
-		return TRUE;
+		if($last_inserted != 0) return TRUE;
+		else return FALSE;
 	}
 
 }
