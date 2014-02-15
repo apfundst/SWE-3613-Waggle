@@ -248,3 +248,17 @@ input:hover{
   background-color: red;
   margin-bottom: 2px;
 }
+.groupDesc{
+  color:black;
+  border: 1px solid;
+  margin-bottom:15px;
+  max-width: 45%;
+  margin-left:auto;
+  margin-right: auto;
+  padding:15px;
+}
+.col_lg_4_center{
+  margin-left:auto;
+  margin-right: auto;
+  width:33.3%;
+}
