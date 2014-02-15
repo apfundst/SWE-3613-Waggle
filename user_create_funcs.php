@@ -13,7 +13,7 @@ function do_update_password($email,$student_id,$new_password){
 
 	$sql = "
 			UPDATE `user`
-			SET password = '$new_password';
+			SET password = '$new_password'
 			WHERE email = '$email' AND student_id = '$student_id'
 	"; 
 	$result = mysql_query($sql);
