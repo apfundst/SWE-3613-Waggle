@@ -5,8 +5,10 @@
 <div style="float: right;">
   <ul>
     
-    <li><a href="admin.php">Home</a></li>
+    <li><a href="admin.php">Admin Control Panel</a></li>
+    <li><a href="index.php">Home</a></li>
     <li><a href="logout.php">Log Out</a></li>
+    
   </ul>
 </div>
 </nav>

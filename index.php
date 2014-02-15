@@ -1,7 +1,7 @@
 <?
-include_once('user_get_funcs.php');
+
 session_start();
-include 'other_funcs.php';
+include('other_funcs.php');
 if(!isset($_SESSION["email"]))
 {
   header('Location: http://www.waggle.myskiprofile.com/login.php');
@@ -9,20 +9,11 @@ if(!isset($_SESSION["email"]))
 }
 else
 {
-  /**********************Admins*****************
-<<<<<<< HEAD
-  */
-  $_SESSION['is_admin'] = user_is_admin($_SESSION["email"]);
-=======
-  //
-  //
+
   
-  //Then we will check if a user is admin
-  //Then set a $_session['is_admin'] to true or false
->>>>>>> 0607fd7023c2a286c5139d71d815e28322a37891
-  //YAY
-  /*
-  **********************************************/
+  $_SESSION['is_admin'] = user_is_admin($_SESSION["email"]);
+
+  
 
   $_SESSION['current_group_id'] = '';
   $threads_html = 'Select a Group!';
