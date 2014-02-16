@@ -8,21 +8,22 @@ if(!isset($_SESSION["email"]))
 }
 else
 { 
+  global $current_group_name;
 
-  if($_POST["group_id"]){
-    $current_group_id = $_POST["group_id"];
+  function populate_group_page($group_id){
+    $current_group_id = $group_id;
     $_SESSION['current_group_id'] = $current_group_id;
     $current_group_name = do_get_group_name($current_group_id);
     $group_owner = do_get_creator($current_group_id);
     $_SESSION['current_group_creator'] = $group_owner;
-    if($group_owner == $_SESSION['email']){
-      $group_creator_html = '<br><p>Add Group Members:</p><form action="add_member.php" method="post"
-      enctype="multipart/form-data">
-      <input type="text" name="member_email" maxlength="20">
-      <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
-      <input type="submit" name="submit" value="Add Member to Group">
-    
-      </form>';
+    if($group_owner == $_SESSION['email'] || $_SESSION['is_admin'] == 1){
+       $group_creator_html = '<br><p>Add Group Members:</p><form action="add_member.php" method="post"
+                            enctype="multipart/form-data">
+                            <input type="text" name="member_email" maxlength="20">
+                            <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
+                            <input type="submit" name="submit" value="Add Member to Group">
+                          
+                            </form>';
     }
     $members = do_get_group_members($current_group_id);
   
@@ -30,12 +31,10 @@ else
       $name = do_get_name($yolo[0]);
       $group_member_list .= $name . '<br>';
     }
-    $group_setting_html = '  <
-      <form action="leave_group.php" method="post"
-      enctype="multipart/form-data">
-      <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
-      <input type="submit" name="submit" value="Leave Group">
-      </form><p>Group Members:<br>'.$group_member_list.'</p> '.$group_creator_html;
+     $group_setting_html = '<form action="leave_group.php" method="post" enctype="multipart/form-data">
+                          <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
+                          <input type="submit" name="submit" value="Leave Group">
+                          </form><p>Group Members:<br>'.$group_member_list.'</p> '.$group_creator_html;
 
 
     //start threads
@@ -60,21 +59,160 @@ else
     $current_files = do_get_files($current_group_id);
     if (is_null($current_files))
     {
-      $files_html = 'No files have been uploaded yet!';
+       $files_html = 'No files have been uploaded yet!';
     }
     else
     {
-    foreach($current_files as $files)
-    {
-      $file_creator = do_get_file_creator($files[2]);
-      $files_html .= '<a href="'.$files[2].'" download="'.$files[3].'"id="fileListItem">'.$files[3].' '.$files[4].'   Created by: '.$file_creator.'</a>';
-      if($file_creator == $_SESSION['email'] || $_SESSION['email'] == $_SESSION['current_group_creator'] || $_SESSION['in_admin'] == 1){  //add admin to this function checking
-         $files_html .= '<form action="delete_file.php" method="post">
-        <input type="hidden" name="file_path" value="'.$files[2].'">
-        <input  class="deleteFile" type="submit" value="Delete File"></form>';
+      $files_html='';
+      foreach($current_files as $files)
+      {
+        $file_creator = do_get_file_creator($files[2]);
+        $files_html .= '<a href="'.$files[2].'" download="'.$files[3].'"id="fileListItem">'.$files[3].' '.$files[4].'   Created by: '.$file_creator.'</a>';
+        if($file_creator == $_SESSION['email'] || $_SESSION['email'] == $_SESSION['current_group_creator'] || $_SESSION['in_admin'] == 1){  //add admin to this function checking
+           $files_html .= '<form action="delete_file.php" method="post">
+                            <input type="hidden" name="file_path" value="'.$files[2].'">
+                            <input  class="deleteFile" type="submit" value="Delete File"></form>';
+        }
+      }
+    //files section ends
+    }
+
+
+  }
+
+  if($_POST["group_id"]){
+    $current_group_id = $_POST['group_id'];
+    $_SESSION['current_group_id'] = $current_group_id;
+    $current_group_name = do_get_group_name($current_group_id);
+    $group_owner = do_get_creator($current_group_id);
+    $_SESSION['current_group_creator'] = $group_owner;
+    if($group_owner == $_SESSION['email'] || $_SESSION['is_admin'] == 1){
+       $group_creator_html = '<br><p>Add Group Members:</p><form action="add_member.php" method="post"
+                            enctype="multipart/form-data">
+                            <input type="text" name="member_email" maxlength="20">
+                            <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
+                            <input type="submit" name="submit" value="Add Member to Group">
+                          
+                            </form>';
+    }
+    $members = do_get_group_members($current_group_id);
+  
+    foreach ($members as $yolo) {
+      $name = do_get_name($yolo[0]);
+      $group_member_list .= $name . '<br>';
+    }
+     $group_setting_html = '<form action="leave_group.php" method="post" enctype="multipart/form-data">
+                          <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
+                          <input type="submit" name="submit" value="Leave Group">
+                          </form><p>Group Members:<br>'.$group_member_list.'</p> '.$group_creator_html;
+
+
+    //start threads
+    $current_threads = do_get_threads($current_group_id);
+    if (is_null($current_threads)){
+      $threads_html = 'No Threads in this group Yet!';
+    }
+    else{
+      $threads_html = '';
+
+      foreach($current_threads as $things)
+      {
+        $threads_html .= '<form enctype="multipart/form-data" action="thread.php" method="post">
+                            <input type="hidden" name="thread_id" value="'. $things[0] . '">
+                            <input type="submit" name="submit" id="input_a" value="';
+        $threads_html .= $things[3] . '"/></form>';
+
       }
     }
+    //end threads  
+    //begin files
+    $current_files = do_get_files($current_group_id);
+    if (is_null($current_files))
+    {
+       $files_html = 'No files have been uploaded yet!';
+    }
+    else
+    {
+      $files_html='';
+      foreach($current_files as $files)
+      {
+        $file_creator = do_get_file_creator($files[2]);
+        $files_html .= '<a href="'.$files[2].'" download="'.$files[3].'"id="fileListItem">'.$files[3].' '.$files[4].'   Created by: '.$file_creator.'</a>';
+        if($file_creator == $_SESSION['email'] || $_SESSION['email'] == $_SESSION['current_group_creator'] || $_SESSION['in_admin'] == 1){  //add admin to this function checking
+           $files_html .= '<form action="delete_file.php" method="post">
+                            <input type="hidden" name="file_path" value="'.$files[2].'">
+                            <input  class="deleteFile" type="submit" value="Delete File"></form>';
+        }
+      }
     //files section ends
+    }
+  }
+  else{
+    $current_group_id = $_SESSION['current_group_id'];
+    //$_SESSION['current_group_id'] = $current_group_id;
+    $current_group_name = do_get_group_name($current_group_id);
+    $group_owner = do_get_creator($current_group_id);
+    $_SESSION['current_group_creator'] = $group_owner;
+    if($group_owner == $_SESSION['email'] || $_SESSION['is_admin'] == 1){
+       $group_creator_html = '<br><p>Add Group Members:</p><form action="add_member.php" method="post"
+                            enctype="multipart/form-data">
+                            <input type="text" name="member_email" maxlength="20">
+                            <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
+                            <input type="submit" name="submit" value="Add Member to Group">
+                          
+                            </form>';
+    }
+    $members = do_get_group_members($current_group_id);
+  
+    foreach ($members as $yolo) {
+      $name = do_get_name($yolo[0]);
+      $group_member_list .= $name . '<br>';
+    }
+     $group_setting_html = '<form action="leave_group.php" method="post" enctype="multipart/form-data">
+                          <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
+                          <input type="submit" name="submit" value="Leave Group">
+                          </form><p>Group Members:<br>'.$group_member_list.'</p> '.$group_creator_html;
+
+
+    //start threads
+    $current_threads = do_get_threads($current_group_id);
+    if (is_null($current_threads)){
+      $threads_html = 'No Threads in this group Yet!';
+    }
+    else{
+      $threads_html = '';
+
+      foreach($current_threads as $things)
+      {
+        $threads_html .= '<form enctype="multipart/form-data" action="thread.php" method="post">
+                            <input type="hidden" name="thread_id" value="'. $things[0] . '">
+                            <input type="submit" name="submit" id="input_a" value="';
+        $threads_html .= $things[3] . '"/></form>';
+
+      }
+    }
+    //end threads  
+    //begin files
+    $current_files = do_get_files($current_group_id);
+    if (is_null($current_files))
+    {
+       $files_html = 'No files have been uploaded yet!';
+    }
+    else
+    {
+      $files_html='';
+      foreach($current_files as $files)
+      {
+        $file_creator = do_get_file_creator($files[2]);
+        $files_html .= '<a href="'.$files[2].'" download="'.$files[3].'"id="fileListItem">'.$files[3].' '.$files[4].'   Created by: '.$file_creator.'</a>';
+        if($file_creator == $_SESSION['email'] || $_SESSION['email'] == $_SESSION['current_group_creator'] || $_SESSION['in_admin'] == 1){  //add admin to this function checking
+           $files_html .= '<form action="delete_file.php" method="post">
+                            <input type="hidden" name="file_path" value="'.$files[2].'">
+                            <input  class="deleteFile" type="submit" value="Delete File"></form>';
+        }
+      }
+    //files section ends
+    }
   }
 
 }
@@ -92,29 +230,17 @@ else
 <body>
   <!-- Take $Get group id-->
 
-<nav class="navbar-default navbar" role="navigation">
-<a href="index.php">
-<img class="logoImg"src="LOGOWAGGLEv3.3.png" height="75"></a>
-
-<div style="float: right;">
-
-  <ul>
-
-    <li><a href="index.php">Home</a></li>
-    <li><a href="logout.php">Log Out</a></li>
-  </ul>
-  <a href="#" style="color:white;">Logged in as a user</a>
-</div>
-</nav>
-<div class="col-lg-12"><div class="group-name"><h1>The group name can go right here</h1>
-<div class="groupDesc"></div>
+<? include('nav.php'); ?>
+<div class="col-lg-12"><div class="group-name"><h1><?=$current_group_name?> </h1>
+<div class="groupDesc"><?=do_get_group_description($_SESSION['current_group_id']) ?></div>
 </div></div>
+<div class="row">
 <div class="col-lg-4">
   
   <div class="panel panel-default">
     <div class="panel-heading">Files</div>
     <div class="panel-body">
-    <?=$files_html ?>
+    <?=$files_html; ?>
     <form action="fileupload.php" method="post" enctype="multipart/form-data"><label for="file">Filename:</label>
       <input type="file" name="file" id="file"><br>
       <input type="submit" name="submit" value="Submit">
@@ -134,7 +260,7 @@ else
     margin-right: 20px;
     font-size: 15px; "><a href="new_thread.php">Create New Thread</a></div></div>
     <div class="panel-body">
-    <?=$threads_html ?>
+    <?=$threads_html; ?>
    
     </div>
   </div>
@@ -146,11 +272,12 @@ else
 <div class="panel panel-default">
     <div class="panel-heading">Group Information</div>
     <div class="panel-body">
-   <?=$group_setting_html ?>
+   <?=$group_setting_html;?>
     </div>
   </div>
 
 <div>linkware: <a style="color:white;" href="http://www.visualpharm.com">here</a>
+</div>
 </div>
 </div>
 

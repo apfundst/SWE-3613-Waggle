@@ -11,9 +11,7 @@ else
   $_SESSION['is_admin'] = user_is_admin($_SESSION["email"]);
   $_SESSION['current_group_id'] = '';
   $threads_html = 'Select a Group!';
- $file_upload_html = '';
- $group_setting_html ='';
- $files_html = '';
+ 
 
  //if statement to check if admin
  //if admin call $groups = do_admin_get_groups();
@@ -29,21 +27,16 @@ $groups_html = '';
 foreach ($groups as $things) {
   $name = do_get_name($things[2]);
   
-  $groups_html .= '<form enctype="multipart/form-data" action="index.php" method="post">
+  $groups_html .= '<form enctype="multipart/form-data" action="group.php" method="post">
                         <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
     $groups_html .= $things[1] . '          --     Created by:  '. $name.'"/></form>';
   
  
 }
 
- /*$threads_html = 'Select a Group!';
- $file_upload_html = '';
- $group_setting_html ='';*/
- $create_thread_button_html ='';
- $group_creator_html = '';
- $group_member_list = '';
- $members ='';
-if($_POST["group_id"]){
+
+ 
+/*if($_POST["group_id"]){
   $current_group_id = $_POST["group_id"];
   $_SESSION['current_group_id'] = $current_group_id;
   $current_group_name = do_get_group_name($current_group_id);
@@ -143,7 +136,7 @@ $file_upload_html = '  <div class="panel panel-default">
     </div>
   </div>';
 
-}
+}*/
 
 /*elseif($_SESSION['current_group_id'] != NULL){
 
@@ -303,18 +296,7 @@ else{
 
  </div>
   </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">Disscusion Threads for <?=$current_group_name ?>
-    <?=$create_thread_button_html ?></div>
-    <div class="panel-body">
-
-<ul >
-    <?=$threads_html ?>
-  </ul>
-</form>
-
- </div>
-  </div>
+  
 </div>
 <div class="col-lg-4">
 <div class="panel panel-default">
@@ -334,8 +316,7 @@ else{
        ?>
     </div>
   </div>
-<?=$file_upload_html;?>
-<?= $group_setting_html; ?>
+
 <div>linkware: <a href="http://www.visualpharm.com">here</a>
 </div>
 </div>
