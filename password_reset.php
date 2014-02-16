@@ -35,17 +35,16 @@ ob_flush();
       <img class="logoImg"src="LOGIN/LOGOWAGGLEv4.2.png" height="75">
     </div>
   <!-- Creates a new row to use -->
-    <div class="row">
       <!--Log in bar-->
-      <div class="col_lg_4_center">
+     <div class="col-lg-4">
         <div class="panel">
-          <div class="panel-heading">
-            <center>Reset Password</center>
-          </div>
-          <div class="panel-body">
+          <center>
+            <div class="panel-heading">Reset Password</div>
+          </center>
+            <div class="panel-body">
             <center>
               <p><? echo $error_message; ?></p>
-              <form action="password_reset.php" method="post"enctype="multipart/form-data">
+                <form action="password_reset.php" method="post"enctype="multipart/form-data">
                 <!--<label for="file">Email:</label>-->
                 <input type="text" name="email" placeholder='SPSU Email' size="40"><br>
                 <input type="text" name="student_id" placeholder='Student ID' size="40"><br>
@@ -54,13 +53,12 @@ ob_flush();
                 <input type="password" name="copy_password" placeholder='Reenter New Password' size="40"><br>
                 <input type="submit" name="submit" value="Reset Password">
 
-              </form>
+                </form>
                 <a href = "http://www.waggle.myskiprofile.com/">
                 <input type="button" value= "Back to Login Page"></a>
-            </center>
+          </center>
+          </div>
           </div>
         </div>
-      </div>
-    </div>
   </body>
 </html>
