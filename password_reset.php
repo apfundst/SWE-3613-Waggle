@@ -1,6 +1,6 @@
 <?
 ob_start();
-
+session_start();
 include("other_funcs.php");
 
 $email = $_POST["email"];
@@ -16,12 +16,12 @@ else{
   $result = do_update_password($email,$student_id,$password);
   if($result == true){
     $error_message = "Password has been reset! Please return to home page to login.";
-
   }
   else{
     $error_message = "Email and/or Student ID incorrect! Please reenter!";
   }
 }
+session_destroy();
 ob_flush();
 ?>
 <html>
@@ -53,7 +53,10 @@ ob_flush();
                 <input type="password" name="password" placeholder='Enter New Password' size="40"><br>
                 <input type="password" name="copy_password" placeholder='Reenter New Password' size="40"><br>
                 <input type="submit" name="submit" value="Reset Password">
+
               </form>
+                <a href = "http://www.waggle.myskiprofile.com/">
+                <input type="button" value= "Back to Login Page"></a>
             </center>
           </div>
         </div>
