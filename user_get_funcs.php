@@ -195,6 +195,27 @@ function do_get_group_members($group_id){
     }
 }
 
+function do_get_group_description($group_id){
+	$sql = "
+		SELECT group_description
+		FROM `group`
+		WHERE '$group_id' = group_id	
+	";
+	$result = mysql_query($sql);
+	if(mysql_num_rows($result)==0){
+		return NULL;
+	}
+	else{
+     	// Get the information from the result set
+    	$row = mysql_fetch_assoc($result);
+     	$data = $row['group_description'];
+    	return $data;
+  	}
+}
+
+
+
+
 function do_get_threads($group_id){
 	// gets threads from group from db
 

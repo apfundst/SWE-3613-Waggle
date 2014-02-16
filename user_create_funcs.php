@@ -11,18 +11,31 @@ function do_update_password($email,$student_id,$new_password){
 	$student_id = mysql_real_escape_string($student_id);
 	$new_password = mysql_real_escape_string($new_password);
 
+	//Checks to see if user exists in db and information is correct
 	$sql = "
-			UPDATE `user`
-			SET password = '$new_password';
-			WHERE email = '$email' AND student_id = '$student_id'
-	"; 
+			SELECT email, student_id
+			FROM `user`
+			WHERE email = '$email' AND
+			student_id = '$student_id'
+	";
 	$result = mysql_query($sql);
-	if (!$result) {
-		mysql_query('ROLLBACK');
+	if(mysql_num_rows($result)==0){
 		return FALSE;
 	}
 	else{
-		return TRUE;
+		$sql = "
+				UPDATE `user`
+				SET password = '$new_password'
+				WHERE email = '$email'
+		"; 
+		$result = mysql_query($sql);
+		if (!$result) {
+			mysql_query('ROLLBACK');
+			return FALSE;
+		}
+		else{
+			return TRUE;
+		}
 	}
 
 }
