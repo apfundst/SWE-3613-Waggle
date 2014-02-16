@@ -51,26 +51,13 @@ if($_SESSION['current_group_id']){
   $current_group_name = do_get_group_name($current_group_id);
 
   $current_threads = do_get_threads($current_group_id);
-  $file_upload_html = '  <div class="panel panel-default">
-    <div class="panel-heading">Upload Files to '. $current_group_name .'</div>
-    <div class="panel-body"><form action="fileupload.php" method="post"
-  enctype="multipart/form-data"><label for="file">Filename:</label>
-  <input type="file" name="file" id="file"><br>
-  <input type="submit" name="submit" value="Submit">
+  $members = do_get_group_members($current_group_id);
   
-  </form>
-    </div>
-  </div>';
-  $group_setting_html = '  <div class="panel panel-default">
-    <div class="panel-heading">Group Settings for '. $current_group_name .'</div>
-    <div class="panel-body"><form action="leave_group.php" method="post"
-  enctype="multipart/form-data">
-  <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
-  <input type="submit" name="submit" value="Leave Group">
+    foreach ($members as $yolo) {
+      $name = do_get_name($yolo[0]);
+      $group_member_list .= $name . '<br>';
+    }
   
-  </form>
-    </div>
-  </div>';
   $create_thread_button_html ='<div style="
     float:right;
     display: inline;
@@ -135,7 +122,7 @@ if ($_POST['new_message']) {
   include('nav.php');
 }
  ?>
-<div class="col-lg-12"><div class="group-name"><h1><?=$current_group_name ?></h1></div></div>
+<div class="col-lg-12"><div class="group-name"><h1><a href="group.php"><?=$current_group_name ?></a></h1></div></div>
 <div class="col-lg-8">
   
   <div class="panel panel-default">
@@ -158,22 +145,7 @@ if ($_POST['new_message']) {
   </div>
 </div>
 <div class="col-lg-4">
-<div class="panel panel-default">
-    <div class="panel-heading">User Details</div>
-    <div class="panel-body">
-    <? echo "Name: ";
-      $name = do_get_name($_SESSION['email']);
-      echo $name;
-      
-      echo "<br> ";
-      echo "Email: ".$_SESSION["email"];
-      /*echo count($groups);
-      echo count($current_threads);
-      echo("<script>console.log('PHP: ". json_encode($groups)."');</script>");
-      echo("<script>console.log('PHP: ". json_encode($current_threads)."');</script>");*/
-       ?>
-    </div>
-  </div>
+
 <div class="panel panel-default">
 <div class="panel-heading">Disscusion Threads for <?=$current_group_name ?></div>
     <div class="panel-body">
@@ -183,9 +155,16 @@ if ($_POST['new_message']) {
 
  </div>
   </div>
+<div class="panel panel-default">
+<div class="panel-heading">Group Members</div>
+    <div class="panel-body">
 
-  <?=$file_upload_html ?>
-  <?=$group_setting_html ?>
+<?=$group_member_list ?>
+
+
+ </div>
+  </div>
+  
 </div>
 </div>
 

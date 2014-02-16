@@ -64,7 +64,7 @@ function rename_file($file_name, $counter)
 
       $bool_returned = upload_to_database($thread_id, $fileNamePath, $creator, $file_name, $file_size);
       if($bool_returned==TRUE){
-        header('Location: http://www.waggle.myskiprofile.com/index.php');
+        header('Location: http://www.waggle.myskiprofile.com/group.php');
         exit();
 
       }
