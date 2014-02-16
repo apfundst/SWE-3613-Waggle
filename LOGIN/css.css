@@ -118,6 +118,46 @@ in old CSS!!Changed*/
   padding: 15px;
     min-width:300px;
 }
+.error-block{
+  color: #ffffff;
+  font-size: 100px;
+  font-style: bold;
+  background-color: #0cb270;
+  border-color: #ddd;
+  padding: 15px;
+  min-width:300px;
+  float:center;
+  width:100%;
+}
+.error-here{
+  color: #ffffff;
+  font-size: 20px;
+  font-style: bold;
+  background-color: #E9967A;
+  padding: 15px;
+  min-width:300px;
+  float:center;
+  width:100%;
+  margin-top:15px;
+}
+.panel-click{
+  color: #ffffff;
+  font-size: 20px;
+  font-style: bold;
+  background-color: #0cb270;
+  border-color: #ddd;
+  padding: 15px;
+  min-width:300px;
+  float:center;
+  width:100%;
+}
+.IMG{
+ padding: 15px;
+ min-width:300px;
+ float:center;
+ width:100%;
+ height:234px;
+}
 .panel-body {
   color:#ecf0f1;
   background-color: #444444;
@@ -128,7 +168,6 @@ in old CSS!!Changed*/
 .navbar {
   position: relative;
   min-height: 50px;
-  min-width:580px;
   margin-bottom: 20px;
   border: 1px solid transparent;
   background-color: #222222;
