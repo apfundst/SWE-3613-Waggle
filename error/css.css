@@ -1,0 +1,176 @@
+/*in old CSS!!*/
+body{
+    background-color: #f8f8f8
+}
+/*in old CSS!!*/
+.logoImg{
+  padding-left: 20px;
+  margin-left: 20px;
+}
+.container-fluid {
+  
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.col-lg-4, .col-lg-8,  .col-lg-12 {
+    float: left;
+  }
+.col-lg-12 {
+    width: 100%;
+  }
+  
+.col-lg-8 {
+    width: 64%;
+  }
+  
+.col-lg-4 {
+    width: 33%;
+  }
+
+/*in old CSS!!Changed
+.col-lg-4{
+background-color:#000000;
+}
+in old CSS!!Changed*/
+.panel-body{
+}
+/*Added*/
+#LOGO{
+	background-color: #000000;
+	float:left;
+	width:1249px;
+}
+/*Added*/
+#welcome{
+	background: #0e855b;
+	height:100%;
+	float:left;
+	margin-left: 15px;
+	min-width:600px;
+	min-height:400px;
+	width:64%;
+}
+/*Added*/
+#cf {
+  position:relative;
+  height:85%;
+  width:85%;
+  min-width:50px;
+  min-height:50px;
+  margin:0 auto;
+  padding: 20px;
+  float:left;
+}
+/*Added*/
+#cf img {
+  position:absolute;
+
+  left:0;
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+/*Added*/
+#cf img.top:hover {
+  opacity:0;
+}
+#cf img.top{
+	width:100%;
+	height:100%;
+	margin-bottom: 20px;
+	margin-left: 30px;
+	margin-right: 20px;
+}
+#cf img.bottom{
+	width:100%;
+	height:100%;
+	margin-bottom: 20px;
+	margin-left: 30px;
+	margin-right: 20px;
+}
+/*Added*/
+.panel {
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: #fff;
+  /*border: 1px solid transparent;
+  border-radius: 3px;*/
+  -moz-box-shadow:    5px 5px 1px 2px #ecf0f1;
+  -webkit-box-shadow: 5px 5px 1px 2px #ecf0f1;
+  box-shadow:         5px 5px 1px 2px #ecf0f1;
+}
+.panel-default {
+  border-color: #ddd;
+}
+.panel-heading {
+  color: #ffffff;
+  font-size: 20px;
+  font-style: bold;
+  background-color: #0cb270;
+  border-color: #ddd;
+  padding: 15px;
+    min-width:300px;
+}
+.error-block{
+  color: #ffffff;
+  font-size: 100px;
+  font-style: bold;
+  background-color: #0cb270;
+  border-color: #ddd;
+  padding: 15px;
+  min-width:300px;
+  float:center;
+  width:100%;
+}
+.error-here{
+  color: #ffffff;
+  font-size: 20px;
+  font-style: bold;
+  background-color: #E9967A;
+  padding: 15px;
+  min-width:300px;
+  float:center;
+  width:100%;
+  margin-top:15px;
+}
+.panel-click{
+  color: #ffffff;
+  font-size: 20px;
+  font-style: bold;
+  background-color: #0cb270;
+  border-color: #ddd;
+  padding: 15px;
+  min-width:300px;
+  float:center;
+  width:100%;
+}
+.IMG{
+ padding: 15px;
+ min-width:300px;
+ float:center;
+ width:100%;
+ height:234px;
+}
+.panel-body {
+  color:#ecf0f1;
+  background-color: #444444;
+  border-color: #ddd;
+  padding: 10px;
+  min-width:300px;
+}
+.navbar {
+  position: relative;
+  min-height: 50px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  background-color: #222222;
+  border-color: #e7e7e7;
+  padding: 10px
+}
