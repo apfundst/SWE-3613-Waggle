@@ -54,11 +54,11 @@ else
 <link rel="stylesheet" type="text/css" href="css.css">
 </head>
 
-<div class="col-lg-12"><div class="group-name"><h1>Admin Panel </h1>
-</div>
-
 <body>
 <? include('admin_nav.php'); ?>
+
+<div class="col-lg-12"><div class="group-name"><h1>Admin Panel </h1>
+</div>
 
 <div class="container-fluid">
 
