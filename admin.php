@@ -17,7 +17,7 @@ else
   else{
     $groups_html = '';
     foreach ($groups as $things) {
-      $groups_html .= '<form enctype="multipart/form-data" action="admin.php" method="post">
+      $groups_html .= '<form enctype="multipart/form-data" action="group.php" method="post">
                         <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
       $groups_html .= $things[1] . '          --       '. $things[2].'"/></form>';
     }
