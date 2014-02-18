@@ -62,7 +62,7 @@ else
 
 <div class="container-fluid">
 
-<div class="col-lg-4">
+<div class="col-lg-12">
 <div class="panel panel-default">
     <div class="panel-heading">Ban Users/Unban Users</div>
     <div class="panel-body">
@@ -83,7 +83,7 @@ else
 </div>
 </div>
 
-<div class="col-lg-8">
+<div class="col-lg-12">
   <div class="panel panel-default">
     <div class="panel-heading">All Groups<div style="
     float:right;
@@ -105,7 +105,7 @@ else
   </div>
 </div>
 
-<div class="col-lg-4">
+<div class="col-lg-12">
 <div class="panel panel-default">
     <div class="panel-heading">Ban Groups/Unban Groups</div>
     <div class="panel-body">
