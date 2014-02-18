@@ -83,7 +83,24 @@ else
 </div>
 </div>
 
-<div class="col-lg-12">
+<div class="col-lg-4">
+<div class="panel panel-default">
+    <div class="panel-heading">Ban Groups/Unban Groups</div>
+    <div class="panel-body">
+      <!-- have a list of groups, check boxes, delete selected button -->
+    </div>
+</div>
+</div>
+
+<div class="col-lg-4">
+<div class="panel panel-default">
+    <div class="panel-heading">Remove Threads</div>
+    <div class="panel-body">
+    </div>
+</div>
+</div>
+
+<div class="col-lg-4">
   <div class="panel panel-default">
     <div class="panel-heading">All Groups<div style="
     float:right;
@@ -101,23 +118,6 @@ else
 
     </div>
   </div> 
-</div>
-
-<div class="col-lg-4">
-<div class="panel panel-default">
-    <div class="panel-heading">Ban Groups/Unban Groups</div>
-    <div class="panel-body">
-      <!-- have a list of groups, check boxes, delete selected button -->
-    </div>
-</div>
-</div>
-
-<div class="col-lg-4">
-<div class="panel panel-default">
-    <div class="panel-heading">Remove Threads</div>
-    <div class="panel-body">
-    </div>
-</div>
 </div>
 
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Inconsolata">
