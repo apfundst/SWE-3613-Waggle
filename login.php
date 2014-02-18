@@ -96,8 +96,8 @@ ob_flush();
                 <input type="password" name="password" placeholder='Password' size="40" for="pass"><br>
                 <input type="submit" name="submit" value="Login">
               </form>
-                <b href = "http://www.waggle.myskiprofile.com/password_reset.php">
-                <input type="button" value= "Forgot Password?"></b>
+                <a href="http://www.waggle.myskiprofile.com/password_reset.php">
+                <input type="button" value= "Forgot Password?"></a>
             </center>
           </div>
         </div>

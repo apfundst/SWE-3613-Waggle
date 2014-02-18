@@ -135,20 +135,11 @@ a{
   text-decoration:none;
   color: #444444;
 }
-b{
-  text-decoration:none;
-  color: #444444;
-  font-style: normal;
-}
-
 
 h1 {
   color:black;
   font-style: bold;
   font-size: 30pt;
-
-
-
 }
 .group-name{
   text-align: center;
