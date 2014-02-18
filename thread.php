@@ -38,10 +38,10 @@ elseif(isset($_SESSION['current_thread_id']))
   else{
     $messages_html = '';
     foreach ($thread as $value) {
+      $name = do_get_name($value['2']);
       $messages_html .= '<li id="threadItem">' . $value['3'] . '<br><br>';
-      $messages_html .= '<span class="postInfo">' . $value['2'] . ' -- ' . $value['4'];
+      $messages_html .= '<span class="postInfo">' . $name . ' -- ' . $value['4'];
       $messages_html .= '</span></li>';
-     
     }
   }
 }
