@@ -11,7 +11,7 @@
     <li><a href="admin.php">Admin Control Panel</a></li>
     <li><a href="index.php">Home</a></li>
     <li><a href="logout.php">Log Out</a></li>
-    
   </ul>
+  <span style="color: white;">Loged in: </span><a href="#" style="color:white;"><?=$_SESSION['email']?></a>
 </div>
 </nav>
