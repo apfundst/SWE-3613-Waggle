@@ -15,8 +15,14 @@ else
 
  //if statement to check if admin
  //if admin call $groups = do_admin_get_groups();
+if($_SESSION["is_admin"] == 1) {
+  $groups = do_admin_get_groups();
+}
+else { 
+  $groups = do_get_groups($_SESSION["email"]); 
+}
 
-$groups = do_get_groups($_SESSION["email"]);
+
   //endif
 if(is_null($groups))
 {
