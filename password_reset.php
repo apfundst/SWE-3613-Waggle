@@ -31,13 +31,7 @@ ob_flush();
   <body>
   <!-- Create Logo at the top of the screen -->
   <!--Black bar at the top of the screen.-->
-    <? if($_SESSION['email'] == 'admin@spsu.edu'){
-        include('admin_nav.php');
-      }
-      else{
-        include('nav.php');
-     }
-    ?>
+    <div class="navbar">
       <img class="logoImg"src="LOGIN/LOGOWAGGLEv4.2.png" height="75">
     </div>
   <!-- Creates a new row to use -->

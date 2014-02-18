@@ -9,6 +9,7 @@ if(!isset($_SESSION["email"]))
 }
 else
 {
+/*
   $_SESSION['current_group_id'] = '';
   $groups = do_admin_get_groups();
   if(is_null($groups)){
@@ -42,7 +43,7 @@ else
         $threads_html .= $things[3] . '"/></form>';
       }
     }
-  }
+  }*/
 }
 ?>
 
@@ -81,14 +82,6 @@ else
 <div class="col-lg-4">
 <div class="panel panel-default">
     <div class="panel-heading">Remove Threads</div>
-    <div class="panel-body">
-    </div>
-</div>
-</div>
-
-<div class="col-lg-4">
-<div class="panel panel-default">
-    <div class="panel-heading">Add Admins</div>
     <div class="panel-body">
     </div>
 </div>
