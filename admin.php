@@ -9,7 +9,6 @@ if(!isset($_SESSION["email"]))
 }
 else
 {
-  /*
   $_SESSION['current_group_id'] = '';
   $groups = do_admin_get_groups();
   if(is_null($groups)){
@@ -43,7 +42,7 @@ else
         $threads_html .= $things[3] . '"/></form>';
       }
     }
-  }*/
+  }
 }
 ?>
 
@@ -82,6 +81,26 @@ else
           </form>
     </div>
 </div>
+</div>
+
+<div class="col-lg-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">All Groups<div style="
+    float:right;
+    display: inline;
+    border: 1px solid #ddd;
+    background-color: #ecf0f1;
+    padding: 3px;
+    color:white;
+    margin-right: 20px;
+    font-size: 15px; ">
+    <div class="panel-body">
+    <ul >
+    <?=$groups_html ?>
+    </ul>
+
+    </div>
+  </div> 
 </div>
 
 <div class="col-lg-4">
