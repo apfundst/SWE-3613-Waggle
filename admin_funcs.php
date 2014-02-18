@@ -1,5 +1,6 @@
 <?
 include_once('connection.php');
+invlude_once('other_funcs.php');
 
 function do_admin_get_groups(){
 	// Returns all groups
