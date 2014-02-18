@@ -22,28 +22,8 @@ else
       $groups_html .= $things[1] . '          --       '. $things[2].'"/></form>';
     }
   }
-  $threads_html = 'Select a Group!';
-  $group_setting_html ='';
-  if(isset($_POST["group_id"])){
-    $current_group_id = $_POST["group_id"];
-    $_SESSION['current_group_id'] = $current_group_id;
-    $current_group_name = do_get_group_name($current_group_id);
-
-    $current_threads = do_get_threads($current_group_id);
-    if (is_null($current_threads)){
-      $threads_html = 'No Threads in this group Yet!';
-    }
-    else{
-      $threads_html = '';
-
-      foreach($current_threads as $things){
-        $threads_html .= '<form enctype="multipart/form-data" action="thread.php" method="post">
-                          <input type="hidden" name="thread_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
-        $threads_html .= $things[3] . '"/></form>';
-      }
-    }
-  }
 }
+  
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
