@@ -63,7 +63,9 @@ ob_flush();
 ?>
 <html>
   <head>
+     <link rel="stylesheet" type="text/css" href="css.css">
     <link rel="stylesheet" type="text/css" href="LOGIN/css.css">
+
   </head>
   <body>
   <!-- Create Logo at the top of the screen -->
