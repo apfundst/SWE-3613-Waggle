@@ -26,30 +26,47 @@ function do_leave_group($email, $group_id){
 }
 
 
-//Delete Messages (only if admin or creator)
-function do_remove_message($email, $message_id)
-{
-	// Function do_remove_message($email, $message_id, $creator, $admin)
-	// Deletes messages from the database
-	// If email matches the creator OR if admin
-	$creator = do_get_message_creator($message_id);
-	$admin = user_is_admin($email);
-	if($email == $creator || $admin == 1) {
-		$sql = "
-			DELETE FROM `message`
-			WHERE '$email' = creator AND'$message_id' = message_id
-		";
-		$result = mysql_query($sql);
-		if (!$result) {
-			mysql_query('ROLLBACK');
-			return FALSE;
-		}
-		else
-		{
-			return TRUE;
-		}
+
+function do_remove_message($message_id){
+
+	$sql = "
+		DELETE FROM `message`
+		WHERE message_id =  '$message_id' 
+	";
+	$result = mysql_query($sql);
+	if (!$result) {
+		mysql_query('ROLLBACK');
+		return FALSE;
+	}
+	else{
+		return TRUE;
+	}
+	
+}
+
+function do_edit_message($message_id, $new_text){
+
+	$new_time_stamp = mysql_real_escape_string($new_time_stamp);
+	$new_text =  mysql_real_escape_string($new_text);
+	$message_id =  mysql_real_escape_string(nl2br($message_id));
+
+	
+
+	$sql = "
+		UPDATE `message`
+		SET text = '$new_text'
+		WHERE message_id = '$message_id'
+	";
+	$result = mysql_query($sql);
+	if (!$result) {
+		mysql_query('ROLLBACK');
+		return FALSE;
+	}
+	else{
+		return TRUE;
 	}
 }
+
 
 //Delete Files (only if admin or creator)
 function do_remove_file($email, $file_name_path)
