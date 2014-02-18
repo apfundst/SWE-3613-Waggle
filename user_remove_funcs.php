@@ -46,11 +46,11 @@ function do_remove_message($message_id){
 
 function do_edit_message($message_id, $new_text){
 
-	$new_time_stamp = mysql_real_escape_string($new_time_stamp);
-	$new_text =  mysql_real_escape_string($new_text);
-	$message_id =  mysql_real_escape_string(nl2br($message_id));
+	$new_time_stamp = date('Y-m-d H:i:s');
+	$new_text =  mysql_real_escape_string(nl2br($new_text));
+	$message_id =  mysql_real_escape_string($message_id);
 
-	
+	$new_text .= "<br/> Edited on ".$new_time_stamp;
 
 	$sql = "
 		UPDATE `message`
