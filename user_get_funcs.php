@@ -348,7 +348,7 @@ function do_get_ban_status($email){
 	else{
        	// Get the information from the result set
 		$row = mysql_fetch_array($result);
-    	return $row['admin'];
+    	return $row['authorized'];
     }
     die;
 }
