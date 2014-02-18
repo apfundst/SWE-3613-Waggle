@@ -52,8 +52,8 @@ function do_post_message($thread_id, $creator,$text){
 	$message = mysql_real_escape_string($message);
 
 	$sql = "
-		 	INSERT INTO `message`(`thread_id`,`creator`,`message_text`)
-		 	VALUES('$thread_id','$creator','$message')
+		 	INSERT INTO `message`(`thread_id`,`creator`,`message_text`,`date_created`)
+		 	VALUES('$thread_id','$creator','$message',now())
 	";
 
 	$result = mysql_query($sql);
