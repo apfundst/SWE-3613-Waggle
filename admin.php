@@ -83,13 +83,13 @@ else
       <!-- have a list of groups, check boxes, delete selected button -->
           <br><p>Ban Groups:</p>
           <form action="ban_group.php" method="post" enctype="multipart/form-data">
-                <input type="text" name="member_email" maxlength="20">
+                <input type="text" name="group_id" maxlength="20">
                 <input type="submit" name="submit" value="Ban Group">   
           </form>
 
           <br><p>Un-Ban Groups:</p>
           <form action="unban_group.php" method="post" enctype="multipart/form-data">
-                <input type="text" name="member_email" maxlength="20">
+                <input type="text" name="group_id" maxlength="20">
                 <input type="submit" name="submit" value="Un-Ban Group">     
           </form>
     </div>
