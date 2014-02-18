@@ -61,7 +61,7 @@ else
 </div>
 
 <div class="container-fluid">
-
+<div class="row">
 <div class="col-lg-12">
 <div class="panel panel-default">
     <div class="panel-heading">Ban Users/Unban Users</div>
@@ -124,7 +124,7 @@ else
     </div>
 </div>
 </div>
-
+</div>
 </div>
 
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Inconsolata">
