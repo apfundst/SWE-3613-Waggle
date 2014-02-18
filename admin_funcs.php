@@ -123,8 +123,11 @@ function do_admin_remove_file($file_id) {
 }
 
 function do_admin_remove_thread($thread_id) {
-	// Removes thread from User view
-
+	//Delete Messages first
+	//sql statement that deletes all messages matching the thread id
+	do_delete_thread_messages($thread_id);
+	
+	// Deletes the thread after the messages have all been deleted
 	$sql = "
 			DELETE FROM `thread`
 			WHERE '$thread_id' = thread_id
@@ -154,6 +157,21 @@ function do_admin_remove_thread($thread_id) {
 		return TRUE;
 	}
 	*/
+}
+
+function do_delete_thread_messages($thread_id){
+	$sql = "
+			DELETE FROM `messages`
+			WHERE '$thread_id' = thread_id
+		";
+	$result = mysql_query($sql);
+	if (!$result) {
+		mysql_query('ROLLBACK');
+		return FALSE;
+	}
+	else{
+		return TRUE;
+	}
 }
 
 function do_admin_add_admin($email) {
