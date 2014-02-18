@@ -1,5 +1,5 @@
 <?
-inclued('other_funcs.php');
+include 'other_funcs.php';
 ob_start();
 session_start();
 $error_message = null;
