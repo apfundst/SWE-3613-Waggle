@@ -45,7 +45,7 @@ function do_admin_ban_group($group_id){
 	$sql = "
 			UPDATE `group`
 		 	SET `authorized` = '0'
-		 	WHERE '$group_id' = group_id
+		 	WHERE '$group_name' = group_name
 		";
 	$result = mysql_query($sql);
 	if (!$result) {
@@ -61,7 +61,7 @@ function do_admin_unban_group($group_id){
 	$sql = "
 			UPDATE `group`
 		 	SET `authorized` = '1'
-		 	WHERE '$group_id' = group_id
+		 	WHERE '$group_name' = group_name
 		";
 	$result = mysql_query($sql);
 	if (!$result) {
