@@ -6,13 +6,8 @@ include 'other_funcs.php';
 if(!isset($_SESSION["email"])) {
   header('Location: http://www.waggle.myskiprofile.com/login.php');
   exit();
-}else{
-
-  
- 
-
-
-
+}
+else{
 if(isset($_POST["group_name"])){
   $bool = do_create_group($_SESSION["email"], $_POST["group_name"], $_POST["group_desc"]);
   if($bool == TRUE){
@@ -27,20 +22,8 @@ if(isset($_POST["group_name"])){
   else{
     $error_message = 'else block';
   }
-
-  
-
   }
-
 }
-
-
-
-
-
-
-
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -56,7 +39,13 @@ if(isset($_POST["group_name"])){
 <div id="left-sidebar"> left-sidebar </div>
 <div id="content"> content </div>-->
 <div class="container-fluid">
-<? include('nav.php'); ?>
+<? if($_SESSION['email'] == 'admin@spsu.edu'){
+  include('admin_nav.php');
+}
+else{
+  include('nav.php');
+}
+?>
 <div class="col-lg-8">
   <div class="panel panel-default">
     <div class="panel-heading">Create Group</div>

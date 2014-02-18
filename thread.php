@@ -118,10 +118,11 @@ if ($_POST['new_message']) {
 <div class="container-fluid">
 <? if($_SESSION['email'] == 'admin@spsu.edu'){
   include('admin_nav.php');
-}else{
+}
+else{
   include('nav.php');
 }
- ?>
+?>
 <div class="col-lg-12"><div class="group-name"><h1><a href="group.php"><?=$current_group_name ?></a></h1></div></div>
 <div class="col-lg-8">
   
