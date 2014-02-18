@@ -26,7 +26,7 @@ function do_admin_get_groups(){
 function do_admin_remove_group($group_id){
 	// Removes group from User view
 	// Retains group in db for records
-
+	/*
 	$sql = "
 			DELETE FROM `group`
 			WHERE '$group_id' = group_id
@@ -39,9 +39,9 @@ function do_admin_remove_group($group_id){
 	else{
 		return TRUE;
 	}
-
+	*/
+	
 	// Not allowed to delete data from database
-	/*
 	$sql = "
 			UPDATE `group`
 		 	SET `authorized` = '0'
@@ -55,7 +55,6 @@ function do_admin_remove_group($group_id){
 	else{
 		return TRUE;
 	}
-	*/
 }
 
 function do_admin_ban_user($email) {
