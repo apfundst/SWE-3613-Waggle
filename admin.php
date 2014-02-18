@@ -67,6 +67,17 @@ else
 <div class="panel panel-default">
     <div class="panel-heading">Ban Users/Unban Users</div>
     <div class="panel-body">
+      <!--
+      if($group_owner == $_SESSION['email'] || $_SESSION['is_admin'] == 1){
+       $group_creator_html = '<br><p>Add Group Members:</p><form action="add_member.php" method="post"
+                            enctype="multipart/form-data">
+                            <input type="text" name="member_email" maxlength="20">
+                            <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
+                            <input type="submit" name="submit" value="Add Member to Group">
+                          
+                            </form>';
+    }
+  -->
     </div>
 </div>
 </div>
