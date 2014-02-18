@@ -68,7 +68,7 @@ else
       {
         $file_creator = do_get_file_creator($files[2]);
         $files_html .= '<a href="'.$files[2].'" download="'.$files[3].'"id="fileListItem">'.$files[3].' '.$files[4].'   Created by: '.$file_creator.'</a>';
-        if($file_creator == $_SESSION['email'] || $_SESSION['email'] == $_SESSION['current_group_creator'] || $_SESSION['in_admin'] == 1){  //add admin to this function checking
+        if($file_creator == $_SESSION['email'] || $_SESSION['email'] == $_SESSION['current_group_creator'] || $_SESSION['is_admin'] == 1){  //add admin to this function checking
            $files_html .= '<form action="delete_file.php" method="post">
                             <input type="hidden" name="file_path" value="'.$files[2].'">
                             <input  class="deleteFile" type="submit" value="Delete File"></form>';
