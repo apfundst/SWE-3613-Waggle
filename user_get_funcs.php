@@ -316,12 +316,12 @@ function do_get_message_creator($message_id){
     die;
 }
 
-//Returns true or false based on admin status
+//Returns 1 or 0 based on admin status
 function user_is_admin($email){
 	$sql = "
-		   SELECT creator
-		   FROM `file`
-		   WHERE '$file_name_path' = file_name_path	
+		   SELECT admin
+		   FROM `user`
+		   WHERE '$email' = email	
 	";
 	$result = mysql_query($sql);
 	if(mysql_num_rows($result)==0){

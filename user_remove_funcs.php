@@ -29,14 +29,14 @@ function do_leave_group($email, $group_id){
 //Delete Messages (only if admin or creator)
 function do_remove_message($email, $message_id)
 {
-	//function do_remove_message($email, $message_id, $creator, $admin)
+	// Function do_remove_message($email, $message_id, $creator, $admin)
 	// Deletes messages from the database
-	//if email matches the creator OR if admin
+	// If email matches the creator OR if admin
 	$creator = do_get_message_creator($message_id);
 	$admin = user_is_admin($email);
 	if($email == $creator || $admin) {
 		$sql = "
-			DELETE FROM `messages`
+			DELETE FROM `message`
 			WHERE '$email' = creator AND'$message_id' = message_id
 		";
 		$result = mysql_query($sql);
@@ -81,49 +81,4 @@ function do_remove_file($email, $file_name_path)
 		}
 	//}
 }
-
-//Ban Method
-function do_ban_user($email, $admin)
-{
-	if($admin)
-	{
-		$sql = "
-			UPDATE `user`
-		 	SET `authorized` = '0'
-		 	WHERE '$email' = email
-		";
-		$result = mysql_query($sql);
-		if (!$result) {
-			mysql_query('ROLLBACK');
-			return FALSE;
-		}
-		else
-		{
-			return TRUE;
-		}
-	}
-}
-
-//Reverse a Ban Method
-function do_unban_user($email, $admin)
-{
-	if($admin)
-	{
-		$sql = "
-			UPDATE `user`
-		 	SET `authorized` = '1'
-		 	WHERE '$email' = email
-		";
-		$result = mysql_query($sql);
-		if (!$result) {
-			mysql_query('ROLLBACK');
-			return FALSE;
-		}
-		else
-		{
-			return TRUE;
-		}
-	}
-}
-
 ?>
