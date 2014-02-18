@@ -277,7 +277,7 @@ else{
 }
 ?>
 
-<div class="col-lg-8">
+<div class="col-lg-12">
   <div class="panel panel-default">
     <div class="panel-heading">Groups<div style="
     float:right;
@@ -299,7 +299,7 @@ else{
   
 </div>
 <div class="col-lg-4">
-<div class="panel panel-default">
+<!--<div class="panel panel-default">
     <div class="panel-heading">User Details</div>
     <div class="panel-body">
    <? echo "Name: ";
@@ -314,10 +314,9 @@ else{
       echo("<script>console.log('PHP: ". json_encode($groups)."');</script>");
       echo("<script>console.log('PHP: ". json_encode($current_threads)."');</script>");*/
        ?>
-    </div>
+    </div>-->
   </div>
-
-<div>linkware: <a href="http://www.visualpharm.com">here</a>
+<div style="color:#f8f8f8">linkware: <a href="http://www.visualpharm.com">here</a>
 </div>
 </div>
 
