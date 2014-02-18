@@ -9,7 +9,6 @@ if(!isset($_SESSION["email"]))
 }
 else
 {
-/*
   $_SESSION['current_group_id'] = '';
   $groups = do_admin_get_groups();
   if(is_null($groups)){
@@ -67,17 +66,12 @@ else
 <div class="panel panel-default">
     <div class="panel-heading">Ban Users/Unban Users</div>
     <div class="panel-body">
-      <!--
-      if($group_owner == $_SESSION['email'] || $_SESSION['is_admin'] == 1){
-       $group_creator_html = '<br><p>Add Group Members:</p><form action="add_member.php" method="post"
-                            enctype="multipart/form-data">
-                            <input type="text" name="member_email" maxlength="20">
-                            <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
-                            <input type="submit" name="submit" value="Add Member to Group">
-                          
-                            </form>';
-    }
-  -->
+          <br><p>Ban Users:</p>
+          <form action="ban_user.php" method="post" enctype="multipart/form-data">
+                <input type="text" name="member_email" maxlength="20">
+                <input type="submit" name="submit" value="Add Member to Group">
+                
+          </form>
     </div>
 </div>
 </div>
@@ -86,6 +80,7 @@ else
 <div class="panel panel-default">
     <div class="panel-heading">Ban Groups/Unban Groups</div>
     <div class="panel-body">
+      <!-- have a list of groups, check boxes, delete selected button -->
     </div>
 </div>
 </div>
