@@ -281,3 +281,8 @@ input:hover{
   content: url(delete_icon_sm.png);
   margin-right: 5px;
 }
+.editLink{
+    background:none!important;
+     border:none; 
+     padding:0!important;
+}

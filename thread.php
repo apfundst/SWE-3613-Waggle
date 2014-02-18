@@ -20,7 +20,23 @@ else{
 $messages_html = '';
 foreach ($thread as $value) {
       $name = do_get_name($value['2']);
-      $messages_html .= '<li id="threadItem">' . $value['3'] . '<br><br>';
+      $messages_html .= '<li id="threadItem">';
+      $messages_html .='<div class="postInfo">
+                        <form  enctype="multipart/form-data" action="edit_message.php" method="post" style="display:inline;">
+                        <span class="postEdit">
+                        <input type="hidden" name="message_id" value="'. $things['0'] . '">
+                        <input type="hidden" name="message_text" value="'. $things['3'] . '">
+                        <input class="editLink"type="submit" value="edit">
+                        </span> 
+                        </form>  
+                        <form  enctype="multipart/form-data" action="delete_message.php" method="post" style="display:inline;">
+                        <span class="postDelete">
+                        <input type="hidden" name="message_id" value="'. $things['0'] . '">
+                        <input class="editLink"type="submit" value="delete">
+                        </span>
+                        </form>
+                        </div>';
+      $messages_html .= $value['3'] . '<br><br>';
       $messages_html .= '<span class="postInfo">' . $name . ' -- ' . $value['4'];
       $messages_html .= '</span></li>';
 }
