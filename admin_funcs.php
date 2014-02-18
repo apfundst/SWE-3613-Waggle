@@ -23,7 +23,7 @@ function do_admin_get_groups(){
     }
 }
 
-function do_admin_ban_group($group_id){
+function do_admin_ban_group($group_name){
 	// Removes group from User view
 	// Retains group in db for records
 	/*
@@ -57,7 +57,7 @@ function do_admin_ban_group($group_id){
 	}
 }
 
-function do_admin_unban_group($group_id){
+function do_admin_unban_group($group_name){
 	$sql = "
 			UPDATE `group`
 		 	SET `authorized` = '1'
