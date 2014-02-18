@@ -11,59 +11,39 @@ else
 {
   $_SESSION['current_group_id'] = '';
   $groups = do_admin_get_groups();
-if(is_null($groups))
-{
-  $groups_html = 'You are not in any groups yet!';
-}
-else{
-$groups_html = '';
-foreach ($groups as $things) {
-  
-  $groups_html .= '<form enctype="multipart/form-data" action="admin.php" method="post">
-                        <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
-    $groups_html .= $things[1] . '          --       '. $things[2].'"/></form>';
-  
- 
-}
-}
- $threads_html = 'Select a Group!';
- 
- $group_setting_html ='';
-if(isset($_POST["group_id"])){
-  $current_group_id = $_POST["group_id"];
-  $_SESSION['current_group_id'] = $current_group_id;
-  $current_group_name = do_get_group_name($current_group_id);
-
-  $current_threads = do_get_threads($current_group_id);
-  
-  
-  if (is_null($current_threads)){
-    $threads_html = 'No Threads in this group Yet!';
+  if(is_null($groups)){
+    $groups_html = 'No groups exist yet!';
   }
   else{
-  $threads_html = '';
-
-  foreach($current_threads as $things)
-  {
-    $threads_html .= '<form enctype="multipart/form-data" action="thread.php" method="post">
-                        <input type="hidden" name="thread_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
-    $threads_html .= $things[3] . '"/></form>';
-
+    $groups_html = '';
+    foreach ($groups as $things) {
+      $groups_html .= '<form enctype="multipart/form-data" action="admin.php" method="post">
+                        <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
+      $groups_html .= $things[1] . '          --       '. $things[2].'"/></form>';
+    }
   }
-  
+  $threads_html = 'Select a Group!';
+  $group_setting_html ='';
+  if(isset($_POST["group_id"])){
+    $current_group_id = $_POST["group_id"];
+    $_SESSION['current_group_id'] = $current_group_id;
+    $current_group_name = do_get_group_name($current_group_id);
 
+    $current_threads = do_get_threads($current_group_id);
+    if (is_null($current_threads)){
+      $threads_html = 'No Threads in this group Yet!';
+    }
+    else{
+      $threads_html = '';
+
+      foreach($current_threads as $things){
+       $threads_html .= '<form enctype="multipart/form-data" action="thread.php" method="post">
+                          <input type="hidden" name="thread_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
+        $threads_html .= $things[3] . '"/></form>';
+      }
+    }
+  }
 }
-
-}
-
-
-
-
-}
-
-
-
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -75,9 +55,6 @@ if(isset($_POST["group_id"])){
 
  
 <body>
-<!--<div id="header"> header </div>
-<div id="left-sidebar"> left-sidebar </div>
-<div id="content"> content </div>-->
 <? include('admin_nav.php'); ?>
 <div class="container-fluid">
 
@@ -93,7 +70,7 @@ if(isset($_POST["group_id"])){
  </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading">Disscusion Threads for <?=$current_group_name ?></div>
+    <div class="panel-heading"> Admin Control Panel ?></div>
     <div class="panel-body">
 
 <ul >
@@ -117,10 +94,6 @@ if(isset($_POST["group_id"])){
       echo $_SESSION["last_name"] ;
       echo "<br> ";
       echo "Email: ".$_SESSION["email"];
-      /*echo count($groups);
-      echo count($current_threads);
-      echo("<script>console.log('PHP: ". json_encode($groups)."');</script>");
-      echo("<script>console.log('PHP: ". json_encode($current_threads)."');</script>");*/
        ?>
     </div>
   </div>

@@ -221,4 +221,36 @@ function do_admin_remove_thread($thread_id) {
 	//*******************************************************************************
 }
 
+function do_admin_add_admin($email) {
+	$sql = "
+		UPDATE `user`
+	 	SET `admin` = '1'
+	 	WHERE '$email' = email
+	";
+	$result = mysql_query($sql);
+	if (!$result) {
+		mysql_query('ROLLBACK');
+		return FALSE;
+	}
+	else{
+		return TRUE;
+	}
+}
+
+function do_admin_remove_admin($email) {
+	$sql = "
+		UPDATE `user`
+	 	SET `admin` = '0'
+	 	WHERE '$email' = email
+	";
+	$result = mysql_query($sql);
+	if (!$result) {
+		mysql_query('ROLLBACK');
+		return FALSE;
+	}
+	else{
+		return TRUE;
+	}
+}
+
 ?>

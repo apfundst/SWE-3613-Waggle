@@ -34,7 +34,7 @@ function do_remove_message($email, $message_id)
 	// If email matches the creator OR if admin
 	$creator = do_get_message_creator($message_id);
 	$admin = user_is_admin($email);
-	if($email == $creator || $admin) {
+	if($email == $creator || $admin == 1) {
 		$sql = "
 			DELETE FROM `message`
 			WHERE '$email' = creator AND'$message_id' = message_id
