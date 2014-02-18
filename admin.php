@@ -70,7 +70,14 @@ else
           <br><p>Ban Users:</p>
           <form action="ban_user.php" method="post" enctype="multipart/form-data">
                 <input type="text" name="member_email" maxlength="20">
-                <input type="submit" name="submit" value="Add Member to Group">
+                <input type="submit" name="submit" value="Ban User">
+                
+          </form>
+
+          <br><p>Un-Ban Users:</p>
+          <form action="unban_user.php" method="post" enctype="multipart/form-data">
+                <input type="text" name="member_email" maxlength="20">
+                <input type="submit" name="submit" value="Un-Ban User">
                 
           </form>
     </div>
