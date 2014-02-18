@@ -335,4 +335,22 @@ function user_is_admin($email){
     die;
 }
 
+function do_get_ban_status($email){
+	$sql = "
+		   SELECT authorized
+		   FROM `user`
+		   WHERE '$email' = email	
+		";
+	$result = mysql_query($sql);
+	if(mysql_num_rows($result)==0){
+		return NULL;
+	}
+	else{
+       	// Get the information from the result set
+		$row = mysql_fetch_array($result);
+    	return $row['admin'];
+    }
+    die;
+}
+
 ?>
