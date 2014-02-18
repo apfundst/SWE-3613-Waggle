@@ -45,6 +45,7 @@ else
   }
 }
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -53,52 +54,43 @@ else
 <link rel="stylesheet" type="text/css" href="css.css">
 </head>
 
- 
+<div class="col-lg-12"><div class="group-name"><h1>Admin Panel </h1>
+</div>
+
 <body>
 <? include('admin_nav.php'); ?>
+
 <div class="container-fluid">
 
-<div class="col-lg-8">
-  <div class="panel panel-default">
-    <div class="panel-heading">Groups</div>
-    <div class="panel-body">
-
-<ul >
-   <?=$groups_html ?>
-  </ul>
-
- </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading"> Admin Control Panel ?></div>
-    <div class="panel-body">
-
-<ul >
-    <?=$threads_html ?>
-  </ul>
-</form>
-
- </div>
-  </div>
-</div>
 <div class="col-lg-4">
 <div class="panel panel-default">
-    <div class="panel-heading">User Details</div>
+    <div class="panel-heading">Ban Users/Unban Users</div>
     <div class="panel-body">
-   <? echo "Name: ";
-      $name = do_get_name($_SESSION['email']);
-      echo $name;
-      echo '<br>';
-      echo $_SESSION["first_name"] ;
-      echo " ";
-      echo $_SESSION["last_name"] ;
-      echo "<br> ";
-      echo "Email: ".$_SESSION["email"];
-       ?>
     </div>
-  </div>
+</div>
+</div>
 
-<?= $group_setting_html; ?>
+<div class="col-lg-4">
+<div class="panel panel-default">
+    <div class="panel-heading">Ban Groups/Unban Groups</div>
+    <div class="panel-body">
+    </div>
+</div>
+</div>
+
+<div class="col-lg-4">
+<div class="panel panel-default">
+    <div class="panel-heading">Remove Threads</div>
+    <div class="panel-body">
+    </div>
+</div>
+</div>
+
+<div class="col-lg-4">
+<div class="panel panel-default">
+    <div class="panel-heading">Add Admins</div>
+    <div class="panel-body">
+    </div>
 </div>
 </div>
 

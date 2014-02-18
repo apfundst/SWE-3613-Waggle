@@ -163,7 +163,7 @@ function do_admin_remove_message($message_id) {
 	else {
 		return TRUE;
 	}
-	
+	//Add banned message
 	// Not allowed to delete stuff from DB
 	$sql = "
 			UPDATE `message`
@@ -178,6 +178,7 @@ function do_admin_remove_message($message_id) {
 	else {
 		return TRUE;
 	}
+	//Add banned message
 	*/
 	//*******************************************************************************
 }

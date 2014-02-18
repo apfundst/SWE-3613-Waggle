@@ -230,7 +230,14 @@ else
 <body>
   <!-- Take $Get group id-->
 
-<? include('nav.php'); ?>
+<? 
+if($_SESSION["is_admin"] == 1){
+  include('admin_nav.php');
+}
+else{ 
+  include('nav.php'); 
+} 
+?>
 <div class="col-lg-12"><div class="group-name"><h1><?=$current_group_name?> </h1>
 <div class="groupDesc"><?=do_get_group_description($_SESSION['current_group_id']) ?></div>
 </div></div>

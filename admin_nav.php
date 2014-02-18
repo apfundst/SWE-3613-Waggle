@@ -4,7 +4,10 @@
 
 <div style="float: right;">
   <ul>
-    
+    <? if( ($_SERVER['REQUEST_URI'] != '/index.php') && ($_SERVER['REQUEST_URI'] != '/group.php')){
+  		echo '<li><a href="group.php">Group Home</a></li>';
+  		}
+	?>
     <li><a href="admin.php">Admin Control Panel</a></li>
     <li><a href="index.php">Home</a></li>
     <li><a href="logout.php">Log Out</a></li>
