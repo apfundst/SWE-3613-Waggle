@@ -9,6 +9,7 @@ if(!isset($_SESSION["email"]))
 }
 else
 {
+  /*
   $_SESSION['current_group_id'] = '';
   $groups = do_admin_get_groups();
   if(is_null($groups)){
