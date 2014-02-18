@@ -110,14 +110,17 @@ else
     <div class="panel-heading">Ban Groups/Unban Groups</div>
     <div class="panel-body">
       <!-- have a list of groups, check boxes, delete selected button -->
-    </div>
-</div>
-</div>
+          <br><p>Ban Groups:</p>
+          <form action="ban_group.php" method="post" enctype="multipart/form-data">
+                <input type="text" name="member_email" maxlength="20">
+                <input type="submit" name="submit" value="Ban Group">   
+          </form>
 
-<div class="col-lg-4">
-<div class="panel panel-default">
-    <div class="panel-heading">Remove Threads</div>
-    <div class="panel-body">
+          <br><p>Un-Ban Groups:</p>
+          <form action="unban_group.php" method="post" enctype="multipart/form-data">
+                <input type="text" name="member_email" maxlength="20">
+                <input type="submit" name="submit" value="Un-Ban Group">     
+          </form>
     </div>
 </div>
 </div>

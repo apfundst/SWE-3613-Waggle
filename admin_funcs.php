@@ -23,7 +23,7 @@ function do_admin_get_groups(){
     }
 }
 
-function do_admin_remove_group($group_id){
+function do_admin_ban_group($group_id){
 	// Removes group from User view
 	// Retains group in db for records
 	/*
@@ -45,6 +45,22 @@ function do_admin_remove_group($group_id){
 	$sql = "
 			UPDATE `group`
 		 	SET `authorized` = '0'
+		 	WHERE '$group_id' = group_id
+		";
+	$result = mysql_query($sql);
+	if (!$result) {
+		mysql_query('ROLLBACK');
+		return FALSE;
+	}
+	else{
+		return TRUE;
+	}
+}
+
+function do_admin_unban_group($group_id){
+	$sql = "
+			UPDATE `group`
+		 	SET `authorized` = '1'
 		 	WHERE '$group_id' = group_id
 		";
 	$result = mysql_query($sql);
