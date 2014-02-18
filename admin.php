@@ -62,6 +62,20 @@ else
 
 <div class="container-fluid">
 <div class="row">
+
+<div class="col-lg-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">All Groups</div>
+    <div class="panel-body">
+    <ul >
+    <?=$groups_html ?>
+    </ul>
+
+    </div>
+    </div> 
+    </div>
+</div>
+
 <div class="col-lg-4">
 <div class="panel panel-default">
     <div class="panel-heading">Ban Users/Unban Users</div>
@@ -81,19 +95,6 @@ else
           </form>
     </div>
 </div>
-</div>
-
-<div class="col-lg-4">
-  <div class="panel panel-default">
-    <div class="panel-heading">All Groups</div>
-    <div class="panel-body">
-    <ul >
-    <?=$groups_html ?>
-    </ul>
-
-    </div>
-    </div> 
-    </div>
 </div>
 
 <div class="col-lg-4">
