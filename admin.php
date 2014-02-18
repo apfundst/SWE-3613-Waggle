@@ -85,15 +85,7 @@ else
 
 <div class="col-lg-4">
   <div class="panel panel-default">
-    <div class="panel-heading">All Groups<div style="
-    float:right;
-    display: inline;
-    border: 1px solid #ddd;
-    background-color: #ecf0f1;
-    padding: 3px;
-    color:white;
-    margin-right: 20px;
-    font-size: 15px; ">
+    <div class="panel-heading">All Groups
     <div class="panel-body">
     <ul >
     <?=$groups_html ?>
@@ -102,7 +94,6 @@ else
     </div>
     </div> 
     </div>
-  </div>
 </div>
 
 <div class="col-lg-4">
