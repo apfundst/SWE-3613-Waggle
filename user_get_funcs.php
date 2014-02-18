@@ -330,7 +330,7 @@ function user_is_admin($email){
 	else{
        	// Get the information from the result set
 		$row = mysql_fetch_array($result);
-    	return $row['creator'];
+    	return $row['admin'];
     }
     die;
 }
