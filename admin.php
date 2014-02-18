@@ -83,7 +83,7 @@ else
 </div>
 </div>
 
-<div class="col-lg-12">
+<div class="col-lg-8">
   <div class="panel panel-default">
     <div class="panel-heading">All Groups<div style="
     float:right;
