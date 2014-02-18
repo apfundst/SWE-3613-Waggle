@@ -271,7 +271,7 @@ input:hover{
 }
 .postEdit:before{
   content: url(edit_icon_sm.png);
-  margin-right: 5px;
+  margin-right: 1px;
 }
 .postDelete{
  
@@ -279,7 +279,7 @@ input:hover{
 }
 .postDelete:before{
   content: url(delete_icon_sm.png);
-  margin-right: 5px;
+  margin-right: 1px;
 }
 .editLink{
     background:none!important;
