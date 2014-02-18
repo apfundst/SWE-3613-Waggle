@@ -8,7 +8,7 @@ if(!isset($_SESSION["email"])) {
 if($_POST['group_id'] && $_POST['member_email']){
 	$return_bool = do_create_membership($_POST['member_email'], $_POST['group_id']);
 	if($return_bool == TRUE){
-		header('Location: http://www.waggle.myskiprofile.com/index.php');
+		header('Location: http://www.waggle.myskiprofile.com/group.php');
   exit();
 	}
 	else{
