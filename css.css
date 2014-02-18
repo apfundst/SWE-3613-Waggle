@@ -265,3 +265,19 @@ input:hover{
   margin-right: auto;
   width:33.3%;
 }
+.postEdit{
+  
+  color: #2F4F4F;
+}
+.postEdit:before{
+  content: url(edit_icon_sm.png);
+  margin-right: 5px;
+}
+.postDelete{
+ 
+  color: #2F4F4F;
+}
+.postDelete:before{
+  content: url(delete_icon_sm.png);
+  margin-right: 5px;
+}
