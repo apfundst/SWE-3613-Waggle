@@ -20,7 +20,8 @@ else{
 	}
 	else{
 		$_SESSION["message_id"] = $_POST["message_id"];
-		$old_text = $_POST["message_text"];
+
+		$old_text = "test value";
 	}
 }
 
@@ -42,14 +43,15 @@ else{
      <div class="col-lg-4">
         <div class="panel">
           <center>
-            <div class="panel-heading">Message</div>
+            <div class="panel-heading">Edit Message</div>
           </center>
             <div class="panel-body">
             <center>
              	    <form method="post" action="thread.php">
      				<label>Edit your original message</label><br>
-        			<textarea name="new_message" cols="50" rows="7"><?=$old_text?>
-        			</textarea><br>
+        			<textarea name="new_message" cols="50" rows="7">""
+        			<? echo $old_text; ?>
+        			</textarea>
       				</form>
                 	<a href = "http://www.waggle.myskiprofile.com/thread.php">
                 	<input type="button" value= "Submit Changes"></a><br>
