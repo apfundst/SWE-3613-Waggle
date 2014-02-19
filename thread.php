@@ -101,14 +101,14 @@ if(!isset($_SESSION["email"]) && ($user_status != 0))
                 $messages_html .= '<li id="threadItem"><div class="postInfo">
                                     <form  enctype="multipart/form-data" action="edit_message.php" method="post" style="display:inline;">
                                     <span class="postEdit">
-                                    <input type="hidden" name="message_id" value="'.$things[0].'">
-                                    <input type="hidden" name="message_text" value="'.$things[3].'">
+                                    <input type="hidden" name="message_id" value="'.$value[0].'">
+                                    <input type="hidden" name="message_text" value="'.$value[3].'">
                                     <input class="editLink"type="submit" value="edit">
                                     </span> 
                                     </form>  
                                     <form  enctype="multipart/form-data" action="delete_message.php" method="post" style="display:inline;">
                                     <span class="postDelete">
-                                    <input type="hidden" name="message_id" value="'. $things[0] . '">
+                                    <input type="hidden" name="message_id" value="'. $value[0] . '">
                                     <input class="editLink"type="submit" value="delete">
                                     </span>
                                     </form>
@@ -119,7 +119,7 @@ if(!isset($_SESSION["email"]) && ($user_status != 0))
                 $messages_html .= '<li id="threadItem"><div class="postInfo">
                                     <form  enctype="multipart/form-data" action="delete_message.php" method="post" style="display:inline;">
                                     <span class="postDelete">
-                                    <input type="hidden" name="message_id" value="'. $things[0] . '">
+                                    <input type="hidden" name="message_id" value="'. $value[0] . '">
                                     <input class="editLink"type="submit" value="delete">
                                     </span>
                                     </form>
