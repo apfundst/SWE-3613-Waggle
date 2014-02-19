@@ -1,6 +1,7 @@
-<?php
+<?
 session_start();
 include('other_funcs.php');
+include('nav.php');
 
 if(!isset($_SESSION["email"])) {	
 	header('Location: http://www.waggle.myskiprofile.com/login.php');
@@ -14,17 +15,13 @@ else{
   			exit();
 		}
 		else{
-			header('Location: http://www.waggle.myskiprofile.com/error/error.php?err=Message%20could%20be%20edited');
+			header('Location: http://www.waggle.myskiprofile.com/index.php');
   			exit();
 		}
 	}
-	else{
-		$_SESSION["message_id"] = $_POST["message_id"];
-
-		$old_text = "test value";
-	}
 }
-
+$_SESSION["message_id"] = $_POST["message_id"];
+$old_text = $_POST["message_text"];
 ?>
 <html>
 <head>
@@ -33,29 +30,22 @@ else{
 <link rel="stylesheet" type="text/css" href="css.css">
 </head>
   <body>
-  <!-- Create Logo at the top of the screen -->
-  <!--Black bar at the top of the screen.-->
-    <div class="navbar">
-      <img class="logoImg"src="LOGIN/LOGOWAGGLEv4.2.png" height="75">
-    </div>
-  <!-- Creates a new row to use -->
-      <!--Log in bar-->
      <div class="col-lg-4">
         <div class="panel">
           <center>
             <div class="panel-heading">Edit Message</div>
           </center>
+          <p><? echo $_POST["message_text"];?></p>
             <div class="panel-body">
-            <center>
-             	    <form method="post" action="thread.php">
+
+             	    <form method="post" action="edit_message.php">
      				<label>Edit your original message</label><br>
-        			<textarea name="new_message" cols="50" rows="7">""
-        			<? echo $old_text; ?>
+        			<textarea name="new_message" cols="50" rows="7">
+        			<?=$old_text?>
         			</textarea>
-      				</form>
-                	<a href = "http://www.waggle.myskiprofile.com/thread.php">
-                	<input type="button" value= "Submit Changes"></a><br>
-          </center>
+        			<input type="submit" value= "Submit Changes"/><br>
+                	</form>
+
           </div>
           </div>
         </div>
