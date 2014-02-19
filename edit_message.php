@@ -36,6 +36,7 @@ $old_text = $_POST["message_text"];
             <div class="panel-heading">Edit Message</div>
           </center>
           <p><? echo $_POST["message_text"];?></p>
+          <p><? echo $_POST["message_id"];?></p>
             <div class="panel-body">
 
              	    <form method="post" action="edit_message.php">
