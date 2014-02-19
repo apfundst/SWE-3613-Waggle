@@ -212,7 +212,7 @@ else{
       echo'
         <div style="float:right; display: inline; margin-right: 20px;">
           <form action="delete_thread.php" method="post" enctype="multipart/form-data">
-          <input type="hidden" name="thread_id" value="<?=$_SESSION['current_thread_id']?>" >
+          <input type="hidden" name="thread_id" value="'.$_SESSION['current_thread_id'].'" >
           <input type="submit" value="Delete Thread">
           </form>
           </div>
