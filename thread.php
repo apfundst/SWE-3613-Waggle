@@ -206,6 +206,9 @@ else{
   
   <div class="panel panel-default">
     <div class="panel-heading">Thread: <?=$thread_name;?></div>
+    <form action="delete_thread.php" method="post" enctype="multipart/form-data"><label>Delete Thread</label>
+      <input type="hidden" name="thread_id" value="<?=$_SESSION['current_thread_id']?>" >
+    </form>
     <div class="panel-body">
 
       <ul >
