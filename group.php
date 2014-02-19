@@ -7,9 +7,6 @@ if(!isset($_SESSION["email"]) && ($user_status != 0))
   header('Location: http://www.waggle.myskiprofile.com/login.php');
   exit();
 }
-
-
-
 else
 { 
   /*global $current_group_name;
@@ -87,7 +84,7 @@ else
   if($_POST["group_id"]){
     $group_status = do_get_group_ban_status($_POST['group_id']);
     if($group_status == 0){
-      header('Location: http://www.waggle.myskiprofile.com/login.php');
+      header('Location: http://www.waggle.myskiprofile.com/index.php');
       exit();
     }
     else{
@@ -161,7 +158,7 @@ else
   else{
     $group_status = do_get_group_ban_status($_SESSION['current_group_id']);
     if($group_status == 0){
-      header('Location: http://www.waggle.myskiprofile.com/login.php');
+      header('Location: http://www.waggle.myskiprofile.com/index.php');
       exit();
     }else{
       $current_group_id = $_SESSION['current_group_id'];
