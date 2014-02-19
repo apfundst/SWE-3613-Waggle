@@ -2,6 +2,8 @@
 include_once('connection.php');
 include_once('user_get_funcs.php');
 
+date_default_timezone_set('US/EASTERN');
+
 function do_leave_group($email, $group_id){
 	// Removes user from group by deleting membership
 	$creator = do_get_creator($group_id);
@@ -49,13 +51,13 @@ function do_edit_message($message_id, $new_text){
 
 	$new_time_stamp = date('Y-m-d H:i:s');
 
-	$new_text = nl2br($new_text);
-	$new_text =  mysql_real_escape_string($new_text);
+	
 
 	$message_id =  mysql_real_escape_string($message_id);
 
 	$new_text .= "\n\n Edited on ".$new_time_stamp;
-
+	$new_text = nl2br($new_text);
+	$new_text =  mysql_real_escape_string($new_text);
 	$sql = "
 		UPDATE `message`
 		SET message_text = '$new_text'

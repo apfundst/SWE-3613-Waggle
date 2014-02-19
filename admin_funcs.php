@@ -1,6 +1,7 @@
 <?
 include_once('connection.php');
 include_once('other_funcs.php');
+date_default_timezone_set('US/EASTERN');
 
 function do_admin_get_groups(){
 	// Returns all groups

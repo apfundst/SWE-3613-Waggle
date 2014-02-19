@@ -1,6 +1,6 @@
 <?
 include_once('connection.php');
-
+date_default_timezone_set('US/EASTERN');
 
 function do_update_password($email,$student_id,$new_password){
 	// Cleans the text input into fields in html
@@ -51,9 +51,11 @@ function do_post_message($thread_id, $creator,$text){
 	$message = nl2br($text);
 	$message = mysql_real_escape_string($message);
 
+	$new_time_stamp = date('Y-m-d H:i:s');
+
 	$sql = "
 		 	INSERT INTO `message`(`thread_id`,`creator`,`message_text`,`date_created`)
-		 	VALUES('$thread_id','$creator','$message',now())
+		 	VALUES('$thread_id','$creator','$message','$new_time_stamp')
 	";
 
 	$result = mysql_query($sql);
