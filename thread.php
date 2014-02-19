@@ -216,9 +216,10 @@ else{
           <input type="submit" value="Delete Thread">
           </form>
           </div>
-        </div>';
+        ';
     }
     ?>
+    </div>
     <div class="panel-body">
 
       <ul >
