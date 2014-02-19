@@ -352,5 +352,22 @@ function do_get_ban_status($email){
     }
     die;
 }
+function do_get_group_ban_status($group_id){
+	$sql = "
+		   SELECT authorized
+		   FROM `group`
+		   WHERE '$group_id' = group_id	
+		";
+	$result = mysql_query($sql);
+	if(mysql_num_rows($result)==0){
+		return NULL;
+	}
+	else{
+       	// Get the information from the result set
+		$row = mysql_fetch_array($result);
+    	return $row['authorized'];
+    }
+    die;
+}
 
 ?>
