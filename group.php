@@ -2,9 +2,13 @@
 session_start();
 include('other_funcs.php');
 $user_status = do_get_ban_status($_SESSION['email']);
-if(!isset($_SESSION["email"]) && ($user_status != 0))
+if(!isset($_SESSION["email"]))
 {
   header('Location: http://www.waggle.myskiprofile.com/login.php');
+  exit();
+}
+elseif($user_status == 0){
+  header('Location: http://www.waggle.myskiprofile.com/login.php?err=You%20have%20been%20banned');
   exit();
 }
 else

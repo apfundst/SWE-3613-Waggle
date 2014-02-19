@@ -67,6 +67,10 @@ if ($_POST) {
     }
   }
 }
+if($_GET['err']){
+
+  $error_message = $_GET['err']!;
+}
 
 ?>
 <html>
