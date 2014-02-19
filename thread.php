@@ -208,15 +208,17 @@ else{
     <div class="panel-heading">Thread: <?=$thread_name;?>
     <?
     //if admin echo this html as string
-      <div style="float:right; display: inline; margin-right: 20px;">
-        <form action="delete_thread.php" method="post" enctype="multipart/form-data">
+    if(($_SESSION['is_admin'] == 1) || ($group_accessor == $_SESSION['email'])){
+      echo'
+        <div style="float:right; display: inline; margin-right: 20px;">
+          <form action="delete_thread.php" method="post" enctype="multipart/form-data">
           <input type="hidden" name="thread_id" value="<?=$_SESSION['current_thread_id']?>" >
           <input type="submit" value="Delete Thread">
-        </form>
-      </div>
-    </div>
+          </form>
+          </div>
+        </div>';
+    }
     ?>
-    
     <div class="panel-body">
 
       <ul >
