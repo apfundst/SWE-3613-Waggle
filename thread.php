@@ -28,36 +28,33 @@ foreach ($thread as $value) {
       $messages_html = '';
       $group_accessor = do_get_creator($_SESSION['current_group_id']);
 
-      if($value[2] == $_SESSION['email']){
-        $message_html .= '<li id="threadItem"><div class="postInfo"><form  enctype="multipart/form-data" action="edit_message.php" method="post" style="display:inline;">
+      if($value['2'] == $_SESSION['email']){
+        $message_html = '<li id="threadItem">
+                          <div class="postInfo"><form  enctype="multipart/form-data" action="edit_message.php" method="post" style="display:inline;">
                         
                         <input type="hidden" name="message_id" value="'. $value['0'] . '">
                         <input type="hidden" name="message_text" value="'. $value['3'] . '">
                         <span class="postEdit">
                         <input class="editLink" type="submit" value="edit">
                         </span> 
-                        </form> ';
-        $message_html .= '<form  enctype="multipart/form-data" action="delete_message.php" method="post" style="display:inline;">
+                        </form>  
+                        <form  enctype="multipart/form-data" action="delete_message.php" method="post" style="display:inline;">
                         
                         <input type="hidden" name="message_id" value="'. $value['0'] . '">
                         <span class="postDelete">
                         <input class="editLink"type="submit" value="delete">
                         </span>
-                        </form></div><br><hr>';
-        $messages_html .= '<p>'.$value['3'] . '</p><br><br>';
-        $messages_html .= '<span class="postInfo">' . $name . ' -- ' . $value['4'];
-        $messages_html .= '</span></li>';
+                        </form></div><br><hr>
+                        <p>'.$value['3'] . '</p><br><br>
+                        <span class="postInfo">' . $name . ' -- ' . $value['4'].'</span></li>';
       }elseif(($_SESSION['is_admin'] == 1) || ($group_accessor == $_SESSION['email'])){
-        $message_html .= '<li id="threadItem"><div class="postInfo">
+        $message_html = '<li id="threadItem"><div class="postInfo">
                             <form  enctype="multipart/form-data" action="delete_message.php" method="post" style="display:inline;">
                           <input type="hidden" name="message_id" value="'. $value['0'] . '">
                           <span class="postDelete">
                           <input class="editLink"type="submit" value="delete">
                           </span>
-                          </form></div><br><hr>';
-        $messages_html .= '<p>'.$value['3'] . '</p><br><br>';
-        $messages_html .= '<span class="postInfo">' . $name . ' -- ' . $value['4'];
-        $messages_html .= '</span></li>';
+                          </form></div><br><hr><p>'.$value['3'] . '</p><br><br><span class="postInfo">' . $name . ' -- ' . $value['4'].'</span></li>';
       }else{
       $messages_html .= '<li id="threadItem">';
       $messages_html .= '<p>'.$value['3'] . '</p><br><br>';
