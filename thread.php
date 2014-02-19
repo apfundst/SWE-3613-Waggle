@@ -209,10 +209,11 @@ else{
     <?
     //if admin echo this html as string
     if(($_SESSION['is_admin'] == 1) || ($group_accessor == $_SESSION['email'])){
+      $temp = $_SESSION['current_thread_id']
       echo'
         <div style="float:right; display: inline; margin-right: 20px;">
           <form action="delete_thread.php" method="post" enctype="multipart/form-data">
-          <input type="hidden" name="thread_id" value="<?=$_SESSION['current_thread_id']?>" >
+          <input type="hidden" name="thread_id" value="<?=$temp?>" >
           <input type="submit" value="Delete Thread">
           </form>
           </div>
