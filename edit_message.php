@@ -1,4 +1,5 @@
 <?
+ob_start();
 session_start();
 include('other_funcs.php');
 include('nav.php');
@@ -10,7 +11,7 @@ if(!isset($_SESSION["email"])) {
 else{
 	if($_POST['new_message']){
 			$return_bool = do_edit_message($_SESSION['message_id'], $_POST['new_message']);
-		if($return_bool == TRUE){
+		if($return_bool == 1){
 			header('Location: http://www.waggle.myskiprofile.com/thread.php');
   			exit();
 		}
@@ -20,8 +21,10 @@ else{
 		}
 	}
 }
+
 $_SESSION["message_id"] = $_POST["message_id"];
-$old_text = $_POST["message_text"];
+$old_text = strip_tags($_POST["message_text"]);
+ob_flush();
 ?>
 <html>
 <head>
@@ -35,8 +38,6 @@ $old_text = $_POST["message_text"];
           <center>
             <div class="panel-heading">Edit Message</div>
           </center>
-          <p><? echo $_POST["message_text"];?></p>
-          <p><? echo $_POST["message_id"];?></p>
             <div class="panel-body">
 
              	    <form method="post" action="edit_message.php">
