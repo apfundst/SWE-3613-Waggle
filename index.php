@@ -28,7 +28,7 @@ foreach ($groups as $things) {
   $name = do_get_name($things[2]);
   
   $groups_html .= '<form enctype="multipart/form-data" action="group.php" method="post">
-                        <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
+                        <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="homeListItem" value="';
     $groups_html .= $things[1] . '          --     Created by:  '. $name.'"/></form>';
   
  
@@ -276,10 +276,10 @@ else{
   include('nav.php'); 
 }
 ?>
-
+<div class="row">
 <div class="col-lg-12">
   <div class="panel panel-default">
-    <div class="panel-heading">Groups<div style="
+    <div class="panel-heading">Your Groups<div style="
     float:right;
     display: inline;
     border: 1px solid #ddd;
@@ -298,24 +298,7 @@ else{
   </div>
   
 </div>
-<div class="col-lg-4">
-<!--<div class="panel panel-default">
-    <div class="panel-heading">User Details</div>
-    <div class="panel-body">
-   <? echo "Name: ";
-      $name = do_get_name($_SESSION['email']);
-      echo $name;
-      echo '<script>console.log('.json_encode($members).');</script>';
-      
-      echo "<br> ";
-      echo "Email: ".$_SESSION["email"];
-      /*echo count($groups);
-      echo count($current_threads);
-      echo("<script>console.log('PHP: ". json_encode($groups)."');</script>");
-      echo("<script>console.log('PHP: ". json_encode($current_threads)."');</script>");*/
-       ?>
-    </div>-->
-  </div>
+</div>
 <div style="color:#f8f8f8">linkware: <a href="http://www.visualpharm.com">here</a>
 </div>
 </div>

@@ -286,3 +286,20 @@ input:hover{
      border:none; 
      padding:0!important;
 }
+#homeListItem{
+ text-align: left;
+  position: relative;
+  display: block;
+  width: 100%;
+  font-size: 20pt;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #ecf0f1;
+  border: 1px solid #ddd;
+  color: #444444;
+}
+#homeListItem:hover{
+   background-color: #ecf0f1; 
+cursor:pointer;
+      cursor:hand;
+}
