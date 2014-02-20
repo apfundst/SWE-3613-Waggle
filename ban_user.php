@@ -1,21 +1,20 @@
 <?php
 session_start();
-include 'other_funcs.php';
+include 'admin_funcs.php';
 if(!isset($_SESSION["email"])) {
   header('Location: http://www.waggle.myskiprofile.com/login.php');
   exit();
-}else{
-if($_POST['group_id'] && $_POST['member_email']){
-	$return_bool = do_create_membership($_POST['member_email'], $_POST['group_id']);
+}
+else{
+if($_POST['member_email']){
+	$return_bool = do_admin_ban_user($_POST['member_email']);
 	if($return_bool == TRUE){
-		header('Location: http://www.waggle.myskiprofile.com/group.php');
+		header('Location: http://www.waggle.myskiprofile.com/admin.php');
   exit();
 	}
 	else{
 		echo "mucho errors. Please contact the web admin!";
 	}
-
-
 }
 }
 

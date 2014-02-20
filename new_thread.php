@@ -57,7 +57,13 @@ if(isset($_POST["thread_name"])){
 <div id="left-sidebar"> left-sidebar </div>
 <div id="content"> content </div>-->
 <div class="container-fluid">
-<? include('nav.php');?>
+<? if($_SESSION['email'] == 'admin@spsu.edu'){
+  include('admin_nav.php');
+}
+else{
+  include('nav.php');
+}
+?>
 <div class="col-lg-8">
   <div class="panel panel-default">
     <div class="panel-heading">Create Group</div>

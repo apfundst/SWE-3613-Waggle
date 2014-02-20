@@ -1,64 +1,28 @@
 <?
 ob_start();
 session_start();
+include("other_funcs.php");
+
+$email = $_POST["email"];
+$student_id = $_POST["student_id"];
+$password = $_POST["password"];
+$copy_password = $_POST["copy_password"];
 $error_message = null;
-if ($_POST) {
-  $con = mysql_connect("localhost","jsalvo_group8","waggle_password");
-  $db = mysql_select_db('jsalvo_waggle');
-  if (!$con || !$db ){
-    die('Could not connect: ' . mysql_error());
+
+if($password != $copy_password){
+  $error_message = "Both passwords entered did not match!";
+}
+else{
+  $result = do_update_password($email,$student_id,$password);
+  if($result == true){
+    $error_message = "Password has been reset! Please return to home page to login.";
   }
   else{
-
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    $sql = "
-      SELECT *
-      FROM user
-      WHERE email = '$email'
-      AND password = '$password'
-    ";
-
-    $result = mysql_query($sql);
-    if (!$result) {
-      die('Could not connect: ' . mysql_error());
-     
-    }
-    else {
-      if (mysql_num_rows($result) == 0) {
-        $error_message =  "Login failed.  Please check your userid and password.";
-      }
-      else {
-        
-        // Get the information from the result set
-        $row = mysql_fetch_assoc($result);
-        // Put information into temp variables
-        //echo $row;
-        $email = $row['email'];
-        $first_name = $row['first_name'];
-        $last_name = $row['last_name'];
-        //$error_message = $email . $first_name . $last_name;
-        // Create session variables to use throughout login
-        
-        $_SESSION["email"] = $email;
-        $_SESSION["first_name"] = $first_name;
-        $_SESSION["last_name"] = $last_name;
-        if($email == 'admin@spsu.edu')
-        {
-          header('Location: http://www.waggle.myskiprofile.com/admin.php');
-          exit();
-        }else{
-
-        header('Location: http://www.waggle.myskiprofile.com/index.php');
-  exit();
-ob_flush();
-}
-      }
-    }
+    $error_message = "Email and/or Student ID incorrect! Please reenter!";
   }
 }
-
+session_destroy();
+ob_flush();
 ?>
 <html>
   <head>
@@ -71,34 +35,30 @@ ob_flush();
       <img class="logoImg"src="LOGIN/LOGOWAGGLEv4.2.png" height="75">
     </div>
   <!-- Creates a new row to use -->
-    <div class="row">
-      
-      <div class="col-lg-8" id="welcome">
-        <div id="cf">
-          <img class="bottom" src="LOGIN/beehive2.png"/>
-          <img class="top" src="LOGIN/beehive1.png" />
-        </div>
-      </div>
       <!--Log in bar-->
-      <div class="col-lg-4">
+     <div class="col-lg-4">
         <div class="panel">
-          <div class="panel-heading">
-            <center>Login Here</center>
-          </div>
-          <div class="panel-body">
+          <center>
+            <div class="panel-heading">Reset Password</div>
+          </center>
+            <div class="panel-body">
             <center>
               <p><? echo $error_message; ?></p>
-              <form action="login.php" method="post"enctype="multipart/form-data">
+                <form action="password_reset.php" method="post"enctype="multipart/form-data">
                 <!--<label for="file">Email:</label>-->
-                <input type="text" name="email" placeholder='SPSU Email' size="40" for="userid"><br>
+                <input type="text" name="email" placeholder='SPSU Email' size="40"><br>
+                <input type="text" name="student_id" placeholder='Student ID' size="40"><br>
                 <!--<label for="file">Password:</label>-->
-                <input type="password" name="password" placeholder='Password' size="40" for="pass"><br>
-                <input type="submit" name="submit" value="Login">
-              </form>
-            </center>
+                <input type="password" name="password" placeholder='Enter New Password' size="40"><br>
+                <input type="password" name="copy_password" placeholder='Reenter New Password' size="40"><br>
+                <input type="submit" name="submit" value="Reset Password">
+
+                </form>
+                <a href = "http://www.waggle.myskiprofile.com/">
+                <input type="button" value= "Back to Login Page"></a>
+          </center>
+          </div>
           </div>
         </div>
-      </div>
-    </div>
   </body>
 </html>

@@ -1,6 +1,6 @@
 <?
 include_once('connection.php');
-
+date_default_timezone_set('US/EASTERN');
 
 function do_update_password($email,$student_id,$new_password){
 	// Cleans the text input into fields in html
@@ -11,18 +11,31 @@ function do_update_password($email,$student_id,$new_password){
 	$student_id = mysql_real_escape_string($student_id);
 	$new_password = mysql_real_escape_string($new_password);
 
+	//Checks to see if user exists in db and information is correct
 	$sql = "
-			UPDATE `user`
-			SET password = '$new_password';
-			WHERE email = '$email' AND student_id = '$student_id'
-	"; 
+			SELECT email, student_id
+			FROM `user`
+			WHERE email = '$email' AND
+			student_id = '$student_id'
+	";
 	$result = mysql_query($sql);
-	if (!$result) {
-		mysql_query('ROLLBACK');
+	if(mysql_num_rows($result)==0){
 		return FALSE;
 	}
 	else{
-		return TRUE;
+		$sql = "
+				UPDATE `user`
+				SET password = '$new_password'
+				WHERE email = '$email'
+		"; 
+		$result = mysql_query($sql);
+		if (!$result) {
+			mysql_query('ROLLBACK');
+			return FALSE;
+		}
+		else{
+			return TRUE;
+		}
 	}
 
 }
@@ -38,9 +51,11 @@ function do_post_message($thread_id, $creator,$text){
 	$message = nl2br($text);
 	$message = mysql_real_escape_string($message);
 
+	$new_time_stamp = date('Y-m-d H:i:s');
+
 	$sql = "
-		 	INSERT INTO `message`(`thread_id`,`creator`,`message_text`)
-		 	VALUES('$thread_id','$creator','$message')
+		 	INSERT INTO `message`(`thread_id`,`creator`,`message_text`,`date_created`)
+		 	VALUES('$thread_id','$creator','$message','$new_time_stamp')
 	";
 
 	$result = mysql_query($sql);

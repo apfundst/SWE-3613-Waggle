@@ -11,7 +11,7 @@ if($_POST['file_path']){
 	   	{
 	   		if (is_file($path)){
 	   				if(unlink($path)){
-				   		header('Location: http://www.waggle.myskiprofile.com/index.php');
+				   		header('Location: http://www.waggle.myskiprofile.com/group.php');
 			        		exit();
 			        }
 		        	else{

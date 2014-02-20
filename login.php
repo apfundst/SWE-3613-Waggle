@@ -1,4 +1,5 @@
 <?
+include 'other_funcs.php';
 ob_start();
 session_start();
 $error_message = null;
@@ -40,30 +41,43 @@ if ($_POST) {
         $last_name = $row['last_name'];
         //$error_message = $email . $first_name . $last_name;
         // Create session variables to use throughout login
-        
-        $_SESSION["email"] = $email;
-        $_SESSION["first_name"] = $first_name;
-        $_SESSION["last_name"] = $last_name;
-        unset($_SESSION['current_group_id']);
-        if($email == 'admin@spsu.edu')
-        {
-          header('Location: http://www.waggle.myskiprofile.com/admin.php');
-          exit();
-        }else{
+        $ban = do_get_ban_status($email);
+        if($ban == 0){
+          $error_message = "You can't login because you have been banned!";
+        }
+        else{
 
-        header('Location: http://www.waggle.myskiprofile.com/index.php');
-  exit();
-ob_flush();
-}
+        
+          $_SESSION["email"] = $email;
+          $_SESSION["first_name"] = $first_name;
+          $_SESSION["last_name"] = $last_name;
+          unset($_SESSION['current_group_id']);
+          /*if($email == 'admin@spsu.edu')
+          {
+            header('Location: http://www.waggle.myskiprofile.com/admin.php');
+            exit();
+          }*/
+
+          header('Location: http://www.waggle.myskiprofile.com/index.php');
+          exit();
+          ob_flush();
+        }
+
       }
     }
   }
+}
+if($_GET['err']){
+
+  $error_message = $_GET['err']!;
 }
 
 ?>
 <html>
   <head>
+     <link rel="stylesheet" type="text/css" href="css.css">
     <link rel="stylesheet" type="text/css" href="LOGIN/css.css">
+
   </head>
   <body>
   <!-- Create Logo at the top of the screen -->
@@ -96,6 +110,8 @@ ob_flush();
                 <input type="password" name="password" placeholder='Password' size="40" for="pass"><br>
                 <input type="submit" name="submit" value="Login">
               </form>
+                <a href="http://www.waggle.myskiprofile.com/password_reset.php">
+                <input type="button" value= "Forgot Password?"></a>
             </center>
           </div>
         </div>
