@@ -95,10 +95,19 @@ if($_SESSION['current_group_id']){
 }
 
 if ($_POST['new_message']) {
-  do_post_message($_SESSION['current_thread_id'], $_SESSION["email"], $_POST['new_message']);
-  //$current_url = '"http://www.waggle.myskiprofile.com/thread.php?thread_id='.$thread_id.'"';
-  header('Location: http://www.waggle.myskiprofile.com/thread.php');
-  exit();
+  $trimmed = trim($_POST['new_message']);
+  if(empty($trimmed))
+  {
+    // Its empty so throw a validation error
+    //DO NOTHING Maybe
+    //echo 'dope_sauce';
+  }
+  else{
+    do_post_message($_SESSION['current_thread_id'], $_SESSION["email"], $_POST['new_message']);
+    //$current_url = '"http://www.waggle.myskiprofile.com/thread.php?thread_id='.$thread_id.'"';
+    header('Location: http://www.waggle.myskiprofile.com/thread.php');
+    exit();
+  }
 }
 }
 ?>
