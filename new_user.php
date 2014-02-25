@@ -3,10 +3,10 @@ ob_start();
 session_start();
 include("other_funcs.php");
 
+$first_name = $_
 $email = $_POST["email"];
 $student_id = $_POST["student_id"];
-$password = $_POST["password"];
-$copy_password = $_POST["copy_password"];
+
 $error_message = null;
 
 if($password != $copy_password){

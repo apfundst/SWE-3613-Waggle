@@ -40,16 +40,16 @@ function do_update_password($email,$student_id,$new_password){
 
 }
 
-
-
-
 function do_post_message($thread_id, $creator,$text){
 	// needs to post message into database
 	// will require
 
 	// message_id, and date_created autogenerate
 	$message = nl2br($text);
-	//$message = strip_tags($text); //altered to prevent cross site and potential leak
+	//$message = strip_tags($text); //altered to prevent cross site and potential leak 
+	// ?? message or text to strip from??
+
+
 	$message = mysql_real_escape_string($message);
 
 	$new_time_stamp = date('Y-m-d H:i:s');
@@ -72,11 +72,14 @@ function do_post_message($thread_id, $creator,$text){
 
 function do_create_thread($group_id, $creator, $subject){
 
-	$scrubbed_subject = mysql_real_escape_string($subject);
+	$scrubbed_subject = strip_tags($subject);
+	$scrubbed_subject = mysql_real_escape_string($scrubbed_subject);
+
+	$new_time_stamp = date('Y-m-d H:i:s');
 
 	$sql = "
-		INSERT INTO `thread`(`group_id`,`creator`,`subject`)
-		VALUES('$group_id','$creator','$scrubbed_subject')
+		INSERT INTO `thread`(`group_id`,`creator`,`subject`,`last_update`,`date_created`)
+		VALUES('$group_id','$creator','$scrubbed_subject','$new_time_stamp','$new_time_stamp')
 	";
 	$result = mysql_query($sql);
 	if(!$result){
@@ -117,13 +120,16 @@ function do_create_group($email, $group_name, $group_description){
 
 	// NINJA EDIT: 3 Feb 2014 23:29 made 
 	//			   group_name unique
+	$scrubbed_group_name = strip_tags($group_name);
+	$scrubbed_group_name = mysql_real_escape_string($scrubbed_group_name);
 
-	$scrubbed_group_name = mysql_real_escape_string($group_name);
-	$scrubbed_group_description = mysql_real_escape_string($group_description);
-	
+	$scrubbed_group_description = strip_tags($group_description);
+	$scrubbed_group_description = mysql_real_escape_string($scrubbed_group_description);
+
+	$new_time_stamp = date('Y-m-d H:i:s');
 	$sql = "
-		   INSERT INTO `group`(`creator`,`group_name`,`group_description`)
-		   VALUES('$email','$scrubbed_group_name','$scrubbed_group_description')
+		   INSERT INTO `group`(`creator`,`group_name`,`group_description`,`last_update`,`date_created`)
+		   VALUES('$email','$scrubbed_group_name','$scrubbed_group_description','$new_time_stamp','$new_time_stamp')
 	";
 	$result = mysql_query($sql);
 	$temp_id = mysql_insert_id();
