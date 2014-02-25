@@ -49,7 +49,7 @@ function do_post_message($thread_id, $creator,$text){
 
 	// message_id, and date_created autogenerate
 	$message = nl2br($text);
-	$message = strip_tags($text) //altered to prevent cross site and potential leak
+	//$message = strip_tags($text); //altered to prevent cross site and potential leak
 	$message = mysql_real_escape_string($message);
 
 	$new_time_stamp = date('Y-m-d H:i:s');

@@ -19,6 +19,42 @@ function do_get_thread_subject($thread_id){
     die;
 }
 
+function do_get_thread_creator($thread_id){
+	$sql = "
+		   SELECT creator
+		   FROM `thread`
+		   WHERE '$thread_id' = thread_id	
+	";
+	$result = mysql_query($sql);
+	if(mysql_num_rows($result)==0){
+		return NULL;
+	}
+	else{
+       	// Get the information from the result set
+		$row = mysql_fetch_array($result);
+    	return $row['creator'];
+    }
+    die;
+}
+function do_get_thread_last_update($thread_id){
+	$sql = "
+		   SELECT last_update
+		   FROM `thread`
+		   WHERE '$thread_id' = thread_id	
+	";
+	$result = mysql_query($sql);
+	if(mysql_num_rows($result)==0){
+		return NULL;
+	}
+	else{
+       	// Get the information from the result set
+		$row = mysql_fetch_array($result);
+    	return $row['last_update'];
+    }
+    die;
+}
+
+
 function do_get_creator($group_id){
 
 	$sql = "

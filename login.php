@@ -69,7 +69,7 @@ if ($_POST) {
 }
 if($_GET['err']){
 
-  $error_message = $_GET['err']!;
+  $error_message = $_GET['err'];
 }
 
 ?>
@@ -112,6 +112,8 @@ if($_GET['err']){
               </form>
                 <a href="http://www.waggle.myskiprofile.com/password_reset.php">
                 <input type="button" value= "Forgot Password?"></a>
+                <a href="http://www.waggle.myskiprofile.com/new_user.php">
+                <input type="button" value= "New User sign up"></a>
             </center>
           </div>
         </div>
