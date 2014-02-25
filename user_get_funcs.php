@@ -450,7 +450,7 @@ function do_get_number_of_posts($thread_id)
     }
 }
 //probably super broken..... need to figure out what actually needs to display, then return that
-function do_get_unbanned_users($group_id)
+function do_get_unbanned_group_members($group_id)
 {
 	//Need to check if the group creator in HTML??
 	$sql = "
