@@ -499,7 +499,7 @@ function do_get_group_last_update($group_id)
 	";
 	$result = mysql_query($sql);
 	if(mysql_num_rows($result)==0){
-		return NULL;
+		return FALSE;
 	}
 	else{
 		$row = mysql_fetch_array($result);
