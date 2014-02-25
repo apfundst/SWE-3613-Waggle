@@ -8,8 +8,8 @@
   		echo '<li><a href="group.php">Group Home</a></li>';
   		}
 	 ?>
-    <li><a href="admin.php">Admin Control Panel</a></li>
     <li><a href="index.php">Home</a></li>
+    <li><a href="admin.php">Admin Control Panel</a></li>
     <li><a href="logout.php">Log Out</a></li>
   </ul>
   <span style="color: white;">Logged in: </span><a href="#" style="color:white;"><?=do_get_name($_SESSION['email'])?></a>
