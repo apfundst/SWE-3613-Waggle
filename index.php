@@ -34,9 +34,11 @@ else
       if($group_status == 1){
         $name = do_get_name($things[2]);
       //document.getElementById("frmUserList").submit();
+        $groups_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">'
         $groups_html .= '<form enctype="multipart/form-data" action="group.php" method="post">
-                            <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="homeListItem" value="';
-        $groups_html .= $things[1] . '          --     Created by:  '. $name.'"/></form>';
+                            <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="table_contents" value="';
+        $groups_html .= $things[1] . '"/></form></td><td id="side_data_s">5</td><td id="side_data_l">'.$name.'</td>
+    </tr>';
       
       }
     } 
@@ -80,9 +82,28 @@ else{
     font-size: 15px; "><a href="new_group.php">Create New Group</a></div></div>
     <div class="panel-body">
 
-<ul >
-   <?=$groups_html ?>
-  </ul>
+      <table id="goups_background">
+        <thead>
+        <tr class="tr_non_clickable"id="goups_background">
+        <th id="main_data" style="background-color:#222;color:white;">
+        Group Name
+
+        </th>
+        <th id="side_data_s" style="background-color:#222;color:white;">
+        Number of Members
+        </th>
+        <th id="side_data_l" style="background-color:#222;color:white;">
+        Creator
+        </th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+        <?=$groups_html ?>
+        </tbody>
+    </table>
+  
 
  </div>
   </div>
