@@ -34,7 +34,7 @@ else
       if($group_status == 1){
         $name = do_get_name($things[2]);
       //document.getElementById("frmUserList").submit();
-        $groups_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">'
+        $groups_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">';
         $groups_html .= '<form enctype="multipart/form-data" action="group.php" method="post">
                             <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="table_contents" value="';
         $groups_html .= $things[1] . '"/></form></td><td id="side_data_s">5</td><td id="side_data_l">'.$name.'</td>
@@ -110,7 +110,7 @@ else{
   
 </div>
 </div>
-<div style="color:#f8f8f8">linkware: <a href="http://www.visualpharm.com">here</a>
+<div style="color:#f8f8f8">linkware: <a style="color:#f8f8f8"  href="http://www.visualpharm.com">here</a>
 </div>
 </div>
 
