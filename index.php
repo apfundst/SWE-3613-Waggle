@@ -33,11 +33,14 @@ else
       $group_status = do_get_group_ban_status($things[0]);
       if($group_status == 1){
         $name = do_get_name($things[2]);
+        $member_number = do_get_number_group_members($things[0]);
+        $thread_number = do_get_number_of_threads($things[0]);
+        $last_updated = do_get_group_last_update($things[0]);
       //document.getElementById("frmUserList").submit();
         $groups_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">';
         $groups_html .= '<form enctype="multipart/form-data" action="group.php" method="post">
                             <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="table_contents" value="';
-        $groups_html .= $things[1] . '"/></form></td><td id="side_data_s">5</td><td id="side_data_l">'.$name.'</td>
+        $groups_html .= $things[1] . '"/></form></td><td id="side_data_s">'.$thread_number.'</td><td id="side_data_s">'.$member_number.'</td><td id="side_data_l">'.$name.'</td><td id="side_data_s">'.$last_updated.'</td>
     </tr>';
       
       }
@@ -90,10 +93,17 @@ else{
 
         </th>
         <th id="side_data_s" style="background-color:#222;color:white;">
+        Number of Threads
+        </th>
+        <th id="side_data_s" style="background-color:#222;color:white;">
         Number of Members
         </th>
+
         <th id="side_data_l" style="background-color:#222;color:white;">
         Creator
+        </th>
+        <th id="side_data_s" style="background-color:#222;color:white;">
+        Last Updated
         </th>
         </tr>
         </thead>
