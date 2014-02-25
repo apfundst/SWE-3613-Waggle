@@ -2,6 +2,7 @@
 session_start();
 ob_start();
 include_once('connection.php');
+date_default_timezone_set('US/EASTERN');
 
 function rename_file($file_name, $counter)
   {
@@ -77,12 +78,13 @@ function rename_file($file_name, $counter)
     }
   }
 
-  function upload_to_database($thread_id, $fileNamePath, $creator, $file_name, $file_size)
+  function upload_to_database($group_id, $fileNamePath, $creator, $file_name, $file_size)
   {
     //*****************
+     $new_time_stamp = date('Y-m-d H:i:s');
       $sql = "
-          INSERT INTO `file`(`group_id`,`file_name_path`,`creator`, `file_name`, `file_size`)
-          VALUES('$thread_id','$fileNamePath','$creator', '$file_name', '$file_size')
+          INSERT INTO `file`(`group_id`,`file_name_path`,`creator`, `file_name`, `file_size`,`date_created`)
+          VALUES('$group_id','$fileNamePath','$creator', '$file_name', '$file_size','$new_time_stamp')
       ";
 
       $result = mysql_query($sql);
@@ -91,8 +93,8 @@ function rename_file($file_name, $counter)
         mysql_query('ROLLBACK');
         return "Invalid query: " .mysql_error();
       }
-      else
-      {
+      else{
+        mysql_query(" UPDATE `group` SET last_update = '$new_time_stamp' WHERE group_id = '$group_id' ");
         return $result;
       }
     //***************

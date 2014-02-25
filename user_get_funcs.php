@@ -53,6 +53,22 @@ function do_get_thread_last_update($thread_id){
     }
     die;
 }
+function do_get_file_date_created($file_id){
+	$sql = "
+		   SELECT date_created
+		   FROM `file`
+		   WHERE file_id = '$file_id'	
+	";
+	$result = mysql_query($sql);
+	if(mysql_num_rows($result)==0){
+		return NULL;
+	}
+	else{
+		$row = mysql_fetch_array($result);
+    	return $row['date_created'];
+    }
+    die;
+}
 
 
 function do_get_creator($group_id){
@@ -291,7 +307,7 @@ function do_get_files($group_id){
 		   SELECT * 
 		   FROM `file`
 		   WHERE '$group_id' = group_id
-		   ORDER BY date_created ASC		
+		   ORDER BY date_created DESC		
 	";
 	$result = mysql_query($sql);
 		if(!$result){
@@ -531,7 +547,7 @@ function do_get_group_last_update($group_id)
 	$sql = "
 		SELECT last_update
 		FROM `group`
-		WHERE 'group_id' = $group_id
+		WHERE group_id = '$group_id'
 	";
 	$result = mysql_query($sql);
 	if(mysql_num_rows($result)==0){

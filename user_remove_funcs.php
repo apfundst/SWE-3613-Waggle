@@ -55,7 +55,6 @@ function do_edit_message($message_id, $new_text){
 	$new_text = strip_tags($new_text, '<br>');
 	$new_text =  mysql_real_escape_string($new_text);
 	
-
 	$sql = "
 		UPDATE `message`
 		SET message_text = '$new_text', date_edited = '$new_time_stamp'
@@ -67,6 +66,17 @@ function do_edit_message($message_id, $new_text){
 		return FALSE;
 	}
 	else{
+		$other_result_thread = mysql_query(" SELECT thread_id FROM `message` WHERE message_id = '$message_id' "); 
+		$row = mysql_fetch_assoc($other_result_thread);
+     	$thread_id = $row['thread_id'];
+
+     	$other_result_group = mysql_query(" SELECT group_id FROM `thread` WHERE thread_id = '$thread_id' "); 
+		$row = mysql_fetch_assoc($other_result_group);
+     	$group_id = $row['group_id'];
+
+		mysql_query(" UPDATE `thread` SET last_update = '$new_time_stamp' WHERE thread_id = '$thread_id' ");
+		mysql_query(" UPDATE `group` SET last_update = '$new_time_stamp' WHERE group_id = '$group_id' ");
+		
 		return TRUE;
 	}
 }

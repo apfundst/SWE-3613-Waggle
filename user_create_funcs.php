@@ -46,10 +46,7 @@ function do_post_message($thread_id, $creator,$text){
 
 	// message_id, and date_created autogenerate
 	$message = nl2br($text);
-	//$message = strip_tags($text); //altered to prevent cross site and potential leak 
-	// ?? message or text to strip from??
-
-
+	$message = strip_tags($message,'<br>'); //altered to prevent cross site and potential leak 
 	$message = mysql_real_escape_string($message);
 
 	$new_time_stamp = date('Y-m-d H:i:s');
@@ -65,6 +62,12 @@ function do_post_message($thread_id, $creator,$text){
 		return FALSE;
 	}
 	else{
+		mysql_query(" UPDATE `thread` SET last_update = '$new_time_stamp' WHERE thread_id = '$thread_id' ");
+		$other_result = mysql_query(" SELECT group_id FROM `thread` WHERE thread_id = '$thread_id' "); 
+		$row = mysql_fetch_assoc($other_result);
+     	$group_id = $row['group_id'];
+		mysql_query(" UPDATE `group` SET last_update = '$new_time_stamp' WHERE group_id = '$group_id' ");
+
 		return TRUE;
 	}
 }
@@ -87,6 +90,7 @@ function do_create_thread($group_id, $creator, $subject){
 		return FALSE;
 	}
 	else{
+		mysql_query(" UPDATE `group` SET last_update = '$new_time_stamp' WHERE group_id = '$group_id' ");
 		return mysql_insert_id();
 	}
 }
