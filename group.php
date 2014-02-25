@@ -158,11 +158,14 @@ else
         $files_html='';
         foreach($current_files as $files)
         {
-          $file_creator = do_get_file_creator($files[2]);
+         $file_creator = do_get_file_creator($files[2]);
           $file_creator_name = do_get_name($file_creator);
-          $files_html .= '<tr class="tr_clickable" id="goups_background" ><td id="main_data" ><a href="'.$files[2].'" download="'.$files[3].'"id="table_contents">'.$files[3].'</a></td>';
-          $files_html .= '<td id="side_data_s"> '.$files[4].'</td>';
+          $file_created_date = do_get_file_date_created($files[0]);
+          $files_html .= '<tr class="tr_clickable" id="goups_background" ><td id="main_data" ><a href="'.$files[2].'" download="'.$files[3].'"id="table_contents_file">'.$files[3].'</a></td>';
+          $files_html .= '<td id="side_data_l"> '.$files[4].'</td>';
           $files_html .= '<td id="side_data_l">'.$file_creator_name.'</td>';
+          $files_html .= '<td id="side_data_l">'.$file_created_date.'</td>';
+
           if($file_creator == $_SESSION['email'] || $_SESSION['email'] == $_SESSION['current_group_creator'] || $_SESSION['is_admin'] == 1){  //add admin to this function checking
              $files_html .= '<td id="side_data_s"><form action="delete_file.php" method="post">
                               <input type="hidden" name="file_path" value="'.$files[2].'">
@@ -247,9 +250,12 @@ else
         {
           $file_creator = do_get_file_creator($files[2]);
           $file_creator_name = do_get_name($file_creator);
-          $files_html .= '<tr class="tr_clickable" id="goups_background" ><td id="main_data" ><a href="'.$files[2].'" download="'.$files[3].'"id="table_contents">'.$files[3].'</a></td>';
-          $files_html .= '<td id="side_data_s"> '.$files[4].'</td>';
+          $file_created_date = do_get_file_date_created($files[0]);
+          $files_html .= '<tr class="tr_clickable" id="goups_background" ><td id="main_data" ><a href="'.$files[2].'" download="'.$files[3].'"id="table_contents_file">'.$files[3].'</a></td>';
+          $files_html .= '<td id="side_data_l"> '.$files[4].'</td>';
           $files_html .= '<td id="side_data_l">'.$file_creator_name.'</td>';
+          $files_html .= '<td id="side_data_l">'.$file_created_date.'</td>';
+
           if($file_creator == $_SESSION['email'] || $_SESSION['email'] == $_SESSION['current_group_creator'] || $_SESSION['is_admin'] == 1){  //add admin to this function checking
              $files_html .= '<td id="side_data_s"><form action="delete_file.php" method="post">
                               <input type="hidden" name="file_path" value="'.$files[2].'">
@@ -288,9 +294,12 @@ else{
 } 
 ?>
 <div class="row">
-<div class="col-lg-8"><div class="group-name"><h1><?=$current_group_name?> </h1>
+<div class="col-lg-8">
+<div class="group_page_title">
+<div class="group-name"><h1 style="color:white;"><?=$current_group_name?> </h1>
 <div class="groupDesc"><?=do_get_group_description($_SESSION['current_group_id']) ?></div>
 </div></div>
+</div>
 <div class="col-lg-4">
   <div class="panel panel-default">
         <div class="panel-heading">Group Information</div>
@@ -301,7 +310,7 @@ else{
 </div>
 </div>
 <div class="row" style="min-width:700px;">
-<div class="col-lg-6">
+<div class="col-lg-7">
 <div class="panel panel-default">
     <div class="panel-heading">Disscusion Threads
   <div style="
@@ -349,11 +358,12 @@ else{
 
 
 
-<div class="col-lg-6">
+<div class="col-lg-5">
   
   <div class="panel panel-default">
     <div class="panel-heading">Files</div>
     <div class="panel-body">
+    <div class="scroll_table_files">
     <table id="goups_background">
         <thead>
         <tr class="tr_non_clickable"id="goups_background">
@@ -371,12 +381,21 @@ else{
         <th id="side_data_s" style="background-color:#222;color:white;">
         Date Uploaded
         </th>
+        <th id="side_data_s" style="background-color:#222;color:white;">
+        Options
+        </th>
         </tr>
         </thead>
-        <tbody>
+
+    
+    
+        
+        <tbody >
         <?=$files_html; ?>
         </tbody>
+        
     </table>
+    </div>
    
     <form action="fileupload.php" method="post" enctype="multipart/form-data"><label for="file">Filename:</label>
       <input type="file" name="file" id="file"><br>
