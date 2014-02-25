@@ -198,6 +198,81 @@ border: 1px solid #ddd;
   margin-left: 20px
 
 }
+/*added --Used for other data--*/
+#side_data_s{
+  text-align: left;
+  position: relative;
+  width: 4%;
+  padding: 10px;
+  margin-bottom: -1px;
+  background-color: none;
+  border-collapse:collapse;
+  color: #444444;
+}
+/*added --Used for other data--*/
+#side_data_m{
+  text-align: left;
+  position: relative;
+  width: 6%;
+  padding: 10px;
+  margin-bottom: -1px;
+  background-color: none;
+  border-collapse:collapse;
+  color: #444444;
+}
+/*added --Used for other data--*/
+#side_data_l{
+  text-align: left;
+  position: relative;
+  width: 10%;
+  padding: 10px;
+  margin-bottom: -1px;
+  background-color: none;
+  border-collapse:collapse;
+  color: #444444;
+}
+/*added --Used for the main data coming in--*/
+#main_data{
+  text-align: left;
+  position: relative;
+  width: 60%;
+  padding: 10px;
+  margin-bottom: -1px;
+  background-color: none;
+  border: none;
+  color: #444444;
+}
+/*added --Used for the individual forms--*/
+#table_contents{
+background:none;
+border:none;
+color:#444444;
+text-decoration:underline;
+cursor:pointer;
+}
+/*added --Used for the data rows--*/
+#goups_background{
+  padding:0px;
+  margin-bottom: -1px;
+  background-color: none;
+  border: 1px solid #ddd;
+  color: #444444;
+  width:100%;
+}
+/*added --Used for the data rows--*/
+.tr_clickable{
+background-color:#ecf0f1;
+}
+/*added --Used for the data rows--*/
+.tr_clickable:hover{
+	background-color: #0cb270;
+	cursor:pointer;
+	cursor:hand;
+}
+/*added --Used for the data rows--*/
+.tr_non_clickable{
+background-color:#ecf0f1;
+}
 #input_a{
   text-align: left;
   position: relative;
