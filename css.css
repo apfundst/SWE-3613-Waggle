@@ -60,6 +60,7 @@ body {
 }
 .col-lg-4, .col-lg-8,  .col-lg-12 {
     float: left;
+	min-width:300px;
   }
 .col-lg-12 {
     width: 100%;

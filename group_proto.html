@@ -1,0 +1,86 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Waggle | Student Solution</title>
+<link rel="stylesheet" type="text/css" href="css.css">
+</head>
+
+ 
+<body>
+  <!-- Take $Get group id-->
+
+<nav class="navbar-default navbar" role="navigation">
+<a href="index.php">
+<img class="logoImg"src="LOGOWAGGLEv3.3.png" height="75"></a>
+
+<div style="float: right;">
+  <ul>
+      <li><a href="index.php">Home</a></li>
+    <li><a href="logout.php">Log Out</a></li>
+  </ul>
+  <span style="color: white;">Logged in: </span><a href="#" style="color:white;">Mitchell Kelleher</a>
+</div>
+</nav>
+
+<div class="col-lg-12">
+<div class = "panel-heading" style="margin-bottom:10px;min-width:700px;">
+<div class="group-name"><h1>Le Herpes Derpes  </h1>
+<div class="groupDesc">Got the Herpes? Then it's all Derpes!   
+        </div>
+</div>
+</div>
+</div>
+
+<div class="row" style="margin:15px;background-color:#0cb270;width:100%;min-width:700px;">
+<div class="col-lg-8">
+<div class="panel panel-default">
+    <div class="panel-heading">Disscusion Threads
+	<div style="
+    float:right;
+    display: inline;
+    border: 1px solid #ddd;
+    background-color: #ecf0f1;
+    padding: 3px;
+    color:white;
+    margin-right: 20px;
+    font-size: 15px; "><a href="new_thread.php">Create New Thread</a></div></div>
+    <div class="panel-body">
+    <form enctype="multipart/form-data" action="thread.php" method="post">
+                              <input type="hidden" name="thread_id" value="29">
+                              <input type="submit" name="submit" id="input_a" value="Get your herp on"/></form>   
+    </div>
+  </div>
+</div>
+<div class="col-lg-4">
+<div class="panel panel-default">
+    <div class="panel-heading">Group Information</div>
+    <div class="panel-body">
+   <form action="leave_group.php" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="group_id" value="40">
+                            <input type="submit" name="submit" value="Leave Group">
+                            </form><p>Group Members:<br>Justin Cathcart<br>Peter Finn<br>Andrew Pfundstein<br>Mitchell Kelleher<br></p>     </div>
+  </div>
+
+<div>linkware: <a style="color:white;" href="http://www.visualpharm.com">here</a>
+</div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Files</div>
+    <div class="panel-body">
+    <a href="upload/brokenv0.png" download="brokenv0.png"id="fileListItem">brokenv0.png 7.19 kB   Created by: jcathcar@spsu.edu</a>    <form action="fileupload.php" method="post" enctype="multipart/form-data"><label for="file">Filename:</label>
+      <input type="file" name="file" id="file"><br>
+      <input type="submit" name="submit" value="Submit">
+    </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Inconsolata">
+
+</body>
+</html>
+
+
+
