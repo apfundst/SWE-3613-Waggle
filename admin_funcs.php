@@ -227,8 +227,8 @@ function do_admin_return_unbanned_users()
 {
 	$sql = "
 		SELECT email, first_name, last_name
-		WHERE 'authorized' = '1'
 		FROM `user`
+		WHERE 'authorized' = '1'
 	";
 	$result = mysql_query($sql);
 	if(!$result){
@@ -248,8 +248,8 @@ function do_admin_return_banned_users()
 {
 	$sql = "
 		SELECT email, first_name, last_name
-		WHERE 'authorized' = '1'
 		FROM `user`
+		WHERE 'authorized' = '1'
 	";
 	$result = mysql_query($sql);
 	if(!$result){
