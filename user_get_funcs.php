@@ -502,7 +502,7 @@ function do_get_group_last_update($group_id)
 		return FALSE;
 	}
 	else{
-		$row = mysql_fetch_array($result);
+		$row = mysql_fetch_assoc($result);
     	return $row['last_update'];
     }
     die;
