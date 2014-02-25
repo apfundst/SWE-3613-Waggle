@@ -369,5 +369,143 @@ function do_get_group_ban_status($group_id){
     }
     die;
 }
+//*******added, needs testing
+function do_get_number_group_members($group_id)
+{
+	$sql = "
+		   SELECT email
+		   FROM `membership`
+		   WHERE '$group_id' = group_id	
+		";
+	$result = mysql_query($sql);
+	if(!$result){
+		die("Invalid query: " .mysql_error());
+	}	
+	else{
+		$i = 0;
+     	while($row = mysql_fetch_row($result)){
+     		$i++; 
+     	}
+    	return $i;
+    }
+}
+
+function do_get_number_of_threads($group_id)
+{
+	$sql = "
+		   SELECT thread_id
+		   FROM `thread`
+		   WHERE '$group_id' = group_id	
+		";
+	$result = mysql_query($sql);
+	if(!$result){
+		die("Invalid query: " .mysql_error());
+	}	
+	else{
+		$i = 0;
+     	while($row = mysql_fetch_row($result)){
+     		$i++; 
+     	}
+    	return $i;
+    }
+}
+
+function do_get_number_of_files($group_id)
+{
+	$sql = "
+		   SELECT file_id
+		   FROM `file`
+		   WHERE '$group_id' = group_id	
+		";
+	$result = mysql_query($sql);
+	if(!$result){
+		die("Invalid query: " .mysql_error());
+	}	
+	else{
+		$i = 0;
+     	while($row = mysql_fetch_row($result)){
+     		$i++; 
+     	}
+    	return $i;
+    }
+}
+
+function do_get_number_of_posts($thread_id)
+{
+	$sql = "
+		   SELECT message_id
+		   FROM `message`
+		   WHERE '$thread_id' = thread_id	
+		";
+	$result = mysql_query($sql);
+	if(!$result){
+		die("Invalid query: " .mysql_error());
+	}	
+	else{
+		$i = 0;
+     	while($row = mysql_fetch_row($result)){
+     		$i++; 
+     	}
+    	return $i;
+    }
+}
+//probably super broken..... need to figure out what actually needs to display, then return that
+function do_get_unbanned_users($group_id)
+{
+	//Need to check if the group creator in HTML??
+	$sql = "
+		SELECT email, first_name, last_name
+		FROM `user`
+		WHERE 'authorized' = '1'
+	";
+	$result = mysql_query($sql);
+	if(!$result){
+		die("Invalid query: " .mysql_error());
+	}	
+	else{
+		$i = 0;
+     	while($row = mysql_fetch_row($result)){
+     		$data[$i] = $row;
+     		$i++; 
+     	}
+    	return $data;
+    }
+}
+
+function do_set_new_group_update($group_id)
+{
+	$new_time_stamp = date('Y-m-d H:i:s');
+	$sql = " 
+			UPDATE `group` 
+			SET last_update = '$new_time_stamp' 
+			WHERE group_id = '$group_id'
+			";
+	$result = mysql_query($sql);
+	if (!$result) {
+		mysql_query('ROLLBACK');
+		return FALSE;
+	}
+	else{
+		return TRUE;
+	}
+}
+
+function do_get_group_last_update($group_id)
+{
+	$sql = "
+		SELECT last_update
+		FROM `group`
+		WHERE 'group_id' = $group_id
+	";
+	$result = mysql_query($sql);
+	if(mysql_num_rows($result)==0){
+		return NULL;
+	}
+	else{
+		$row = mysql_fetch_array($result);
+    	return $row['last_update'];
+    }
+    die;
+}
 
 ?>

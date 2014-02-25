@@ -223,4 +223,46 @@ function do_admin_remove_admin($email) {
 	}
 }
 
+function do_admin_return_unbanned_users()
+{
+	$sql = "
+		SELECT email, first_name, last_name
+		WHERE 'authorized' = '1'
+		FROM `user`
+	";
+	$result = mysql_query($sql);
+	if(!$result){
+		die("Invalid query: " .mysql_error());
+	}	
+	else{
+		$i = 0;
+     	while($row = mysql_fetch_row($result)){
+     		$data[$i] = $row;
+     		$i++; 
+     	}
+    	return $data;
+    }
+}
+
+function do_admin_return_banned_users()
+{
+	$sql = "
+		SELECT email, first_name, last_name
+		WHERE 'authorized' = '1'
+		FROM `user`
+	";
+	$result = mysql_query($sql);
+	if(!$result){
+		die("Invalid query: " .mysql_error());
+	}	
+	else{
+		$i = 0;
+     	while($row = mysql_fetch_row($result)){
+     		$data[$i] = $row;
+     		$i++; 
+     	}
+    	return $data;
+    }
+}
+
 ?>
