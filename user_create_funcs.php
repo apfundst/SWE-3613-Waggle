@@ -91,7 +91,7 @@ function do_create_thread($group_id, $creator, $subject){
 	}
 	else{
 		mysql_query(" UPDATE `group` SET last_update = '$new_time_stamp' WHERE group_id = '$group_id' ");
-		return mysql_insert_id();
+		return TRUE;
 	}
 }
 
