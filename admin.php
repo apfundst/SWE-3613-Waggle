@@ -7,6 +7,10 @@ if(!isset($_SESSION["email"]))
   header('Location: http://www.waggle.myskiprofile.com/login.php');
   exit();
 }
+elseif ($_SESSION["is_admin"] != 1) {
+  header('Location: http://www.waggle.myskiprofile.com/index.php');
+  exit();
+}
 else
 {
   $_SESSION['current_group_id'] = '';
@@ -72,15 +76,8 @@ else
                 <input type="submit" name="submit" value="Un-Ban User">
                 
           </form>
-    </div>
-</div>
-</div>
 
-<div class="col-lg-4">
-<div class="panel panel-default">
-    <div class="panel-heading">Ban Groups/Unban Groups</div>
-    <div class="panel-body">
-      <!-- have a list of groups, check boxes, delete selected button -->
+          <!-- have a list of groups, check boxes, delete selected button -->
           <br><p>Ban Groups:</p>
           <form action="ban_group.php" method="post" enctype="multipart/form-data">
                 <input type="text" name="group_id" maxlength="20">
@@ -92,6 +89,15 @@ else
                 <input type="text" name="group_id" maxlength="20">
                 <input type="submit" name="submit" value="Un-Ban Group">     
           </form>
+    </div>
+</div>
+</div>
+
+<div class="col-lg-4">
+<div class="panel panel-default">
+    <div class="panel-heading">Ban Groups/Unban Groups</div>
+    <div class="panel-body">
+      
     </div>
 </div>
 </div>
