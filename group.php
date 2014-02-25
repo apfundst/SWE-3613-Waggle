@@ -201,10 +201,13 @@ else
 
         foreach($current_threads as $things)
         {
-          $threads_html .= '<form enctype="multipart/form-data" action="thread.php" method="post">
+          $post_number = do_get_number_of_posts($things[0]);
+          $thread_creator = do_get_thread_creator($things[0]);
+          $thread_updated = do_get_thread_last_update($things[0]);
+          $threads_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data"><form enctype="multipart/form-data" action="thread.php" method="post">
                               <input type="hidden" name="thread_id" value="'. $things[0] . '">
-                              <input type="submit" name="submit" id="input_a" value="';
-          $threads_html .= $things[3] . '"/></form>';
+                              <input type="submit" name="submit" id="table_contents" value="';
+          $threads_html .= $things[3] . '"/></form></td><td id="side_data_s">'.$post_number.'</td><td id="side_data_l">'.$thread_creator.'</td><td id="side_data_s">'.$thread_updated.'</td></tr>';
 
         }
       }
@@ -260,7 +263,56 @@ else{
 <div class="col-lg-12"><div class="group-name"><h1><?=$current_group_name?> </h1>
 <div class="groupDesc"><?=do_get_group_description($_SESSION['current_group_id']) ?></div>
 </div></div>
-<div class="row">
+
+<div class="row" style="margin:15px;background-color:#0cb270;width:100%;min-width:700px;">
+<div class="col-lg-8">
+<div class="panel panel-default">
+    <div class="panel-heading">Disscusion Threads
+  <div style="
+    float:right;
+    display: inline;
+    border: 1px solid #ddd;
+    background-color: #ecf0f1;
+    padding: 3px;
+    color:white;
+    margin-right: 20px;
+    font-size: 15px; "><a href="new_thread.php">Create New Thread</a></div></div>
+    <div class="panel-body">
+    <table id="goups_background">
+        <thead>
+        <tr class="tr_non_clickable"id="goups_background">
+        <th id="main_data" style="background-color:#222;color:white;">
+        Thread Name
+
+        </th>
+        <th id="side_data_s" style="background-color:#222;color:white;">
+        Number of Posts
+        </th>
+
+        <th id="side_data_l" style="background-color:#222;color:white;">
+        Creator
+        </th>
+        <th id="side_data_s" style="background-color:#222;color:white;">
+        Last Updated
+        </th>
+        </tr>
+        </thead>
+        <tbody>
+        <?=$threads_html ?>
+        </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
 <div class="col-lg-4">
   
   <div class="panel panel-default">
@@ -273,8 +325,14 @@ else{
     </form>
     </div>
   </div>
+  <div class="panel panel-default">
+        <div class="panel-heading">Group Information</div>
+        <div class="panel-body">
+       <?=$group_setting_html;?>
+        </div>
+      </div>
 </div>
-<div class="col-lg-4">
+<!--<div class="col-lg-4">
 <div class="panel panel-default">
     <div class="panel-heading">Disscusion Threads<div style="
     float:right;
@@ -294,17 +352,17 @@ else{
 <div>linkware: <a style="color:white;" href="http://www.visualpharm.com">here</a>
 </div>
 </div>
-<div class="col-lg-4">
-<div class="panel panel-default">
-    <div class="panel-heading">Group Information</div>
-    <div class="panel-body">
-   <?=$group_setting_html;?>
-    </div>
-  </div>
+  <div class="col-lg-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">Group Information</div>
+        <div class="panel-body">
+       <?=$group_setting_html;?>
+        </div>
+      </div>
 
-<div>linkware: <a style="color:white;" href="http://www.visualpharm.com">here</a>
-</div>
-</div>
+    <div>linkware: <a style="color:white;" href="http://www.visualpharm.com">here</a>
+    </div>
+  </div>-->
 </div>
 
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Inconsolata">
