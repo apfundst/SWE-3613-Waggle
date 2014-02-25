@@ -220,7 +220,7 @@ else
         foreach($current_threads as $things)
         {
           $post_number = do_get_number_of_posts($things[0]);
-          $thread_creator = do_get_thread_creator($things[0]);
+          $thread_creator = do_get_name(do_get_thread_creator($things[0]));
           $thread_updated = do_get_thread_last_update($things[0]);
           $threads_html .= '<tr class="tr_clickable" id="goups_background" >
                             <td id="main_data" >
@@ -323,6 +323,7 @@ else{
     margin-right: 20px;
     font-size: 15px; "><a href="new_thread.php">Create New Thread</a></div></div>
     <div class="panel-body">
+    <div class="scroll_table_files">
     <table id="goups_background">
         <thead>
         <tr class="tr_non_clickable"id="goups_background">
@@ -346,6 +347,7 @@ else{
         <?=$threads_html ?>
         </tbody>
     </table>
+    </div>
     </div>
     </div>
     </div>

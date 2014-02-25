@@ -250,6 +250,7 @@ border: 1px solid #ddd;
 }
 /*added --Used for the main data coming in--*/
 #main_data{
+  font-family: 'Inconsolata', serif;
   text-align: left;
   position: relative;
   width: 60%;
@@ -278,10 +279,13 @@ cursor:pointer;
   width:100%;
 }
 /*added --Used for the data rows--*/
+
 .tr_clickable{
 background-color:#ecf0f1;
 }
-
+table{
+  font-family: 'Inconsolata', serif;
+}
 /*added --Used for the data rows--
 .tr_clickable:hover{
 	background-color: #0cb270;
