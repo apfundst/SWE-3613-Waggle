@@ -33,14 +33,12 @@ else
       $group_status = do_get_group_ban_status($things[0]);
       if($group_status == 1){
         $name = do_get_name($things[2]);
-      
+      //document.getElementById("frmUserList").submit();
         $groups_html .= '<form enctype="multipart/form-data" action="group.php" method="post">
                             <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="homeListItem" value="';
         $groups_html .= $things[1] . '          --     Created by:  '. $name.'"/></form>';
       
       }
-      
-     
     } 
   }
 }
