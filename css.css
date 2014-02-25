@@ -58,16 +58,22 @@ body {
   margin-right: 15px;
   margin-left: 15px;
 }
-.col-lg-4, .col-lg-8,  .col-lg-12 {
+.col-lg-4, .col-lg-8,  .col-lg-12, .col-lg-6 {
     float: left;
-	min-width:300px;
+	
   }
 .col-lg-12 {
     width: 100%;
+    min-width:700px;
   }
   
 .col-lg-8 {
     width: 66.66666666666666%;
+    min-width:400px;
+  }
+  .col-lg-6 {
+    width: 50%;
+    min-width:300px;
   }
 /*Added this*/
 .group {
@@ -78,6 +84,7 @@ padding-right: 15px
   
 .col-lg-4 {
     width: 33.33333333333333%;
+    min-width:200px;
   }
  
 .navbar {
@@ -247,6 +254,7 @@ border: 1px solid #ddd;
 #table_contents{
 background:none;
 border:none;
+font-size: 20px;
 color:#444444;
 text-decoration:underline;
 cursor:pointer;
@@ -264,16 +272,18 @@ cursor:pointer;
 .tr_clickable{
 background-color:#ecf0f1;
 }
-/*added --Used for the data rows--*/
+
+/*added --Used for the data rows--
 .tr_clickable:hover{
 	background-color: #0cb270;
 	cursor:pointer;
 	cursor:hand;
 }
-/*added --Used for the data rows--*/
+added --Used for the data rows--*/
 .tr_non_clickable{
 background-color:#ecf0f1;
 }
+
 #input_a{
   text-align: left;
   position: relative;
