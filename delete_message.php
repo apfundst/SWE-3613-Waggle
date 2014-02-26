@@ -12,7 +12,7 @@ else{
 		if($return_bool == TRUE){
 			header('Location: http://www.waggle.myskiprofile.com/thread.php');
 	  		exit();
-	  		echo "holocaust";
+	  		
 	  		ob_flush();
 		}
 		else{

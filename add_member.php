@@ -12,7 +12,8 @@ if($_POST['group_id'] && $_POST['member_email']){
   exit();
 	}
 	else{
-		echo "mucho errors. Please contact the web admin!";
+		header('Location: http://www.waggle.myskiprofile.com/error/error.php?err=Member%20Not%20Added%20Please%20contact%20the%20web%20admin');
+		exit(); 
 	}
 
 

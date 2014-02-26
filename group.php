@@ -365,6 +365,13 @@ else{
   <div class="panel panel-default">
     <div class="panel-heading">Files</div>
     <div class="panel-body">
+    <h4>Upload A File:</h4>
+    <form action="fileupload.php" method="post" enctype="multipart/form-data"><label for="file">Filename:</label>
+      <input type="file" name="file" id="file"><br>
+      <input type="submit" name="submit" value="Submit">
+    </form>
+    <br>
+    <hr>
     <div class="scroll_table_files">
     <table id="goups_background">
         <thead>
@@ -398,11 +405,9 @@ else{
         
     </table>
     </div>
+    
    
-    <form action="fileupload.php" method="post" enctype="multipart/form-data"><label for="file">Filename:</label>
-      <input type="file" name="file" id="file"><br>
-      <input type="submit" name="submit" value="Submit">
-    </form>
+    
     </div>
   </div>
   

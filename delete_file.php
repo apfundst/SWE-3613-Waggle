@@ -15,16 +15,18 @@ if($_POST['file_path']){
 			        		exit();
 			        }
 		        	else{
-			   			echo "File could not be deleleted";
+			   			header('http://www.waggle.myskiprofile.com/error/error.php?err=File%20could%20not%20be%20deleleted');
+			exit(); 
 			   		}
         	}
 	        else{
-		   			echo "So not File. Much problem.";
-		   			echo $path;
+		   			header('http://www.waggle.myskiprofile.com/error/error.php?err=So%20not%20File.%20Much%20problem');
+			exit();  
 		   	}
 		}
 	   	else{
-	   			echo "U no have Acess!!!!!";
+	   			header('http://www.waggle.myskiprofile.com/error/error.php?err=YOU%20Don`t%20have%20Access');
+			exit();   "U no have Acess!!!!!";
 	   			echo $path;
 	   		
 
@@ -34,6 +36,8 @@ if($_POST['file_path']){
 }
 else{
 	echo "NO FILE!!!!!!!!!!";
+	header('Location: http://www.waggle.myskiprofile.com/group.php');
+			        		exit();
 
 
 	 

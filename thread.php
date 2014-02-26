@@ -12,6 +12,7 @@ elseif($user_status == 0){
   exit();
 }
 else{
+  
     $thread_id= '';
     $current_group_name = '';
   if($_POST['thread_id']){
@@ -34,15 +35,16 @@ else{
         $message_delete ='';
         $message_edit = '';
         foreach ($thread as $value) {
-              $name = do_get_name($value['2']);
+             $name = do_get_name($value['2']);
               
               
               
               $group_accessor = do_get_creator($_SESSION['current_group_id']);
 
               if($value[2] == $_SESSION['email']){
-                $messages_html .= '<li id="threadItem"><div class="postInfo">
+                $messages_html .= '<li id="threadItem"><span style="float:left;color:#0cb270;">' . $name . ' -- ' . $value[4].'</span><div class="postInfo">
                                     <form  enctype="multipart/form-data" action="edit_message.php" method="post" style="display:inline;">
+
                                     <span class="postEdit">
                                     <input type="hidden" name="message_id" value="'.$value[0].'">
                                     <input type="hidden" name="message_text" value="'.$value[3].'">
@@ -55,24 +57,25 @@ else{
                                     <input class="editLink"type="submit" value="delete">
                                     </span>
                                     </form>
-                                    </div><br><hr><p>'.$value[3] . '</p><br><br><span class="postInfo">' . $name . ' -- ' . $value[4].'</span></li>';
+                                    </div><br><hr><p>'.$value[3] . '</p><br><br></li>';
 
                 
               }elseif(($_SESSION['is_admin'] == 1) || ($group_accessor == $_SESSION['email'])){
-                $messages_html .= '<li id="threadItem"><div class="postInfo">
+                $messages_html .= '<li id="threadItem"><span style="float:left;color:#0cb270;">' . $name . ' -- ' . $value[4].'</span><div class="postInfo">
                                     <form  enctype="multipart/form-data" action="delete_message.php" method="post" style="display:inline;">
                                     <span class="postDelete">
                                     <input type="hidden" name="message_id" value="'. $value[0] . '">
                                     <input class="editLink"type="submit" value="delete">
                                     </span>
                                     </form>
-                                    </div><br><hr><p>'.$value[3] . '</p><br><br><span class="postInfo">' . $name . ' -- ' . $value[4].'</span></li>';
+                                    </div><br><hr><p>'.$value[3] . '</p><br><br></li>';
 
                 
               }else{
-              $messages_html .= '<li id="threadItem"><p>'.$value[3] . '</p><br><br><span class="postInfo">' . $name . ' -- ' . $value[4].'</span></li>';
+              $messages_html .= '<li id="threadItem"><span style="float:left;color:#0cb270;">' . $name . ' -- ' . $value[4].'</span><p>'.$value[3] . '</p><br><br></li>';
 
               }
+              
         }
       }
     }
@@ -96,15 +99,16 @@ else{
 
         $messages_html = '';
         foreach ($thread as $value) {
-          $name = do_get_name($value['2']);
+             $name = do_get_name($value['2']);
               
               
               
               $group_accessor = do_get_creator($_SESSION['current_group_id']);
 
               if($value[2] == $_SESSION['email']){
-                $messages_html .= '<li id="threadItem"><div class="postInfo">
+                $messages_html .= '<li id="threadItem"><span style="float:left;color:#0cb270;">' . $name . ' -- ' . $value[4].'</span><div class="postInfo">
                                     <form  enctype="multipart/form-data" action="edit_message.php" method="post" style="display:inline;">
+
                                     <span class="postEdit">
                                     <input type="hidden" name="message_id" value="'.$value[0].'">
                                     <input type="hidden" name="message_text" value="'.$value[3].'">
@@ -117,24 +121,25 @@ else{
                                     <input class="editLink"type="submit" value="delete">
                                     </span>
                                     </form>
-                                    </div><br><hr><p>'.$value[3] . '</p><br><br><span class="postInfo">' . $name . ' -- ' . $value[4].'</span></li>';
+                                    </div><br><hr><p>'.$value[3] . '</p><br><br></li>';
 
                 
               }elseif(($_SESSION['is_admin'] == 1) || ($group_accessor == $_SESSION['email'])){
-                $messages_html .= '<li id="threadItem"><div class="postInfo">
+                $messages_html .= '<li id="threadItem"><span style="float:left;color:#0cb270;">' . $name . ' -- ' . $value[4].'</span><div class="postInfo">
                                     <form  enctype="multipart/form-data" action="delete_message.php" method="post" style="display:inline;">
                                     <span class="postDelete">
                                     <input type="hidden" name="message_id" value="'. $value[0] . '">
                                     <input class="editLink"type="submit" value="delete">
                                     </span>
                                     </form>
-                                    </div><br><hr><p>'.$value[3] . '</p><br><br><span class="postInfo">' . $name . ' -- ' . $value[4].'</span></li>';
+                                    </div><br><hr><p>'.$value[3] . '</p><br><br></li>';
 
                 
               }else{
-              $messages_html .= '<li id="threadItem"><p>'.$value[3] . '</p><br><br><span class="postInfo">' . $name . ' -- ' . $value[4].'</span></li>';
+              $messages_html .= '<li id="threadItem"><span style="float:left;color:#0cb270;">' . $name . ' -- ' . $value[4].'</span><br><hr><p>'.$value[3] . '</p><br><br></li>';
 
               }
+              
         }
         
 
@@ -148,6 +153,33 @@ else{
       header('Location: http://www.waggle.myskiprofile.com/index.php');
       exit();
     }else{
+      $current_files = do_get_files($_SESSION['current_group_id']);
+      if (is_null($current_files))
+      {
+         $files_html = 'No files have been uploaded yet!';
+      }
+      else
+      {
+        $files_html='';
+        foreach($current_files as $files)
+        {
+         $file_creator = do_get_file_creator($files[2]);
+          $file_creator_name = do_get_name($file_creator);
+          $file_created_date = do_get_file_date_created($files[0]);
+          $files_html .= '<tr class="tr_clickable" id="goups_background" ><td id="main_data" ><a href="'.$files[2].'" download="'.$files[3].'"id="table_contents_file">'.$files[3].'</a></td>';
+          $files_html .= '<td id="side_data_l"> '.$files[4].'</td>';
+          $files_html .= '<td id="side_data_l">'.$file_creator_name.'</td>';
+          $files_html .= '<td id="side_data_l">'.$file_created_date.'</td>';
+
+          if($file_creator == $_SESSION['email'] || $_SESSION['email'] == $_SESSION['current_group_creator'] || $_SESSION['is_admin'] == 1){  //add admin to this function checking
+             $files_html .= '<td id="side_data_s"><form action="delete_file.php" method="post">
+                              <input type="hidden" name="file_path" value="'.$files[2].'">
+                              <input  class="deleteFile" type="submit" value="Delete File"></form></td>';
+          }
+          $file_html .= '</tr>';
+        }
+      //files section ends
+      }
 
       $current_group_id = $_SESSION['current_group_id'];
       $current_group_name = do_get_group_name($current_group_id);
@@ -199,11 +231,14 @@ else{
    }
   }
 
-  if ($_POST['new_message']) {
-    do_post_message($_SESSION['current_thread_id'], $_SESSION["email"], $_POST['new_message']);
-    //$current_url = '"http://www.waggle.myskiprofile.com/thread.php?thread_id='.$thread_id.'"';
-    header('Location: http://www.waggle.myskiprofile.com/thread.php');
-    exit();
+  if ($_POST['new_message'] ) {
+    
+    
+      do_post_message($_SESSION['current_thread_id'], $_SESSION["email"], $_POST['new_message']);
+      //$current_url = '"http://www.waggle.myskiprofile.com/thread.php?thread_id='.$thread_id.'"';
+      header('Location: http://www.waggle.myskiprofile.com/thread.php');
+      exit();
+   
   }
 }
 ?>
@@ -249,16 +284,18 @@ else{
     </div>
     <div class="panel-body" >
     <form method="post" action="thread.php">
+    
       <label>Enter your comments here...</label><br>
         <textarea name="new_message" style="width:100%; height:150px;">
         
         </textarea><br>
-        <input type="submit" value="Submit" />
+        <!--<input type="submit" value="Submit" onclick="this.submit(function (){this.disabled='true';});" >-->
+        <input type="submit" value="Submit"  >
       </form>
       <br>
       <hr>
 
-        
+        <div class="panel-heading">Posts: <?=$thread_name;?></div>
       <ul >
       <?=$messages_html ?>
       </ul>
@@ -293,6 +330,44 @@ else{
 
  </div>
   </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Files</div>
+    <div class="panel-body">
+  <div class="scroll_table_files" style="height:400px">
+    <table id="goups_background">
+        <thead>
+        <tr class="tr_non_clickable"id="goups_background">
+        <th id="main_data" style="background-color:#222;color:white;">
+        File Name
+
+        </th>
+        <th id="side_data_s" style="background-color:#222;color:white;">
+        File Size
+        </th>
+
+        <th id="side_data_l" style="background-color:#222;color:white;">
+        Creator
+        </th>
+        <th id="side_data_s" style="background-color:#222;color:white;">
+        Date Uploaded
+        </th>
+        <th id="side_data_s" style="background-color:#222;color:white;">
+        Options
+        </th>
+        </tr>
+        </thead>
+
+    
+    
+        
+        <tbody >
+        <?=$files_html; ?>
+        </tbody>
+        
+    </table>
+    </div>
+    </div>
+    </div>
 <div class="panel panel-default">
 <div class="panel-heading">Group Members</div>
     <div class="panel-body">
