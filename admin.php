@@ -28,6 +28,12 @@ else
     }
   }
   */
+    $groups = do_admin_get_groups();
+    if(is_null($groups)){
+    $groups_html = 'No groups exist yet!';
+    } 
+    else
+    {
     $groups_html = '';
     $bgroups_html = '';
     foreach($groups as $things)
@@ -42,7 +48,7 @@ else
             $groups_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">';
             $groups_html .= '<form enctype="multipart/form-data" action="group.php" method="post">
                             <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="table_contents" value="';
-            $groups_html .= '<td id="side_data_s">'.$group_creator . '"</td><td id="side_data_s">'.$group_authorized.'</td><td id="side_data_s">'.$.'</td><td id="side_data_s">'.$last_updated.'</td></tr>';
+            $groups_html .= $things[1] . '"/></form></td><td id="side_data_s">'.$group_creator.'</td><td id="side_data_s">'.$group_authorized.'</td><td id="side_data_s">'.$.'</td><td id="side_data_s">'.$last_updated.'</td></tr>';
         }
         elseif ($group_status == 0) 
         {            
@@ -53,8 +59,8 @@ else
             $bgroups_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">';
             $bgroups_html .= '<form enctype="multipart/form-data" action="group.php" method="post">
                             <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="table_contents" value="';
-            $bgroups_html .= '<td id="side_data_s">'.$group_creator . '"</td><td id="side_data_s">'.$group_authorized.'</td><td id="side_data_s">'.$.'</td><td id="side_data_s">'.$last_updated.'</td></tr>';
-        }       
+            $bgroups_html .= $things[1] . '"/></form></td><td id="side_data_s">'.$group_creator.'</td><td id="side_data_s">'.$group_authorized.'</td><td id="side_data_s">'.$.'</td><td id="side_data_s">'.$last_updated.'</td></tr>';
+        } 
     }
 
     /* Button stuff
@@ -72,6 +78,7 @@ else
         }
     }
     */
+    }
 }
 /*
 
