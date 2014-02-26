@@ -186,8 +186,8 @@ else{
 
         }else{
           $threads_html .= '<tr class="tr_clickable" id="goups_background" >
-                            <td id="main_data" ><form enctype="multipart/form-data" action="thread.php" method="post">
-                              <input type="hidden" name="thread_id" value="'. $things[0] . '"><input type="submit" name="submit" id="tabel_contents" value="';
+                            <td id="main_data" style="padding:0px;"><form enctype="multipart/form-data" action="thread.php" method="post">
+                              <input type="hidden" name="thread_id" value="'. $things[0] . '"><input type="submit" name="submit" id="table_contents" value="';
           $threads_html .= $things[3] . '"/></form></td></tr>';
         }
 
@@ -247,18 +247,22 @@ else{
     }
     ?>
     </div>
-    <div class="panel-body">
-
-      <ul >
-      <?=$messages_html ?>
-      </ul>
-      <form method="post" action="thread.php">
+    <div class="panel-body" >
+    <form method="post" action="thread.php">
       <label>Enter your comments here...</label><br>
-        <textarea name="new_message" cols="50" rows="7">
+        <textarea name="new_message" style="width:100%; height:150px;">
         
         </textarea><br>
         <input type="submit" value="Submit" />
       </form>
+      <br>
+      <hr>
+
+        
+      <ul >
+      <?=$messages_html ?>
+      </ul>
+      
 
 
   </div>
@@ -267,12 +271,25 @@ else{
 <div class="col-lg-4">
 
 <div class="panel panel-default">
-<div class="panel-heading">Disscusion Threads for <?=$current_group_name ?></div>
+<div class="panel-heading">Other Threads for <?=$current_group_name ?></div>
     <div class="panel-body">
-    <div class
+    <div class="scroll_table_files" style="height:300px">
+    <table id="goups_background">
+      <thead>
+          <tr class="tr_non_clickable"id="goups_background">
+          <th id="main_data" style="background-color:#222;color:white;">
+          Thread Name
 
-<?=$threads_html ?>
+          </th>
+          </tr>
+        </thead>
+        <tbody>
 
+          <?=$threads_html ?>
+        </tbody>
+    </table>
+
+</div>
 
  </div>
   </div>
