@@ -85,7 +85,11 @@ else
                 $last_name = $things[2];
 
                 $users_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">'. $email.'</td><td id="side_data_s">'. $first_name.
-                                '</td><td id="side_data_s">'.$last_name.'</td><td id="side_data_s">'.'Unbanned'.'</td><td id="side_data_s">'.'</tr>';
+                                '</td><td id="side_data_s">'.$last_name.'</td><td id="side_data_s">'.'Unbanned'.'</td><td id="side_data_s">';
+                $users_html .= '<td id="side_data_s"><form action="ban_user.php" method="post">
+                                <input type="hidden" name="file_path" value="'.$email.'">
+                                <input  class="banUser" type="submit" value="Ban User"></form></td>';
+                $users_html .= '</tr>';
             }
             elseif ($authorized == 0) 
             {
@@ -94,7 +98,11 @@ else
                 $last_name = $things[2];
 
                 $busers_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">'. $email.'</td><td id="side_data_s">'. $first_name.
-                                '</td><td id="side_data_s">'.$last_name.'</td><td id="side_data_s">'.'Banned'.'</td><td id="side_data_s"></tr>';
+                                '</td><td id="side_data_s">'.$last_name.'</td><td id="side_data_s">'.'Banned'.'</td><td id="side_data_s">';
+                $busers_html .= '<td id="side_data_s"><form action="unban_user.php" method="post">
+                                <input type="hidden" name="file_path" value="'.$email.'">
+                                <input  class="unbanUser" type="submit" value="Unban User"></form></td>';
+                $busers_html .= '</tr>';
             }
         }
     }
