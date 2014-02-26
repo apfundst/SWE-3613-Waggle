@@ -49,10 +49,14 @@ else
                 $groups_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">';
                 $groups_html .= '<form enctype="multipart/form-data" action="group.php" method="post">
                             <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="table_contents" value="';
-                $groups_html .= $things[1] . '"/></form></td><td id="side_data_s">'.$group_creator.'</td><td id="side_data_s">'.$group_authorized.'</td><td id="side_data_s">'.'</tr>';
+                $groups_html .= $things[1] . '"/></form></td><td id="side_data_s">'.$group_creator.'</td><td id="side_data_s">'.$group_authorized;
+                $groups_html .= '<td id="side_data_s"><form action="ban_group.php" method="post">
+                                <input type="hidden" name="group_id" value="'.$things[0].'">
+                                <input  class="banGroup" type="submit" value="Ban Group"></form></td>';
+                $groups_html .= '</tr>';
             }
             elseif ($group_status == 0) 
-            {            
+            {   
                 $name = do_get_name($things[2]);
                 $group_creator = do_get_creator($things[0]);
                 $group_authorized = 'Banned';
@@ -60,9 +64,14 @@ else
                 $bgroups_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">';
                 $bgroups_html .= '<form enctype="multipart/form-data" action="group.php" method="post">
                             <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="table_contents" value="';
-                $bgroups_html .= $things[1] . '"/></form></td><td id="side_data_s">'.$group_creator.'</td><td id="side_data_s">'.$group_authorized.'</td><td id="side_data_s">'.'</tr>';
+                $bgroups_html .= $things[1] . '"/></form></td><td id="side_data_s">'.$group_creator.'</td><td id="side_data_s">'.$group_authorized;
+                $bgroups_html .= '<td id="side_data_s"><form action="unban_group.php" method="post">
+                                <input type="hidden" name="group_id" value="'.$things[0].'">
+                                <input  class="unbanGroup" type="submit" value="Unban Group"></form></td>';
+                $bgroups_html .= '</tr>';
             } 
         }
+        $groups_html = $groups_html . $bgroups_html;
     }
 
     $users = do_admin_get_users();
@@ -85,9 +94,9 @@ else
                 $last_name = $things[2];
 
                 $users_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">'. $email.'</td><td id="side_data_s">'. $first_name.
-                                '</td><td id="side_data_s">'.$last_name.'</td><td id="side_data_s">'.'Unbanned'.'</td><td id="side_data_s">';
+                                '</td><td id="side_data_s">'.$last_name.'</td><td id="side_data_s">'.'Unbanned'.'</td>';
                 $users_html .= '<td id="side_data_s"><form action="ban_user.php" method="post">
-                                <input type="hidden" name="file_path" value="'.$email.'">
+                                <input type="hidden" name="member_email" value="'.$email.'">
                                 <input  class="banUser" type="submit" value="Ban User"></form></td>';
                 $users_html .= '</tr>';
             }
@@ -98,13 +107,14 @@ else
                 $last_name = $things[2];
 
                 $busers_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">'. $email.'</td><td id="side_data_s">'. $first_name.
-                                '</td><td id="side_data_s">'.$last_name.'</td><td id="side_data_s">'.'Banned'.'</td><td id="side_data_s">';
+                                '</td><td id="side_data_s">'.$last_name.'</td><td id="side_data_s">'.'Banned'.'</td>';
                 $busers_html .= '<td id="side_data_s"><form action="unban_user.php" method="post">
-                                <input type="hidden" name="file_path" value="'.$email.'">
+                                <input type="hidden" name="member_email" value="'.$email.'">
                                 <input  class="unbanUser" type="submit" value="Unban User"></form></td>';
                 $busers_html .= '</tr>';
             }
         }
+        $users_html = $users_html . $busers_html;
     }
     /* Button stuff
     if($_SESSION['is_admin'] == 1)
@@ -193,7 +203,6 @@ Creator
         <tbody >
         <?=
             $groups_html;
-            $bgroups_html;
          ?>
         </tbody>
         
@@ -239,7 +248,6 @@ Creator
         <tbody >
         <?=
             $users_html; 
-            $busers_html;
         ?>
         </tbody>
         
