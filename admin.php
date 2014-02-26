@@ -64,35 +64,37 @@ else
             } 
         }
     }
+
     $users = do_admin_get_users();
-    if(is_null($groups)){
+    if(is_null($groups))
+    {
         $users_html = 'No users found!';
         $busers_html = 'No users found!';
-    } 
+    }
     else
     {
         $users_html = '';
         $busers_html = '';
         foreach($groups as $things)
         {
-            $authorized = $things[3];
+            $authorized = $things[8];
             if($authorized == 1)
             {
                 $email = $things[0];
                 $first_name = $things[1];
                 $last_name = $things[2];
 
-                $users_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">';
-                $users_html .= $email . '"/></form></td><td id="side_data_s">'.$first_name.'</td><td id="side_data_s">'.$last_name.'</td><td id="side_data_s">'.'</tr>';
+                $users_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">'. $email.'</td><td id="side_data_s">'. $first_name.
+                                '</td><td id="side_data_s">'.$last_name.'</td><td id="side_data_s">'.'</tr>';
             }
             elseif ($authorized == 0) 
-            {            
+            {      
                 $email = $things[0];
                 $first_name = $things[1];
                 $last_name = $things[2];
 
-                $users_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">';
-                $users_html .= $email . '"/></form></td><td id="side_data_s">'.$first_name.'</td><td id="side_data_s">'.$last_name.'</td><td id="side_data_s">'.'</tr>';
+                $users_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">'. $email.'</td><td id="side_data_s">'. $first_name.
+                                '</td><td id="side_data_s">'.$last_name.'</td><td id="side_data_s">'.'</tr>';
             } 
         }
     }
@@ -111,7 +113,6 @@ else
         }
     }
     */
-    }
 }
 /*
 
@@ -151,7 +152,7 @@ Creator
     </div> 
 </div>
 -->
-<div class="col-lg-4">
+<div class="col-lg-6">
   <div class="panel panel-default">
     <div class="panel-heading">All Groups</div>
     <div class="panel-body">
@@ -194,9 +195,9 @@ Creator
   </div> 
 </div>
 
-<div class="col-lg-4">
+<div class="col-lg-6">
   <div class="panel panel-default">
-    <div class="panel-heading">Users</div>
+    <div class="panel-heading">All Users</div>
     <div class="panel-body">
     <div class="scroll_table_files">
     <table id="goups_background">
@@ -224,7 +225,10 @@ Creator
         </thead>
 
         <tbody >
-        <?=$users_html; ?>
+        <?=
+            $users_html; 
+            $busers_html;
+        ?>
         </tbody>
         
     </table>
@@ -232,7 +236,7 @@ Creator
     </div>
   </div> 
 </div>
-
+<!--
 <div class="col-lg-4">
   <div class="panel panel-default">
     <div class="panel-heading">Banned Users</div>
@@ -270,7 +274,7 @@ Creator
     </div>
   </div> 
 </div>
-
+-->
 <!--
     <div class="col-lg-4">
     <div class="panel panel-default">
