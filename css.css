@@ -269,6 +269,9 @@ color:#444444;
 text-decoration:underline;
 cursor:pointer;
 }
+#table_contents:hover{
+color:blue;
+}
 /*added --Used for the data rows--*/
 #goups_background{
   padding:0px;

@@ -1,0 +1,39 @@
+
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="LOGIN/css.css">
+  </head>
+  <body>
+  <!-- Create Logo at the top of the screen -->
+  <!--Black bar at the top of the screen.-->
+    <div class="navbar">
+      <img class="logoImg"src="LOGIN/LOGOWAGGLEv4.2.png" height="75">
+    </div>
+  <!-- Creates a new row to use -->
+      <!--Log in bar-->
+     <div class="col-lg-4"style="width:35%;min-width:300px;">
+        <div class="panel">
+          <center>
+            <div class="panel-heading">Enter the information below to get signed up!</div>
+          </center>
+            <div class="panel-body">
+			<center>
+              <p>Email address is incorrect format!</p>
+			  </center>
+				<form action="new_user.php" method="post"enctype="multipart/form-data">
+				<!--<label for="file">Email:</label>-->
+				<input type="text" name="first_name" placeholder='First Name' size="40"><br>
+				<input type="text" name="last_name" placeholder='Last Name' size="40"><br>
+				<input type="text" name="email_1" placeholder='SPSU Email' size="40">@spsu.edu<br>
+				<input type="text" name="email_2" placeholder='ReEnter SPSU Email' size="40">@spsu.edu<br>
+				<input type="password" name="student_id_1" placeholder='Student ID' size="40"><br>
+				<input type="password" name="student_id_2" placeholder='ReEnter Student ID' size="40"><br>
+				<input type="submit" name="submit" value="Create Account">
+				</form>
+				<a href = "http://www.waggle.myskiprofile.com/">
+				<input type="button" value= "Back to Front Page"></a>
+          </div>
+          </div>
+        </div>
+  </body>
+</html>
