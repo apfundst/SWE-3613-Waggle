@@ -28,6 +28,50 @@ else
     }
   }
   */
+    $groups_html = '';
+    $bgroups_html = '';
+    foreach($groups as $things)
+    {
+        $group_status = do_get_group_ban_status($things[0]);
+        if($group_status == 1)
+        {
+            $name = do_get_name($things[2]);
+            $group_creator = do_get_creator($things[0]);
+            $group_authorized = 'Unbanned';
+
+            $groups_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">';
+            $groups_html .= '<form enctype="multipart/form-data" action="group.php" method="post">
+                            <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="table_contents" value="';
+            $groups_html .= '<td id="side_data_s">'.$group_creator . '"</td><td id="side_data_s">'.$group_authorized.'</td><td id="side_data_s">'.$.'</td><td id="side_data_s">'.$last_updated.'</td></tr>';
+        }
+        elseif ($group_status == 0) 
+        {            
+            $name = do_get_name($things[2]);
+            $group_creator = do_get_creator($things[0]);
+            $group_authorized = 'Banned';
+
+            $bgroups_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">';
+            $bgroups_html .= '<form enctype="multipart/form-data" action="group.php" method="post">
+                            <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="table_contents" value="';
+            $bgroups_html .= '<td id="side_data_s">'.$group_creator . '"</td><td id="side_data_s">'.$group_authorized.'</td><td id="side_data_s">'.$.'</td><td id="side_data_s">'.$last_updated.'</td></tr>';
+        }       
+    }
+
+    /* Button stuff
+    if($_SESSION['is_admin'] == 1)
+    { 
+        if($group_status == 1)
+        {
+            //Ban Button
+            $files_html .= '<td id="side_data_s"><form action="delete_file.php" method="post"><input type="hidden" name="file_path" value="'.$files[2].'">
+                        <input  class="deleteFile" type="submit" value="Delete File"></form></td>';
+        }
+        elseif ($group_status == 0) 
+        {
+            //Unban Button
+        }
+    }
+    */
 }
 /*
 
@@ -86,7 +130,7 @@ Creator
         </th>
 
         <th id="side_data_s" style="background-color:#222;color:white;">
-        Banned
+        Status
         </th>
 
         <th id="side_data_l" style="background-color:#222;color:white;">
@@ -98,7 +142,10 @@ Creator
         </thead>
 
         <tbody >
-        <?=$groups_html; ?>
+        <?=
+            $groups_html;
+            $bgroups_html;
+         ?>
         </tbody>
         
     </table>
