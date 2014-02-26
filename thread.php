@@ -179,14 +179,16 @@ else{
       foreach($current_threads as $things)
       {
         if($things[0] == $thread_id ){
-          $threads_html .= '<form enctype="multipart/form-data" action="thread.php" method="post">
-                              <input type="hidden" name="thread_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a_active" value="';
-          $threads_html .= $things[3] . '"/></form>';
+          //$threads_html .= '<form enctype="multipart/form-data" action="thread.php" method="post">
+                            //  <input type="hidden" name="thread_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a_active" value="';
+          //$threads_html .= $things[3] . '"/></form>';
+          //do nothing if its ther current thread
 
         }else{
-          $threads_html .= '<form enctype="multipart/form-data" action="thread.php" method="post">
-                              <input type="hidden" name="thread_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
-          $threads_html .= $things[3] . '"/></form>';
+          $threads_html .= '<tr class="tr_clickable" id="goups_background" >
+                            <td id="main_data" ><form enctype="multipart/form-data" action="thread.php" method="post">
+                              <input type="hidden" name="thread_id" value="'. $things[0] . '"><input type="submit" name="submit" id="tabel_contents" value="';
+          $threads_html .= $things[3] . '"/></form></td></tr>';
         }
 
       }
@@ -267,6 +269,7 @@ else{
 <div class="panel panel-default">
 <div class="panel-heading">Disscusion Threads for <?=$current_group_name ?></div>
     <div class="panel-body">
+    <div class
 
 <?=$threads_html ?>
 
