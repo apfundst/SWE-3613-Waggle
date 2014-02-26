@@ -12,7 +12,7 @@ elseif ($_SESSION["is_admin"] != 1) {
   exit();
 }
 else
-{
+{/*
   $_SESSION['current_group_id'] = '';
   $groups = do_admin_get_groups();
   if(is_null($groups)){
@@ -25,9 +25,15 @@ else
                         <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
       $groups_html .= $things[1] . '          --       '. $things[2].'"/></form>';
     }
-  }
+  }*/
 }
+/*
 
+Number of Threads
+Number of Members
+Creator
+
+  */
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -46,7 +52,7 @@ else
 
 <div class="container-fluid">
 <div class="row">
-
+<!--
 <div class="col-lg-4">
   <div class="panel panel-default">
     <div class="panel-heading">All Groups</div>
@@ -58,50 +64,122 @@ else
     </div>
     </div> 
 </div>
+-->
+<div class="col-lg-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">All Groups</div>
+    <div class="panel-body">
+    <div class="scroll_table_files">
+    <table id="goups_background">
+        <thead>
+
+        <tr class="tr_non_clickable"id="goups_background">
+        <th id="main_data" style="background-color:#222;color:white;">
+        Group Name
+
+        </th>
+
+        <th id="side_data_l" style="background-color:#222;color:white;">
+        Creator
+        </th>
+
+        <th id="side_data_s" style="background-color:#222;color:white;">
+        Banned
+        </th>
+
+        <th id="side_data_l" style="background-color:#222;color:white;">
+        Options
+        </th>
+
+        </tr>
+
+        </thead>
+
+        <tbody >
+        <?=$groups_html; ?>
+        </tbody>
+        
+    </table>
+    </div>
+    </div>
+  </div> 
+</div>
 
 <div class="col-lg-4">
-<div class="panel panel-default">
-    <div class="panel-heading">Ban Users/Unban Users</div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Users</div>
     <div class="panel-body">
-          <br><p>Ban Users:</p>
-          <form action="ban_user.php" method="post" enctype="multipart/form-data">
-                <input type="text" name="member_email" maxlength="20">
-                <input type="submit" name="submit" value="Ban User">
-                
-          </form>
+    <div class="scroll_table_files">
+    <table id="goups_background">
+        <thead>
 
-          <br><p>Un-Ban Users:</p>
-          <form action="unban_user.php" method="post" enctype="multipart/form-data">
-                <input type="text" name="member_email" maxlength="20">
-                <input type="submit" name="submit" value="Un-Ban User">
-                
-          </form>
+        <tr class="tr_non_clickable"id="goups_background">
+        <th id="main_data" style="background-color:#222;color:white;">
+        Email
 
-          <!-- have a list of groups, check boxes, delete selected button -->
-          <br><p>Ban Groups:</p>
-          <form action="ban_group.php" method="post" enctype="multipart/form-data">
-                <input type="text" name="group_id" maxlength="20">
-                <input type="submit" name="submit" value="Ban Group">   
-          </form>
+        </th>
+        <th id="side_data_l" style="background-color:#222;color:white;">
+        First Name
+        </th>
 
-          <br><p>Un-Ban Groups:</p>
-          <form action="unban_group.php" method="post" enctype="multipart/form-data">
-                <input type="text" name="group_id" maxlength="20">
-                <input type="submit" name="submit" value="Un-Ban Group">     
-          </form>
+        <th id="side_data_l" style="background-color:#222;color:white;">
+        Last Name
+        </th>
+
+        <th id="side_data_l" style="background-color:#222;color:white;">
+        Options
+        </th>
+
+        </tr>
+
+        </thead>
+
+        <tbody >
+        <?=$groups_html; ?>
+        </tbody>
+        
+    </table>
     </div>
-</div>
+    </div>
+  </div> 
 </div>
 
 <div class="col-lg-4">
-<div class="panel panel-default">
-    <div class="panel-heading">Ban Groups/Unban Groups</div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Banned Users</div>
     <div class="panel-body">
-      
+    <div class="scroll_table_files">
+    <table id="goups_background">
+        <thead>
+
+        <tr class="tr_non_clickable"id="goups_background">
+        <th id="main_data" style="background-color:#222;color:white;">
+        Email
+
+        </th>
+        <th id="side_data_l" style="background-color:#222;color:white;">
+        First Name
+        </th>
+
+        <th id="side_data_l" style="background-color:#222;color:white;">
+        Last Name
+        </th>
+
+        <th id="side_data_l" style="background-color:#222;color:white;">
+        Options
+        </th>
+        </tr>
+
+        </thead>
+
+        <tbody >
+        <?=$groups_html; ?>
+        </tbody>
+        
+    </table>
     </div>
-</div>
-</div>
-</div>
+    </div>
+  </div> 
 </div>
 
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Inconsolata">
