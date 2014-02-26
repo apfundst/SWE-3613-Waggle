@@ -12,7 +12,8 @@ elseif ($_SESSION["is_admin"] != 1) {
   exit();
 }
 else
-{/*
+{
+/*
   $_SESSION['current_group_id'] = '';
   $groups = do_admin_get_groups();
   if(is_null($groups)){
@@ -25,7 +26,8 @@ else
                         <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="input_a" value="';
       $groups_html .= $things[1] . '          --       '. $things[2].'"/></form>';
     }
-  }*/
+  }
+  */
 }
 /*
 
@@ -180,6 +182,52 @@ Creator
     </div>
     </div>
   </div> 
+</div>
+
+<!--
+    <div class="col-lg-4">
+    <div class="panel panel-default">
+    <div class="panel-heading">Ban Users/Unban Users</div>
+    <div class="panel-body">
+          <br><p>Ban Users:</p>
+          <form action="ban_user.php" method="post" enctype="multipart/form-data">
+                <input type="text" name="member_email" maxlength="20">
+                <input type="submit" name="submit" value="Ban User">
+                
+          </form>
+
+          <br><p>Un-Ban Users:</p>
+          <form action="unban_user.php" method="post" enctype="multipart/form-data">
+                <input type="text" name="member_email" maxlength="20">
+                <input type="submit" name="submit" value="Un-Ban User">
+                
+          </form>
+
+          <br><p>Ban Groups:</p>
+          <form action="ban_group.php" method="post" enctype="multipart/form-data">
+                <input type="text" name="group_id" maxlength="20">
+                <input type="submit" name="submit" value="Ban Group">   
+          </form>
+
+          <br><p>Un-Ban Groups:</p>
+          <form action="unban_group.php" method="post" enctype="multipart/form-data">
+                <input type="text" name="group_id" maxlength="20">
+                <input type="submit" name="submit" value="Un-Ban Group">     
+          </form>
+    </div>
+    </div>
+    </div>
+
+    <div class="col-lg-4">
+    <div class="panel panel-default">
+    <div class="panel-heading">Ban Groups/Unban Groups</div>
+    <div class="panel-body">
+      
+    </div>
+    </div>
+
+-->
+</div>
 </div>
 
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Inconsolata">
