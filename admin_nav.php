@@ -1,5 +1,5 @@
 <nav class="navbar-default navbar" style="min-width:700px;" role="navigation">
-<a href="admin.php">
+<a href="index.php">
 <img class="logoImg"src="LOGIN/LOGOWAGGLEv4.2.png" height="75"></a>
 
 <div style="float: right;">
