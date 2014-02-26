@@ -48,7 +48,7 @@ else
 
                 $groups_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">';
                 $groups_html .= '<form enctype="multipart/form-data" action="group.php" method="post">
-                            <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="table_contents" value="';
+                                <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="table_contents" value="';
                 $groups_html .= $things[1] . '"/></form></td><td id="side_data_s">'.$group_creator.'</td><td id="side_data_s">'.$group_authorized;
                 $groups_html .= '<td id="side_data_s"><form action="ban_group.php" method="post">
                                 <input type="hidden" name="group_id" value="'.$things[0].'">
@@ -63,11 +63,11 @@ else
 
                 $bgroups_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">';
                 $bgroups_html .= '<form enctype="multipart/form-data" action="group.php" method="post">
-                            <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="table_contents" value="';
+                                 <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="table_contents" value="';
                 $bgroups_html .= $things[1] . '"/></form></td><td id="side_data_s">'.$group_creator.'</td><td id="side_data_s">'.$group_authorized;
                 $bgroups_html .= '<td id="side_data_s"><form action="unban_group.php" method="post">
-                                <input type="hidden" name="group_id" value="'.$things[0].'">
-                                <input  class="unbanGroup" type="submit" value="Unban Group"></form></td>';
+                                 <input type="hidden" name="group_id" value="'.$things[0].'">
+                                 <input  class="unbanGroup" type="submit" value="Unban Group"></form></td>';
                 $bgroups_html .= '</tr>';
             } 
         }
