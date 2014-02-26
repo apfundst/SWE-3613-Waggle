@@ -12,8 +12,13 @@ $student_id_2 = $_POST["student_id_2"];
 
 $error_message = null;
 
-if($email_1 != $email_2){
+if( strcmp($email_1,$email_2) != 0 ){
   $error_message = "Both emails entered did not match!";
+
+}
+// jcathcar@spsu.edu
+else{
+  if( $email_1.strln() !=  ) 
 }
 if($student_id_1.strlen() != )
 if($student_id_1 != $student_id_2){
@@ -57,8 +62,8 @@ ob_flush();
                 <form action="new_user.php" method="post"enctype="multipart/form-data">
                 <!--<label for="file">Email:</label>-->
                 <input type="text" name="first_name" placeholder='First Name' size="40"><br>
-                <input type="text" name="last_name" placeholder='Last Name' size="40"><br>
-                <input type="text" name="email_1" placeholder='SPSU Email' size="40"><br>
+                <input type="text" name="last_name" placeholder='Last Name' size="40">@spsu.edu<br>
+                <input type="text" name="email_1" placeholder='SPSU Email' size="40">@spsu.edu<br>
                 <input type="text" name="email_2" placeholder='ReEnter SPSU Email' size="40"><br>
                 <input type="password" name="student_id_1" placeholder='Student ID' size="40"><br>
                 <input type="password" name="student_id_2" placeholder='ReEnter Student ID' size="40"><br>

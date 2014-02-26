@@ -1,6 +1,47 @@
 <?
 include_once('connection.php');
+include('other_funcs.php');
+
 date_default_timezone_set('US/EASTERN');
+
+function do_create_user($email, $random_password, $first_name, $last_name, $student_id){
+	$sql = "
+		 INSERT INTO `user`(`email`,`password`,`first_name`,`last_name`,`$student_id`)
+		 VALUES('$email','$random_password','$first_name','$last_name','$student_id')
+	";
+	$result = mysql_query($sql);
+	if (!$result) {
+		mysql_query('ROLLBACK');
+		return FALSE;
+	}
+	else{
+		return TRUE;
+	}
+}
+
+function do_send_new_user_email($first_name,$last_name,$random_password){
+
+
+
+
+
+
+
+
+
+
+}
+
+function do_create_random_password(){
+    $legals = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789!@#$%^&*()";
+    $password = array();
+    $legalsLength =  strlen($legals) - 1;
+    for ($i = 0; $i < 10; $i++) {
+        $n = rand(0, $legalsLength);
+        $password[] = $alphabet[$n];
+    }
+    return implode($password);
+}
 
 function do_update_password($email,$student_id,$new_password){
 	// Cleans the text input into fields in html
