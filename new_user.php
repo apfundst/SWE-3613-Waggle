@@ -2,15 +2,13 @@
 ob_start();
 session_start();
 include("other_funcs.php");
-
+if($_POST){
 $first_name = $_POST["first_name"];
 $last_name = $_POST["last_name"];
 $email_1 = $_POST["email_1"];
 $email_2 = $_POST["email_2"];
 $student_id_1 = $_POST["student_id_1"];
 $student_id_2 = $_POST["student_id_2"];
-
-$error_message = "";
 $name = $first_name ." ". $last_name;
 
 $illegals = '([[:digit:]]|[~`!@#$%^&*()_=+{}|\:;"/?,]|[|]|-)+';
@@ -55,7 +53,7 @@ else{
               }
             }
             else{
-              $error_message = "Failed to create user account!\n Please reenter information.";
+              $error_message = "Failed to create user account! Please reenter information.";
             }
 
           }// Else for check email in DB
@@ -66,6 +64,7 @@ else{
 }
 
 }//First else that checked names
+}//end first if
 session_destroy();
 ob_flush();
 ?>
@@ -93,8 +92,8 @@ ob_flush();
                 <!--<label for="file">Email:</label>-->
                 <input type="text" name="first_name" placeholder='First Name' size="40"><br>
                 <input type="text" name="last_name" placeholder='Last Name' size="40"><br>
-                <input type="text" name="email_1" placeholder='SPSU Email' size="40">@spsu.edu<br>
-                <input type="text" name="email_2" placeholder='ReEnter SPSU Email' size="40">@spsu.edu<br>
+                <input type="text" name="email_1" placeholder='SPSU Email' size="28">@spsu.edu<br>
+                <input type="text" name="email_2" placeholder='ReEnter SPSU Email' size="28">@spsu.edu<br>
                 <input type="password" name="student_id_1" placeholder='Student ID' size="40"><br>
                 <input type="password" name="student_id_2" placeholder='ReEnter Student ID' size="40"><br>
                 <input type="submit" name="submit" value="Create Account">

@@ -36,7 +36,7 @@ function do_check_user($email){
 }
 
 function do_send_new_user_email($email, $first_name, $last_name, $random_password){
-	$subject = 'Your Waggle Account';
+	$subject = 'Your NEW Waggle Account';
 	$message = 'Congratulaionts '.$first_name.' '.$last_name.'! 
 	This email confirms your successful registration for WAGGLE. Please go to waggle.myskiprofile.com and login in with your SPSU email 
 	address and temporary password. Do not respond to this email address as it is not monitored. 

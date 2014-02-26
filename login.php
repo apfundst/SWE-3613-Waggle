@@ -113,7 +113,7 @@ if($_GET['err']){
                 <a href="http://www.waggle.myskiprofile.com/password_reset.php">
                 <input type="button" value= "Forgot Password?"></a>
                 <a href="http://www.waggle.myskiprofile.com/new_user.php">
-                <input type="button" value= "New User sign up"></a>
+                <input type="button" value= "New User Sign Up"></a>
             </center>
           </div>
         </div>

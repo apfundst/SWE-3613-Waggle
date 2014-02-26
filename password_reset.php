@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 include("other_funcs.php");
-
+if($_POST){
 $email = $_POST["email"];
 $student_id = $_POST["student_id"];
 $password = $_POST["password"];
@@ -20,6 +20,7 @@ else{
   else{
     $error_message = "Email and/or Student ID incorrect! Please reenter!";
   }
+}
 }
 session_destroy();
 ob_flush();
