@@ -66,7 +66,7 @@ else
     }
 
     $users = do_admin_get_users();
-    if(is_null($groups))
+    if(is_null($users))
     {
         $users_html = 'No users found!';
         $busers_html = 'No users found!';
@@ -75,9 +75,9 @@ else
     {
         $users_html = '';
         $busers_html = '';
-        foreach($groups as $things)
+        foreach($users as $things)
         {
-            $authorized = $things[8];
+            $authorized = $things[3];
             if($authorized == 1)
             {
                 $email = $things[0];
@@ -85,17 +85,17 @@ else
                 $last_name = $things[2];
 
                 $users_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">'. $email.'</td><td id="side_data_s">'. $first_name.
-                                '</td><td id="side_data_s">'.$last_name.'</td><td id="side_data_s">'.'</tr>';
+                                '</td><td id="side_data_s">'.$last_name.'</td><td id="side_data_s">'.'Unbanned'.'</td><td id="side_data_s">'.'</tr>';
             }
             elseif ($authorized == 0) 
-            {      
+            {
                 $email = $things[0];
                 $first_name = $things[1];
                 $last_name = $things[2];
 
-                $users_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">'. $email.'</td><td id="side_data_s">'. $first_name.
-                                '</td><td id="side_data_s">'.$last_name.'</td><td id="side_data_s">'.'</tr>';
-            } 
+                $busers_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">'. $email.'</td><td id="side_data_s">'. $first_name.
+                                '</td><td id="side_data_s">'.$last_name.'</td><td id="side_data_s">'.'Banned'.'</td><td id="side_data_s"></tr>';
+            }
         }
     }
     /* Button stuff
@@ -214,6 +214,10 @@ Creator
 
         <th id="side_data_l" style="background-color:#222;color:white;">
         Last Name
+        </th>
+
+        <th id="side_data_l" style="background-color:#222;color:white;">
+        Status
         </th>
 
         <th id="side_data_l" style="background-color:#222;color:white;">
