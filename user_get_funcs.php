@@ -100,7 +100,7 @@ function do_get_messages($thread_id){
 		   SELECT *
 		   FROM `message`
 		   WHERE '$thread_id' = thread_id
-		   ORDER BY date_created  ASC		
+		   ORDER BY date_created  DESC		
 	";
 	$result = mysql_query($sql);
 	if(mysql_num_rows($result)==0){
@@ -158,7 +158,6 @@ function do_get_name($email){
 	}
 
 }
-
 
 function do_get_groups($email){
 		// gets groups from db for user

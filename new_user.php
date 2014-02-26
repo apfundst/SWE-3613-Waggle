@@ -10,32 +10,62 @@ $email_2 = $_POST["email_2"];
 $student_id_1 = $_POST["student_id_1"];
 $student_id_2 = $_POST["student_id_2"];
 
-$error_message = null;
+$error_message = "";
+$name = $first_name ." ". $last_name;
+
+$illegals = '([[:digit:]]|[~`!@#$%^&*()_=+{}|\:;"/?,]|[|]|-)+';
+if ( ereg($illegals, $name ) ) {
+  $error_message = "Names entered contained illegal characters!";
+}
+else{
 
 if( strcmp($email_1,$email_2) != 0 ){
-  $error_message = "Both emails entered did not match!";
-
-}
-// jcathcar@spsu.edu
-else{
-  if( $email_1.strln() !=  ) 
-}
-if($student_id_1.strlen() != )
-if($student_id_1 != $student_id_2){
-  $error_message = "Both Student ID's did not match"
-
-
-
+  $error_message = "Email addresses did not match!";
 }
 else{
-  $result = do_update_password($email,$student_id,$password);
-  if($result == true){
-    $error_message = "Password has been reset! Please return to home page to login.";
+  if( !ctype_alnum($email_1) ){
+    $error_message = "Email address is incorrect format!";
   }
   else{
-    $error_message = "Email and/or Student ID incorrect! Please reenter!";
-  }
+    if( strcmp($student_id_1,$student_id_2) ){
+      $error_message = "Student ID's did not match!";
+    }
+    else{
+      if( !ctype_digit($student_id_1) || strlen($student_id_1) != 9 ){
+        $error_message = "Incorrect Student ID format!";
+      }
+      else{
+          $email = $email_1."@spsu.edu";
+          $check = do_check_user($email);
+          if( $check ){
+            $error_message = "You are already a member of WAGGLE!";
+          }
+          else{
+            $random_password = do_create_random_password(); 
+            $created = do_create_user($email,$random_password,$first_name,$last_name,$student_id_1);
+            if($created){
+              $email_success = do_send_new_user_email($email, $first_name, $last_name, $random_password);
+              if($email_success){
+                  $_SESSION["created"] = TRUE;
+                  header('Location: http://www.waggle.myskiprofile.com/new_user_success.php');
+                  exit();
+              }
+              else{
+                $error_message = "Damn email didn't work with this info:";
+              }
+            }
+            else{
+              $error_message = "Failed to create user account!\n Please reenter information.";
+            }
+
+          }// Else for check email in DB
+
+      }// Else to check student_id
+    }//
+  } 
 }
+
+}//First else that checked names
 session_destroy();
 ob_flush();
 ?>
@@ -62,9 +92,9 @@ ob_flush();
                 <form action="new_user.php" method="post"enctype="multipart/form-data">
                 <!--<label for="file">Email:</label>-->
                 <input type="text" name="first_name" placeholder='First Name' size="40"><br>
-                <input type="text" name="last_name" placeholder='Last Name' size="40">@spsu.edu<br>
+                <input type="text" name="last_name" placeholder='Last Name' size="40"><br>
                 <input type="text" name="email_1" placeholder='SPSU Email' size="40">@spsu.edu<br>
-                <input type="text" name="email_2" placeholder='ReEnter SPSU Email' size="40"><br>
+                <input type="text" name="email_2" placeholder='ReEnter SPSU Email' size="40">@spsu.edu<br>
                 <input type="password" name="student_id_1" placeholder='Student ID' size="40"><br>
                 <input type="password" name="student_id_2" placeholder='ReEnter Student ID' size="40"><br>
                 <input type="submit" name="submit" value="Create Account">

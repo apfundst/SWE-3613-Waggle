@@ -1,12 +1,11 @@
 <?
 include_once('connection.php');
-include('other_funcs.php');
 
 date_default_timezone_set('US/EASTERN');
 
 function do_create_user($email, $random_password, $first_name, $last_name, $student_id){
 	$sql = "
-		 INSERT INTO `user`(`email`,`password`,`first_name`,`last_name`,`$student_id`)
+		 INSERT INTO `user`(`email`,`password`,`first_name`,`last_name`,`student_id`)
 		 VALUES('$email','$random_password','$first_name','$last_name','$student_id')
 	";
 	$result = mysql_query($sql);
@@ -19,28 +18,50 @@ function do_create_user($email, $random_password, $first_name, $last_name, $stud
 	}
 }
 
-function do_send_new_user_email($first_name,$last_name,$random_password){
+function do_check_user($email){
+	$sql = "
+		SELECT *
+		FROM `user` 
+		WHERE email = '$email';
+	";
+	$result = mysql_query($sql);
+	$count = mysql_num_rows($result);
+	if($count > 0){
+		return TRUE;
+	}
+	else{
+		return FALSE;
+	}
 
+}
 
+function do_send_new_user_email($email, $first_name, $last_name, $random_password){
+	$subject = 'Your Waggle Account';
+	$message = 'Congratulaionts '.$first_name.' '.$last_name.'! 
+	This email confirms your successful registration for WAGGLE. Please go to waggle.myskiprofile.com and login in with your SPSU email 
+	address and temporary password. Do not respond to this email address as it is not monitored. 
+	Your temporary password is: '.$random_password;
 
+	$headers = 'From: admin@waggle.com'."\r\n" . 'X-Mailer: PHP/'. phpversion();
 
-
-
-
-
-
-
+	$successful = mail($email,$subject,$message,$headers);
+	if($successful){
+		return TRUE;
+	}
+	else{
+		return FALSE;
+	}
 }
 
 function do_create_random_password(){
     $legals = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789!@#$%^&*()";
-    $password = array();
+    $password = "";
     $legalsLength =  strlen($legals) - 1;
     for ($i = 0; $i < 10; $i++) {
         $n = rand(0, $legalsLength);
-        $password[] = $alphabet[$n];
+        $password .= $legals[$n];
     }
-    return implode($password);
+    return $password;
 }
 
 function do_update_password($email,$student_id,$new_password){
