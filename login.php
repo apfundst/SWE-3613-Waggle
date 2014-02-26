@@ -88,12 +88,6 @@ if($_GET['err']){
   <!-- Creates a new row to use -->
     <div class="row">
       
-      <div class="col-lg-8" id="welcome">
-        <div id="cf">
-          <img class="bottom" src="LOGIN/beehive2.png"/>
-          <img class="top" src="LOGIN/beehive1.png" />
-        </div>
-      </div>
       <!--Log in bar-->
       <div class="col-lg-4">
         <div class="panel">
@@ -116,6 +110,13 @@ if($_GET['err']){
                 <input type="button" value= "New User Sign Up"></a>
             </center>
           </div>
+        </div>
+      </div>
+	  <!--The big picture-->
+	  <div class="col-lg-8" id="welcome">
+        <div id="cf">
+          <img class="bottom" src="LOGIN/beehive4.png"/>
+          <img class="top" src="LOGIN/beehive5.png" />
         </div>
       </div>
     </div>
