@@ -29,40 +29,73 @@ else
   }
   */
     $groups = do_admin_get_groups();
-    if(is_null($groups)){
-    $groups_html = 'No groups exist yet!';
+    if(is_null($groups))
+    {
+        $groups_html = 'No groups exist yet!';
     } 
     else
     {
-    $groups_html = '';
-    $bgroups_html = '';
-    foreach($groups as $things)
-    {
-        $group_status = do_get_group_ban_status($things[0]);
-        if($group_status == 1)
+        $groups_html = '';
+        $bgroups_html = '';
+        foreach($groups as $things)
         {
-            $name = do_get_name($things[2]);
-            $group_creator = do_get_creator($things[0]);
-            $group_authorized = 'Unbanned';
+            $group_status = do_get_group_ban_status($things[0]);
+            if($group_status == 1)
+            {
+                $name = do_get_name($things[2]);
+                $group_creator = do_get_creator($things[0]);
+                $group_authorized = 'Unbanned';
 
-            $groups_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">';
-            $groups_html .= '<form enctype="multipart/form-data" action="group.php" method="post">
+                $groups_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">';
+                $groups_html .= '<form enctype="multipart/form-data" action="group.php" method="post">
                             <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="table_contents" value="';
-            $groups_html .= $things[1] . '"/></form></td><td id="side_data_s">'.$group_creator.'</td><td id="side_data_s">'.$group_authorized.'</td><td id="side_data_s">'.'</tr>';
+                $groups_html .= $things[1] . '"/></form></td><td id="side_data_s">'.$group_creator.'</td><td id="side_data_s">'.$group_authorized.'</td><td id="side_data_s">'.'</tr>';
+            }
+            elseif ($group_status == 0) 
+            {            
+                $name = do_get_name($things[2]);
+                $group_creator = do_get_creator($things[0]);
+                $group_authorized = 'Banned';
+
+                $bgroups_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">';
+                $bgroups_html .= '<form enctype="multipart/form-data" action="group.php" method="post">
+                            <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="table_contents" value="';
+                $bgroups_html .= $things[1] . '"/></form></td><td id="side_data_s">'.$group_creator.'</td><td id="side_data_s">'.$group_authorized.'</td><td id="side_data_s">'.'</tr>';
+            } 
         }
-        elseif ($group_status == 0) 
-        {            
-            $name = do_get_name($things[2]);
-            $group_creator = do_get_creator($things[0]);
-            $group_authorized = 'Banned';
-
-            $bgroups_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">';
-            $bgroups_html .= '<form enctype="multipart/form-data" action="group.php" method="post">
-                            <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="table_contents" value="';
-            $bgroups_html .= $things[1] . '"/></form></td><td id="side_data_s">'.$group_creator.'</td><td id="side_data_s">'.$group_authorized.'</td><td id="side_data_s">'.'</tr>';
-        } 
     }
+    $users = do_admin_get_users();
+    if(is_null($groups)){
+        $users_html = 'No users found!';
+        $busers_html = 'No users found!';
+    } 
+    else
+    {
+        $users_html = '';
+        $busers_html = '';
+        foreach($groups as $things)
+        {
+            $authorized = $things[3];
+            if($authorized == 1)
+            {
+                $email = $things[0];
+                $first_name = $things[1];
+                $last_name = $things[2];
 
+                $users_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">';
+                $users_html .= $email . '"/></form></td><td id="side_data_s">'.$first_name.'</td><td id="side_data_s">'.$last_name.'</td><td id="side_data_s">'.'</tr>';
+            }
+            elseif ($authorized == 0) 
+            {            
+                $email = $things[0];
+                $first_name = $things[1];
+                $last_name = $things[2];
+
+                $users_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">';
+                $users_html .= $email . '"/></form></td><td id="side_data_s">'.$first_name.'</td><td id="side_data_s">'.$last_name.'</td><td id="side_data_s">'.'</tr>';
+            } 
+        }
+    }
     /* Button stuff
     if($_SESSION['is_admin'] == 1)
     { 
@@ -191,7 +224,7 @@ Creator
         </thead>
 
         <tbody >
-        <?=$groups_html; ?>
+        <?=$users_html; ?>
         </tbody>
         
     </table>
@@ -229,7 +262,7 @@ Creator
         </thead>
 
         <tbody >
-        <?=$groups_html; ?>
+        <?=$busers_html; ?>
         </tbody>
         
     </table>

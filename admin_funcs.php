@@ -24,6 +24,29 @@ function do_admin_get_groups(){
     }
 }
 
+function do_admin_get_users()
+{
+	// Returns all users for the Admin panel
+	$sql = "
+		SELECT email, first_name, last_name, authorized
+		FROM `user`
+	";
+	$result = mysql_query($sql);
+	if(!$result)
+	{
+		die("Invalid query: " .mysql_error());
+	}	
+	else
+	{
+		$i = 0;
+     	while($row = mysql_fetch_row($result)){
+     		$data[$i] = $row;
+     		$i++; 
+     	}
+    	return $data;
+    }
+}
+
 function do_admin_ban_group($group_name){
 	// Removes group from User view
 	// Retains group in db for records
