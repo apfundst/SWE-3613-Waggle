@@ -8,11 +8,6 @@ if(!isset($_SESSION["email"])) {
   exit();
 }else{
 
-  
- 
-
-
-
 if(isset($_POST["thread_name"])){
   if(strlen($_POST['thread_name']) < 5){
       $error_message = 'Thread Name Must be 5 characters Long!';
@@ -37,13 +32,6 @@ if(isset($_POST["thread_name"])){
 }
 
 }
-
-
-
-
-
-
-
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -105,8 +93,7 @@ else{
       echo("<script>console.log('PHP: ". json_encode($current_threads)."');</script>");*/
        ?>
     </div>
-  </div>
-  
+  </div> 
 </div>
 </div>
 
