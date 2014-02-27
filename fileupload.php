@@ -4,6 +4,11 @@ ob_start();
 include_once('connection.php');
 date_default_timezone_set('US/EASTERN');
 
+if( empty($_POST['file'])){
+  header('Location: http://www.waggle.myskiprofile.com/error/error.php?err=Invalid%20file%20upload!%20 Please%20select%20a%20file%20before%20submitting!');
+  exit(); 
+}
+
 function rename_file($file_name, $counter)
   {
     $extension = strpos($file_name, '.');
