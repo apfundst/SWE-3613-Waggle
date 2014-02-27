@@ -80,45 +80,35 @@ if($_GET['err']){
 
   </head>
   <body>
-  <!-- Create Logo at the top of the screen -->
-  <!--Black bar at the top of the screen.-->
-    <div class="navbar">
-      <img class="logoImg"src="LOGIN/LOGOWAGGLEv4.2.png" height="75">
-    </div>
-  <!-- Creates a new row to use -->
-    <div class="row">
-      
-      <!--Log in bar-->
-      <div class="col-lg-4">
-        <div class="panel">
-          <div class="panel-heading">
-            <center>Login Here</center>
-          </div>
-          <div class="panel-body">
-            <center>
-              <p><? echo $error_message; ?></p>
-              <form action="login.php" method="post"enctype="multipart/form-data">
-                <!--<label for="file">Email:</label>-->
-                <input type="text" name="email" placeholder='SPSU Email' size="40" for="userid"><br>
-                <!--<label for="file">Password:</label>-->
-                <input type="password" name="password" placeholder='Password' size="40" for="pass"><br>
-                <input type="submit" name="submit" value="Login">
-              </form>
-                <a href="http://www.waggle.myskiprofile.com/password_reset.php">
-                <input type="button" value= "Forgot Password?"></a>
-                <a href="http://www.waggle.myskiprofile.com/new_user.php">
-                <input type="button" value= "New User Sign Up"></a>
-            </center>
-          </div>
-        </div>
-      </div>
-	  <!--The big picture-->
-	  <div class="col-lg-8" id="welcome">
-        <div id="cf">
-          <img class="bottom" src="LOGIN/beehive4.png"/>
-          <img class="top" src="LOGIN/beehive5.png" />
-        </div>
-      </div>
-    </div>
-  </body>
+		<!-- Create Logo at the top of the screen -->
+		<!--Black bar at the top of the screen.-->
+		<div class="navbar">
+			<img class="logoImg"src="LOGIN/LOGOWAGGLEv4.2.png" height="75">
+		</div>
+		<!--The big picture-->
+		<div class="col-lg-12" style="margin-left:15px;margin-right:15px;">
+			<div class="panel">
+					<div id="cf"style="margin:20px;">
+						<center>
+							<img class="bottom" src="LOGIN/beehive3.png"/>
+							<img class="top" src="LOGIN/beehive5.png" />
+						</center>
+					</div>
+				<!--The Login section-->
+					<center>
+						<form action="login.php" method="post"enctype="multipart/form-data">
+							<!--<label for="file">Email:</label>-->
+							<input type="text" name="email" placeholder='SPSU Email' size="40" for="userid"><br>
+							<!--<label for="file">Password:</label>-->
+							<input type="password" name="password" placeholder='Password' size="40" for="pass"><br>
+							<input type="submit" name="submit" value="Login">
+						</form>
+						<a href="http://www.waggle.myskiprofile.com/password_reset.php">
+						<input type="button" value= "Forgot Password?"></a>
+						<a href="http://www.waggle.myskiprofile.com/new_user.php">
+						<input type="button" value= "New User Sign Up"></a>
+					</center>
+			</div>
+		</div>
+	</body>
 </html>
