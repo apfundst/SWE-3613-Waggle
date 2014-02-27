@@ -48,24 +48,25 @@ in old CSS!!Changed*/
 /*Added*/
 #welcome{
 	background: #0e855b;
-	height:50%;
+	height:90%;
 	float:left;
 	margin-left: 15px;
-	min-width:300px;
-	max-width:600px;
+	min-width:500px;
 	min-height:500px;
-	width:65%;
+	width:95%;
+	float:middle;
 }
 /*Added*/
 #cf {
   position:relative;
   height:80%;
-  width:80%;
+  width:50%;
   min-width:50px;
   min-height:50px;
   margin:0 auto;
-  padding: 20px;
-  float:left;
+  padding-top:10px;
+  margin-bottom:40px;
+  float:middle;
 }
 /*Added*/
 #cf img {

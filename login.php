@@ -87,14 +87,13 @@ if($_GET['err']){
 		</div>
 		<!--The big picture-->
 		<div class="col-lg-12" style="margin-left:15px;margin-right:15px;">
-			<div class="panel">
-					<div id="cf"style="margin:20px;">
-						<center>
+			<div id="welcome">
+					<div id="cf">
 							<img class="bottom" src="LOGIN/beehive3.png"/>
-							<img class="top" src="LOGIN/beehive5.png" />
-						</center>
+							<img class="top" src="LOGIN/beehive5.png"/>
 					</div>
-				<!--The Login section-->
+					<!--The Login section-->
+					<div class="panel-body">
 					<center>
 						<form action="login.php" method="post"enctype="multipart/form-data">
 							<!--<label for="file">Email:</label>-->
@@ -108,6 +107,7 @@ if($_GET['err']){
 						<a href="http://www.waggle.myskiprofile.com/new_user.php">
 						<input type="button" value= "New User Sign Up"></a>
 					</center>
+					</div>
 			</div>
 		</div>
 	</body>
