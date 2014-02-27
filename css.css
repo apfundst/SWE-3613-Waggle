@@ -167,6 +167,10 @@ h1 {
   text-align: center;
   padding:15px;
 }
+/*Added this to make it color blue when mouse over:)*/
+#GLOW:hover{
+color:blue;
+}
 #listItem{
  position: relative;
 display: block;
