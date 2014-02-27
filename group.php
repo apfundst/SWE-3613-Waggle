@@ -115,7 +115,7 @@ else
       if($group_owner == $_SESSION['email']){
         $group_setting_html = '<p>Group Members:<br>'.$group_member_list.'</p> '.$group_creator_html;
       }else{
-        $group_setting_html = '<form action="leave_group.php" method="post" enctype="multipart/form-data">
+        $group_setting_html = '<form id="leave_g" action="leave_group.php" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
                             <input type="submit" name="submit" value="Leave Group">
                             </form><p>Group Members:<br>'.$group_member_list.'</p> '.$group_creator_html;
@@ -210,7 +210,7 @@ else
        if($group_owner == $_SESSION['email']){
         $group_setting_html = '<p>Group Members:<br>'.$group_member_list.'</p> '.$group_creator_html;
       }else{
-        $group_setting_html = '<form action="leave_group.php" method="post" enctype="multipart/form-data">
+        $group_setting_html = '<form id="leave_g"action="leave_group.php" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
                             <input type="submit" name="submit" value="Leave Group">
                             </form><p>Group Members:<br>'.$group_member_list.'</p> '.$group_creator_html;
@@ -315,6 +315,22 @@ else{
         </div>
       </div>
 </div>
+<script>
+              $("#leave_g").submit(function(e){
+                //alert( "Handler for .submit() called." );
+                //$(this).attr('disabled', 'disabled');
+                //$("new_post").submit();
+                var result = confirm("Are you sure you want to leave?");
+                if(result){
+                  //do nothing they want to leave
+                }
+                else{
+                  e.preventDefault();
+                }
+                
+              });
+
+            </script>
 </div>
 <div class="row" style="min-width:700px;">
 <div class="col-lg-7">

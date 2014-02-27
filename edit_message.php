@@ -33,7 +33,7 @@ ob_flush();
 <link rel="stylesheet" type="text/css" href="css.css">
 </head>
   <body>
-     <div class="col-lg-4">
+     <div class="col-lg-6">
         <div class="panel">
           <center>
             <div class="panel-heading">Edit Message</div>

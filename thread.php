@@ -248,6 +248,7 @@ else{
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Waggle | Student Solution</title>
 <link rel="stylesheet" type="text/css" href="css.css">
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 
  
@@ -302,14 +303,30 @@ else{
         ?>
         </div>
         <div class="panel-body" >
-        <form method="post" action="thread.php">
+        <form id="new_post"method="post" action="thread.php">
         
           <label>Enter your comments here...</label><br>
             <textarea name="new_message" style="width:100%; height:150px;">
             
             </textarea><br>
             <!--<input type="submit" value="Submit" onclick="this.submit(function (){this.disabled='true';});" >-->
-            <input type="submit" value="Submit"  >
+            <button id="new_m" type="submit">Submit</button>
+            <script>
+              $("#new_post").submit(function(e){
+                //alert( "Handler for .submit() called." );
+                //$(this).attr('disabled', 'disabled');
+                //$("new_post").submit();
+                var result = confirm("Are you sure you want to leave?");
+                if(result){
+                  //do nothing they want to leave
+                }
+                else{
+                  e.preventDefault();
+                }
+                
+              });
+
+            </script>
           </form>
           <br>
           <hr>
