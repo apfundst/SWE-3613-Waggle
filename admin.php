@@ -48,7 +48,7 @@ else
 
                 $groups_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">';
                 $groups_html .= '<form enctype="multipart/form-data" action="group.php" method="post">
-                                <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="table_contents" value="';
+                                <input type="hidden" name="group_id" value="'. $things[0] . '"><input type="submit" name="submit" id="table_contents" style="width:100px; white-space:normal;" value="';
                 $groups_html .= $things[1] . '"/></form></td><td id="side_data_s">'.$group_creator.'</td><td id="side_data_s">'.$group_authorized;
                 $groups_html .= '<td id="side_data_s"><form action="ban_group.php" method="post">
                                 <input type="hidden" name="group_id" value="'.$things[0].'">
@@ -174,7 +174,7 @@ Creator
   <div class="panel panel-default">
     <div class="panel-heading">All Groups</div>
     <div class="panel-body">
-    <div class="scroll_table_files">
+    <div class="scroll_table_files" style="min-width:400px;">
     <table id="goups_background">
         <thead>
 
