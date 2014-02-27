@@ -3,66 +3,69 @@ ob_start();
 session_start();
 include("other_funcs.php");
 if($_POST){
-$first_name = $_POST["first_name"];
-$last_name = $_POST["last_name"];
-$email_1 = $_POST["email_1"];
-$email_2 = $_POST["email_2"];
-$student_id_1 = $_POST["student_id_1"];
-$student_id_2 = $_POST["student_id_2"];
+$first_name = mysql_real_escape_string( trim($_POST["first_name"])  );
+$last_name = mysql_real_escape_string( trim($_POST["last_name"]) ) ;
+$email_1 = mysql_real_escape_string( trim($_POST["email_1"]) );
+$email_2 = mysql_real_escape_string( trim($_POST["email_2"]) );
+$student_id_1 = mysql_real_escape_string( trim($_POST["student_id_1"]) );
+$student_id_2 = mysql_real_escape_string( trim($_POST["student_id_2"]) );
 $name = $first_name ." ". $last_name;
 
 $illegals = '([[:digit:]]|[~`!@#$%^&*()_=+{}|\:;"/?,]|[|]|-)+';
-if ( ereg($illegals, $name ) ) {
-  $error_message = "Names entered contained illegal characters!";
+if( strlen($name) < 4 ){
+  $error_message = "You have to put in a name!";
 }
 else{
-
-if( strcmp($email_1,$email_2) != 0 ){
-  $error_message = "Email addresses did not match!";
-}
-else{
-  if( !ctype_alnum($email_1) ){
-    $error_message = "Email address is incorrect format!";
+  if ( ereg($illegals, $name ) ) {
+    $error_message = "Names entered contained illegal characters!";
   }
   else{
-    if( strcmp($student_id_1,$student_id_2) ){
-      $error_message = "Student ID's did not match!";
+    if( strcmp($email_1,$email_2) != 0 ){
+    $error_message = "Email addresses did not match!";
     }
     else{
-      if( !ctype_digit($student_id_1) || strlen($student_id_1) != 9 ){
-        $error_message = "Incorrect Student ID format!";
+      if( !ctype_alnum($email_1) || strlen($email_1) < 4 ){
+        $error_message = "Email address is incorrect format!";
       }
       else{
-          $email = $email_1."@spsu.edu";
-          $check = do_check_user($email);
-          if( $check ){
-            $error_message = "You are already a member of WAGGLE!";
+        if( strcmp($student_id_1,$student_id_2) != 0 ){
+          $error_message = "Student ID's did not match!";
+        }
+        else{
+          if( !ctype_digit($student_id_1) || strlen($student_id_1) != 9 ){
+            $error_message = "Incorrect Student ID format!";
           }
           else{
-            $random_password = do_create_random_password(); 
-            $created = do_create_user($email,$random_password,$first_name,$last_name,$student_id_1);
-            if($created){
-              $email_success = do_send_new_user_email($email, $first_name, $last_name, $random_password);
-              if($email_success){
+            $email = $email_1."@spsu.edu";
+            $check = do_check_user($email);
+            if( $check ){
+              $error_message = "You are already a member of WAGGLE!";
+            }
+            else{
+              $random_password = do_create_random_password(); 
+              $created = do_create_user($email,$random_password,$first_name,$last_name,$student_id_1);
+              if($created){
+                $email_success = do_send_new_user_email($email, $first_name, $last_name, $random_password);
+                if($email_success){
                   $_SESSION["created"] = TRUE;
                   header('Location: http://www.waggle.myskiprofile.com/new_user_success.php');
                   exit();
+                }
+                else{
+                  $error_message = "Email didn't work with this info:";
+                }
               }
               else{
-                $error_message = "Damn email didn't work with this info:";
+                $error_message = "Failed to create user account! Please reenter information.";
               }
-            }
-            else{
-              $error_message = "Failed to create user account! Please reenter information.";
-            }
 
-          }// Else for check email in DB
+            }// Else for check email in DB
 
-      }// Else to check student_id
-    }//
-  } 
-}
-
+          }// Else to check student_id
+        }//
+      } 
+    }
+  }
 }//First else that checked names
 }//end first if
 session_destroy();

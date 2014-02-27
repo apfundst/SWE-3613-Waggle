@@ -3,24 +3,29 @@ ob_start();
 session_start();
 include("other_funcs.php");
 if($_POST){
-$email = $_POST["email"];
-$student_id = $_POST["student_id"];
-$password = $_POST["password"];
-$copy_password = $_POST["copy_password"];
+$email = mysql_real_escape_string( trim($_POST["email"]) );
+$student_id = mysql_real_escape_string( trim($_POST["student_id"]) );
+$password = mysql_real_escape_string( trim($_POST["password"]) );
+$copy_password = mysql_real_escape_string( trim($_POST["copy_password"]) );
 $error_message = null;
 
-if($password != $copy_password){
+if( strcmp($password, $copy_password) != 0){
   $error_message = "Both passwords entered did not match!";
 }
 else{
-  $result = do_update_password($email,$student_id,$password);
-  if($result == true){
-    $error_message = "Password has been reset! Please return to home page to login.";
+  if( strlen($password) < 8 ){
+    $error_message = "Password must be 8 characters or greater!";
   }
-  else{
-    $error_message = "Email and/or Student ID incorrect! Please reenter!";
+    else{
+      $result = do_forgot_password($email,$student_id,$password);
+      if($result == true){
+        $error_message = "Password has been reset! Please return to home page to login.";
+      }
+      else{
+        $error_message = "Email and/or Student ID incorrect! Please reenter!";
+      }
+    } 
   }
-}
 }
 session_destroy();
 ob_flush();
@@ -48,7 +53,7 @@ ob_flush();
                 <form action="password_reset.php" method="post"enctype="multipart/form-data">
                 <!--<label for="file">Email:</label>-->
                 <input type="text" name="email" placeholder='SPSU Email' size="40"><br>
-                <input type="text" name="student_id" placeholder='Student ID' size="40"><br>
+                <input type="password" name="student_id" placeholder='Student ID' size="40"><br>
                 <!--<label for="file">Password:</label>-->
                 <input type="password" name="password" placeholder='Enter New Password' size="40"><br>
                 <input type="password" name="copy_password" placeholder='Reenter New Password' size="40"><br>

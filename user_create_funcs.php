@@ -35,9 +35,26 @@ function do_check_user($email){
 
 }
 
+function do_check_user_password($email, $entered_password){
+	$sql = "
+		SELECT password
+		FROM `user` 
+		WHERE email = '$email';
+	";
+	$result = mysql_query($sql);
+	$row = mysql_fetch_array($result);
+	$current_password = $row['password'];
+	if( strcmp($current_password, $entered_password) != 0 ){
+		return FALSE;
+	}
+	else{
+		return TRUE;
+	}
+}
+
 function do_send_new_user_email($email, $first_name, $last_name, $random_password){
 	$subject = 'Your NEW Waggle Account';
-	$message = 'Congratulaionts '.$first_name.' '.$last_name.'! 
+	$message = 'Congratulations '.$first_name.' '.$last_name.'! 
 	This email confirms your successful registration for WAGGLE. Please go to waggle.myskiprofile.com and login in with your SPSU email 
 	address and temporary password. Do not respond to this email address as it is not monitored. 
 	Your temporary password is: '.$random_password;
@@ -64,7 +81,25 @@ function do_create_random_password(){
     return $password;
 }
 
-function do_update_password($email,$student_id,$new_password){
+function do_change_password($email,$new_password){
+	$new_password = mysql_real_escape_string($new_password);
+	$sql = "
+			UPDATE `user`
+			SET password = '$new_password'
+			WHERE email = '$email'
+	"; 
+	$result = mysql_query($sql);
+	if (!$result) {
+		mysql_query('ROLLBACK');
+		return FALSE;
+	}
+	else{
+		return TRUE;
+	}
+
+}
+
+function do_forgot_password($email,$student_id,$new_password){
 	// Cleans the text input into fields in html
 	// then checks to see if user exists in db
 	// If user exists will update password
