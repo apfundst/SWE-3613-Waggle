@@ -182,13 +182,14 @@ function do_create_thread($group_id, $creator, $subject){
 		VALUES('$group_id','$creator','$scrubbed_subject','$new_time_stamp','$new_time_stamp')
 	";
 	$result = mysql_query($sql);
+	$last_row = mysql_insert_id();
 	if(!$result){
 		mysql_query('ROLLBACK');
 		return FALSE;
 	}
 	else{
 		mysql_query(" UPDATE `group` SET last_update = '$new_time_stamp' WHERE group_id = '$group_id' ");
-		return TRUE;
+		return $last_row;
 	}
 }
 
@@ -205,6 +206,7 @@ function do_create_membership($email, $group_id){
 	";
 
 	$result = mysql_query($sql);
+	$last_row = mysql_insert_id();
 	if(!$result){
 		return FALSE;
 	}
