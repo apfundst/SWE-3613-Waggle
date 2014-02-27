@@ -14,24 +14,27 @@ if(!isset($_SESSION["email"])) {
 
 
 if(isset($_POST["thread_name"])){
-  $bool = do_create_thread($_SESSION["current_group_id"], $_SESSION['email'], $_POST['thread_name']);
-  if($bool){
-    ob_clean();
-    $_SESSION['current_thread_id'] = $bool;
-    header('Location: http://www.waggle.myskiprofile.com/thread.php');
-    exit();
+  if(strlen($_POST['thread_name']) < 5){
+      $error_message = 'Thread Name Must be 5 characters Long!';
+  }else{
+    $bool = do_create_thread($_SESSION["current_group_id"], $_SESSION['email'], $_POST['thread_name']);
+    if($bool){
+      ob_clean();
+      $_SESSION['current_thread_id'] = $bool;
+      header('Location: http://www.waggle.myskiprofile.com/thread.php');
+      exit();
+
+    }
+    elseif($bool == FALSE){
+      $error_message = 'Name already taken, Try again!';
+    }
+    else{
+      $error_message = 'else block';
+    }
 
   }
-  elseif($bool == FALSE){
-    $error_message = 'Name already taken, Try again!';
-  }
-  else{
-    $error_message = 'else block';
-  }
 
-  
-
-  }
+}
 
 }
 

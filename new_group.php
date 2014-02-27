@@ -9,18 +9,27 @@ if(!isset($_SESSION["email"])) {
 }
 else{
 if(isset($_POST["group_name"])){
-  $bool = do_create_group($_SESSION["email"], $_POST["group_name"], $_POST["group_desc"]);
-  if($bool == TRUE){
-    ob_clean();
-    header('Location: http://www.waggle.myskiprofile.com/index.php');
-    exit();
-
+  if(strlen($_POST['group_name']) < 5){
+      $error_message = 'Group Name Must be 5 characters Long!';
   }
-  elseif($bool == FALSE){
-    $error_message = 'Name already taken, Try again!';
+  elseif(strlen($_POST['group_desc']) < 20)
+    {
+      $error_message = 'Group Name Must be at least 5 characters long and group descripton must be at least 20 characters long!';
   }
   else{
-    $error_message = 'else block';
+    $bool = do_create_group($_SESSION["email"], $_POST["group_name"], $_POST["group_desc"]);
+    if($bool == TRUE){
+      ob_clean();
+      header('Location: http://www.waggle.myskiprofile.com/index.php');
+      exit();
+
+    }
+    elseif($bool == FALSE){
+      $error_message = 'Name already taken, Try again!';
+    }
+    else{
+      $error_message = 'else block';
+    }
   }
   }
 }
