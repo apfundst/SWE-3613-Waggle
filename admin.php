@@ -93,8 +93,8 @@ else
                 $first_name = $things[1];
                 $last_name = $things[2];
 
-                $users_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">'. $email.'</td><td id="side_data_s">'. $first_name.
-                                '</td><td id="side_data_s">'.$last_name.'</td><td id="side_data_s">'.'Unbanned'.'</td>';
+                $users_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">'. $first_name. ' '.$last_name.'</td><td id="side_data_s">'.
+                                $email.'</td><td id="side_data_s">'.'Unbanned'.'</td>';
                 $users_html .= '<td id="side_data_s"><form action="ban_user.php" method="post">
                                 <input type="hidden" name="member_email" value="'.$email.'">
                                 <input  class="banUser" type="submit" value="Ban User"></form></td>';
@@ -106,8 +106,8 @@ else
                 $first_name = $things[1];
                 $last_name = $things[2];
 
-                $busers_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">'. $email.'</td><td id="side_data_s">'. $first_name.
-                                '</td><td id="side_data_s">'.$last_name.'</td><td id="side_data_s">'.'Banned'.'</td>';
+                $busers_html .= '<tr class="tr_clickable" id="goups_background"><td id="main_data">'. $first_name.' '.$last_name.'</td><td id="side_data_s">'. 
+                                $email.'</td><td id="side_data_s">'.'Banned'.'</td>';
                 $busers_html .= '<td id="side_data_s"><form action="unban_user.php" method="post">
                                 <input type="hidden" name="member_email" value="'.$email.'">
                                 <input  class="unbanUser" type="submit" value="Unban User"></form></td>';
@@ -222,15 +222,10 @@ Creator
 
         <tr class="tr_non_clickable"id="goups_background">
         <th id="main_data" style="background-color:#222;color:white;">
+        Name
+
+        <th id="side_data_l" style="background-color:#222;color:white;">
         Email
-
-        </th>
-        <th id="side_data_l" style="background-color:#222;color:white;">
-        First Name
-        </th>
-
-        <th id="side_data_l" style="background-color:#222;color:white;">
-        Last Name
         </th>
 
         <th id="side_data_l" style="background-color:#222;color:white;">
