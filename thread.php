@@ -255,131 +255,141 @@ else{
 <!--<div id="header"> header </div>
 <div id="left-sidebar"> left-sidebar </div>
 <div id="content"> content </div>-->
-<div class="container-fluid">
-<? if($_SESSION['email'] == 'admin@spsu.edu'){
-  include('admin_nav.php');
-}
-else{
-  include('nav.php');
-}
-?>
-<div class="col-lg-12"><div class="group-name"><h1><a href="group.php"><?=$current_group_name ?></a></h1></div></div>
-<div class="col-lg-8">
-  
-  <div class="panel panel-default">
-    <div class="panel-heading">Thread: <?=$thread_name;?>
-    <?
-    //if admin echo this html as string
-    if(($_SESSION['is_admin'] == 1) || ($group_accessor == $_SESSION['email'])){
-      echo'
-        <div style="float:right; display: inline; margin-right: 20px;">
-          <form action="delete_thread.php" method="post" enctype="multipart/form-data">
-          <input type="hidden" name="thread_id" value="'.$_SESSION['current_thread_id'].'" >
-          <input type="submit" value="Delete Thread">
-          </form>
-          </div>
-        ';
-    }
-    ?>
-    </div>
-    <div class="panel-body" >
-    <form method="post" action="thread.php">
-    
-      <label>Enter your comments here...</label><br>
-        <textarea name="new_message" style="width:100%; height:150px;">
-        
-        </textarea><br>
-        <!--<input type="submit" value="Submit" onclick="this.submit(function (){this.disabled='true';});" >-->
-        <input type="submit" value="Submit"  >
-      </form>
-      <br>
-      <hr>
 
-        <div class="panel-heading">Posts: <?=$thread_name;?></div>
-      <ul >
-      <?=$messages_html ?>
-      </ul>
+  <? if($_SESSION['email'] == 'admin@spsu.edu'){
+    include('admin_nav.php');
+  }
+  else{
+    include('nav.php');
+  }
+  ?>
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="group-name">
+        <h1><a href="group.php"><?=$current_group_name ?></a></h1>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">Group Members</div>
+        <div class="panel-body">
+
+          <?=$group_member_list ?>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class"row">
+    <div class="col-lg-8">
       
-
-
-  </div>
-  </div>
-</div>
-<div class="col-lg-4">
-
-<div class="panel panel-default">
-<div class="panel-heading">Other Threads for <?=$current_group_name ?></div>
-    <div class="panel-body">
-    <div class="scroll_table_files" style="height:300px">
-    <table id="goups_background">
-      <thead>
-          <tr class="tr_non_clickable"id="goups_background">
-          <th id="main_data" style="background-color:#222;color:white;">
-          Thread Name
-
-          </th>
-          </tr>
-        </thead>
-        <tbody>
-
-          <?=$threads_html ?>
-        </tbody>
-    </table>
-
-</div>
-
- </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">Files</div>
-    <div class="panel-body">
-  <div class="scroll_table_files" style="height:400px">
-    <table id="goups_background">
-        <thead>
-        <tr class="tr_non_clickable"id="goups_background">
-        <th id="main_data" style="background-color:#222;color:white;">
-        File Name
-
-        </th>
-        <th id="side_data_s" style="background-color:#222;color:white;">
-        File Size
-        </th>
-
-        <th id="side_data_l" style="background-color:#222;color:white;">
-        Creator
-        </th>
-        <th id="side_data_s" style="background-color:#222;color:white;">
-        Date Uploaded
-        </th>
-        <th id="side_data_s" style="background-color:#222;color:white;">
-        Options
-        </th>
-        </tr>
-        </thead>
-
-    
-    
+      <div class="panel panel-default">
+        <div class="panel-heading">Thread: <?=$thread_name;?>
+        <?
+        //if admin echo this html as string
+        $maker = do_get_thread_creator($_SESSION['thread_id']);
+        if(($_SESSION['is_admin'] == 1) || ($group_accessor == $_SESSION['email']) || ( $maker= $_SESSION['email'])){
+          echo'
+            <div style="float:right; display: inline; margin-right: 20px;">
+              <form action="delete_thread.php" method="post" enctype="multipart/form-data">
+              <input type="hidden" name="thread_id" value="'.$_SESSION['current_thread_id'].'" >
+              <input type="submit" value="Delete Thread">
+              </form>
+              </div>
+            ';
+        }
+        ?>
+        </div>
+        <div class="panel-body" >
+        <form method="post" action="thread.php">
         
-        <tbody >
-        <?=$files_html; ?>
-        </tbody>
-        
-    </table>
-    </div>
-    </div>
-    </div>
-<div class="panel panel-default">
-<div class="panel-heading">Group Members</div>
-    <div class="panel-body">
+          <label>Enter your comments here...</label><br>
+            <textarea name="new_message" style="width:100%; height:150px;">
+            
+            </textarea><br>
+            <!--<input type="submit" value="Submit" onclick="this.submit(function (){this.disabled='true';});" >-->
+            <input type="submit" value="Submit"  >
+          </form>
+          <br>
+          <hr>
 
-<?=$group_member_list ?>
+            <div class="panel-heading">Posts: <?=$thread_name;?></div>
+          <ul >
+          <?=$messages_html ?>
+          </ul>
+          
 
 
- </div>
+      </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Other Threads for <?=$current_group_name ?></div>
+        <div class="panel-body">
+          <div class="scroll_table_files" style="height:300px">
+          <table id="goups_background">
+            <thead>
+                <tr class="tr_non_clickable"id="goups_background">
+                <th id="main_data" style="background-color:#222;color:white;">
+                Thread Name
+
+                </th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <?=$threads_html ?>
+              </tbody>
+          </table>
+
+          </div>
+
+       </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">Files</div>
+        <div class="panel-body">
+          <div class="scroll_table_files" style="height:400px">
+            <table id="goups_background">
+                <thead>
+                <tr class="tr_non_clickable"id="goups_background">
+                <th id="main_data" style="background-color:#222;color:white;">
+                File Name
+
+                </th>
+                <th id="side_data_s" style="background-color:#222;color:white;">
+                File Size
+                </th>
+
+                <th id="side_data_l" style="background-color:#222;color:white;">
+                Creator
+                </th>
+                <th id="side_data_s" style="background-color:#222;color:white;">
+                Date Uploaded
+                </th>
+                <th id="side_data_s" style="background-color:#222;color:white;">
+                Options
+                </th>
+                </tr>
+                </thead>
+
+            
+            
+                
+                <tbody >
+                <?=$files_html; ?>
+                </tbody>
+                
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  
-</div>
-</div>
+
 
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Inconsolata">
 

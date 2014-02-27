@@ -112,10 +112,14 @@ else
         $name = do_get_name($yolo[0]);
         $group_member_list .= $name . '<br>';
       }
-       $group_setting_html = '<form action="leave_group.php" method="post" enctype="multipart/form-data">
+      if($group_owner == $_SESSION['email']){
+        $group_setting_html = '<p>Group Members:<br>'.$group_member_list.'</p> '.$group_creator_html;
+      }else{
+        $group_setting_html = '<form action="leave_group.php" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
                             <input type="submit" name="submit" value="Leave Group">
                             </form><p>Group Members:<br>'.$group_member_list.'</p> '.$group_creator_html;
+      }
 
 
       //start threads
@@ -203,11 +207,14 @@ else
         $name = do_get_name($yolo[0]);
         $group_member_list .= $name . '<br>';
       }
-       $group_setting_html = '<form action="leave_group.php" method="post" enctype="multipart/form-data">
+       if($group_owner == $_SESSION['email']){
+        $group_setting_html = '<p>Group Members:<br>'.$group_member_list.'</p> '.$group_creator_html;
+      }else{
+        $group_setting_html = '<form action="leave_group.php" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
                             <input type="submit" name="submit" value="Leave Group">
                             </form><p>Group Members:<br>'.$group_member_list.'</p> '.$group_creator_html;
-
+      }
 
       //start threads
       $current_threads = do_get_threads($current_group_id);
