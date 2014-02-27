@@ -1,0 +1,238 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Waggle | Student Solution</title>
+<link rel="stylesheet" type="text/css" href="css.css">
+<script type="text/javascript"src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+</head>
+
+ 
+<body>
+  <!-- Take $Get group id-->
+
+<nav class="navbar-default navbar" style="min-width:700px;" role="navigation">
+<a href="index.php">
+<img class="logoImg"src="LOGIN/LOGOWAGGLEv4.2.png" height="75"></a>
+
+<div style="float: right;">
+  <ul>
+      <li><a href="index.php">Home</a></li>
+    <li><a href="user_settings.php">My Settings</a></li>
+    <li><a href="logout.php">Log Out</a></li>
+  </ul>
+  <span style="color: white;">Logged in: </span><a href="#" style="color:white;">omnomnom soup</a>
+</div>
+</nav><div class="row">
+<div class="col-lg-8">
+<div class="group_page_title">
+<div class="group-name"><h1 style="color:white;">NO JUSTIN ALLOWED </h1>
+<div class="groupDesc">JUSTIN TEND TO BE A PARTY POOPER. HE BANNED ME A BUNCH OF TIMES:(</div>
+</div></div>
+</div>
+<div class="col-lg-4">
+  <div class="panel panel-default">
+        <div class="panel-heading">Group Information</div>
+        <div class="panel-body">
+		<!--2 changes total. Changed stuff right here!!!-->
+		<center>Group Members</center>
+		<div class="scroll_table_files" style="height:50px;background-color:#FFFFFF;color:#222222;">
+		
+       <br>omnomnom soup<br>Andrew Pfundstein<br>Jonathan Lartigue<br>
+	   </div>
+	   <!--END of first change-->
+	   <br><p>Add Group Members:</p><form action="add_member.php" method="post"
+                              enctype="multipart/form-data">
+                              <input type="text" name="member_email" maxlength="20">
+                              <input type="hidden" name="group_id" value="59">
+                              <input type="submit" name="submit" value="Add Member to Group">
+                            
+                              </form>        </div>
+      </div>
+</div>
+<script>
+              $("#leave_g").submit(function(e){
+                //alert( "Handler for .submit() called." );
+                //$(this).attr('disabled', 'disabled');
+                //$("new_post").submit();
+                var result = confirm("Are you sure you want to leave?");
+                if(result){
+                  //do nothing they want to leave
+                }
+                else{
+                  e.preventDefault();
+                }
+                
+              });
+
+            </script>
+</div>
+<div class="row" style="min-width:700px;">
+<div class="col-lg-7">
+<div class="panel panel-default">
+    <div class="panel-heading">Disscusion Threads
+  <div style="
+    float:right;
+    display: inline;
+    border: 1px solid #ddd;
+    background-color: #ecf0f1;
+    padding: 3px;
+    color:white;
+    margin-right: 20px;
+    font-size: 15px; "><a href="new_thread.php">Create New Thread</a></div></div>
+    <div class="panel-body">
+    <div class="scroll_table_files">
+    <table id="goups_background">
+        <thead>
+        <tr class="tr_non_clickable"id="goups_background">
+        <th id="main_data" style="background-color:#222;color:white;">
+        Thread Name
+
+        </th>
+        <th id="side_data_s" style="background-color:#222;color:white;">
+        Number of Posts
+        </th>
+
+        <th id="side_data_l" style="background-color:#222;color:white;">
+        Creator
+        </th>
+        <th id="side_data_s" style="background-color:#222;color:white;">
+        Last Updated
+        </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="tr_clickable" id="goups_background" >
+                            <td id="main_data" >
+                              <form name="69"  id="69" enctype="multipart/form-data" action="thread.php" method="post">
+                              <input type="hidden" name="thread_id" value="69">
+                              <input type="submit" name="submit" id="table_contents" value="JIBBER"/></form>
+                            </td>
+                            <td id="side_data_s">1</td>
+                            <td id="side_data_l">omnomnom soup</td>
+                            <td id="side_data_s">2014-02-27 00:42:18</td>
+                            </tr>        </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+<div class="col-lg-5">
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">Files</div>
+    <div class="panel-body">
+    <h4>Upload A File:</h4>
+    <form action="fileupload.php" method="post" enctype="multipart/form-data"><label for="file">Filename:</label>
+      <input type="file" name="file" id="file"><br>
+      <input type="submit" name="submit" value="Submit">
+    </form>
+    <br>
+    <hr>
+	<!--Added he style height thing that was it:)-->
+    <div class="scroll_table_files" style="height:355px;">
+    <table id="goups_background">
+        <thead>
+        <tr class="tr_non_clickable"id="goups_background">
+        <th id="main_data" style="background-color:#222;color:white;">
+        File Name
+
+        </th>
+        <th id="side_data_s" style="background-color:#222;color:white;">
+        File Size
+        </th>
+
+        <th id="side_data_l" style="background-color:#222;color:white;">
+        Creator
+        </th>
+        <th id="side_data_s" style="background-color:#222;color:white;">
+        Date Uploaded
+        </th>
+        <th id="side_data_s" style="background-color:#222;color:white;">
+        Options
+        </th>
+        </tr>
+        </thead>
+
+    
+    
+        
+        <tbody >
+        No files have been uploaded yet!        </tbody>
+        
+    </table>
+    </div>
+    
+   
+    
+    </div>
+  </div>
+  
+</div>
+<!--<div class="col-lg-4">
+<div class="panel panel-default">
+    <div class="panel-heading">Disscusion Threads<div style="
+    float:right;
+    display: inline;
+    border: 1px solid #ddd;
+    background-color: #ecf0f1;
+    padding: 3px;
+    color:white;
+    margin-right: 20px;
+    font-size: 15px; "><a href="new_thread.php">Create New Thread</a></div></div>
+    <div class="panel-body">
+    <tr class="tr_clickable" id="goups_background" >
+                            <td id="main_data" >
+                              <form name="69"  id="69" enctype="multipart/form-data" action="thread.php" method="post">
+                              <input type="hidden" name="thread_id" value="69">
+                              <input type="submit" name="submit" id="table_contents" value="JIBBER"/></form>
+                            </td>
+                            <td id="side_data_s">1</td>
+                            <td id="side_data_l">omnomnom soup</td>
+                            <td id="side_data_s">2014-02-27 00:42:18</td>
+                            </tr>   
+    </div>
+  </div>
+
+<div>linkware: <a style="color:white;" href="http://www.visualpharm.com">here</a>
+</div>
+</div>
+  <div class="col-lg-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">Group Information</div>
+        <div class="panel-body">
+       <p>Group Members:<br>omnomnom soup<br>Andrew Pfundstein<br>Jonathan Lartigue<br></p> <br><p>Add Group Members:</p><form action="add_member.php" method="post"
+                              enctype="multipart/form-data">
+                              <input type="text" name="member_email" maxlength="20">
+                              <input type="hidden" name="group_id" value="59">
+                              <input type="submit" name="submit" value="Add Member to Group">
+                            
+                              </form>        </div>
+      </div>
+
+    <div>linkware: <a style="color:white;" href="http://www.visualpharm.com">here</a>
+    </div>
+  </div>-->
+</div>
+
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Inconsolata">
+<script>
+    function submitOnClick(formName){
+        document.forms[formName].submit();
+    }
+</script>
+</body>
+</html>
+
+
+
