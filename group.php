@@ -112,13 +112,16 @@ else
         $name = do_get_name($yolo[0]);
         $group_member_list .= $name . '<br>';
       }
-      if($group_owner == $_SESSION['email']){
-        $group_setting_html = '<p>Group Members:<br>'.$group_member_list.'</p> '.$group_creator_html;
+     if($group_owner == $_SESSION['email']){
+        $group_setting_html = '<p>Group Members:<br><div class="scroll_table_files" style="height:90px;background-color:#FFFFFF;color:#222222;">'.$group_member_list.'</div></p> '.$group_creator_html;
       }else{
-        $group_setting_html = '<form id="leave_g" action="leave_group.php" method="post" enctype="multipart/form-data">
+        $group_setting_html = '<form id="leave_g"action="leave_group.php" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
                             <input type="submit" name="submit" value="Leave Group">
-                            </form><p>Group Members:<br>'.$group_member_list.'</p> '.$group_creator_html;
+                            </form>Group Members:<br><div class="scroll_table_files" style="height:90px;background-color:#FFFFFF;color:#222222;">
+    
+          '.$group_member_list.'
+    </div> '.$group_creator_html;
       }
 
 
@@ -208,12 +211,15 @@ else
         $group_member_list .= $name . '<br>';
       }
        if($group_owner == $_SESSION['email']){
-        $group_setting_html = '<p>Group Members:<br>'.$group_member_list.'</p> '.$group_creator_html;
+        $group_setting_html = '<p>Group Members:<br><div class="scroll_table_files" style="height:90px;background-color:#FFFFFF;color:#222222;">'.$group_member_list.'</div></p> '.$group_creator_html;
       }else{
         $group_setting_html = '<form id="leave_g"action="leave_group.php" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="group_id" value="'. $_SESSION['current_group_id'] . '">
                             <input type="submit" name="submit" value="Leave Group">
-                            </form><p>Group Members:<br>'.$group_member_list.'</p> '.$group_creator_html;
+                            </form>Group Members:<br><div class="scroll_table_files" style="height:90px;background-color:#FFFFFF;color:#222222;">
+    
+          '.$group_member_list.'
+    </div> '.$group_creator_html;
       }
 
       //start threads
@@ -383,7 +389,7 @@ else{
 
 
 
-<div class="col-lg-5">
+<div class="col-lg-5" style="min-width:550px">
   
   <div class="panel panel-default">
     <div class="panel-heading">Files</div>

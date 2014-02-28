@@ -57,7 +57,7 @@ else{
 ?>
 <div class="col-lg-8">
   <div class="panel panel-default">
-    <div class="panel-heading">Create Group</div>
+    <div class="panel-heading">Create Thread</div>
     <div class="panel-body">
 
       <center>
@@ -67,7 +67,7 @@ else{
         <input type="text" name="thread_name" for="thread_name" maxlength="50"><br>
         
         <input type="submit" name="submit" value="Create Thread">
-        <a href="/index.php">
+        <a href="/group.php">
         <input type="button" value="Cancel"/></a>
         </form>
       </center>
