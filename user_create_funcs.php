@@ -53,6 +53,7 @@ function do_check_user_password($email, $entered_password){
 }
 
 function do_send_new_user_email($email, $first_name, $last_name, $random_password){
+	
 	$subject = 'Your NEW Waggle Account';
 	$message = 'Congratulations '.$first_name.' '.$last_name.'! 
 	This email confirms your successful registration for WAGGLE. Please go to waggle.myskiprofile.com and login in with your SPSU email 
@@ -99,15 +100,7 @@ function do_change_password($email,$new_password){
 
 }
 
-function do_forgot_password($email,$student_id,$new_password){
-	// Cleans the text input into fields in html
-	// then checks to see if user exists in db
-	// If user exists will update password
-
-	$email = mysql_real_escape_string($email);
-	$student_id = mysql_real_escape_string($student_id);
-	$new_password = mysql_real_escape_string($new_password);
-
+function do_forgot_password($email,$student_id){
 	//Checks to see if user exists in db and information is correct
 	$sql = "
 			SELECT email, student_id
@@ -120,21 +113,33 @@ function do_forgot_password($email,$student_id,$new_password){
 		return FALSE;
 	}
 	else{
-		$sql = "
+		$random_password = do_create_random_password();
+		$subject = 'RESET Waggle Account Password';
+		$message = 'Dear'.$first_name.' '.$last_name.': 
+		This email confirms your password reset for the WAGGLE website for the email address '.$email.'. Please go to waggle.myskiprofile.com and login in with your SPSU email address and RESET password. Do not respond to this email address as it is not monitored. 
+		Your RESET password is: '.$random_password;
+		$headers = 'From: admin@waggle.com'."\r\n" . 'X-Mailer: PHP/'. phpversion();
+
+		$successful = mail($email,$subject,$message,$headers);
+		if($successful){
+			$sql = "
 				UPDATE `user`
-				SET password = '$new_password'
+				SET password = '$random_password'
 				WHERE email = '$email'
-		"; 
-		$result = mysql_query($sql);
-		if (!$result) {
-			mysql_query('ROLLBACK');
-			return FALSE;
+			"; 
+			$result = mysql_query($sql);
+			if (!$result) {
+				mysql_query('ROLLBACK');
+				return FALSE;
+			}
+			else{
+				return $random_password;
+			}
 		}
 		else{
-			return TRUE;
+			return FALSE;
 		}
 	}
-
 }
 
 function do_post_message($thread_id, $creator,$text){
