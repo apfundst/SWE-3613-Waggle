@@ -24,6 +24,7 @@ else{
 
 $_SESSION["message_id"] = $_POST["message_id"];
 $old_text = strip_tags($_POST["message_text"]);
+$old_text = trim($old_text, "");
 ob_flush();
 ?>
 <html>
@@ -42,10 +43,8 @@ ob_flush();
 
              	    <form method="post" action="edit_message.php">
      				<label>Edit your original message</label><br>
-        			<textarea name="new_message" cols="50" rows="7">
-        			<?=$old_text?>
-        			</textarea>
-        			<input type="submit" value= "Submit Changes"/><br>
+        			<textarea name="new_message" style="width:100%; height:100px;"><?=$old_text?></textarea>
+        			<input type="submit" value= "Submit Changes"/><a href="/thread.php"><input type="button" value= "Cancel"/></a><br>
                 	</form>
 
           </div>

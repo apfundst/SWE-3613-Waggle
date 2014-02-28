@@ -264,7 +264,7 @@ else{
     include('nav.php');
   }
   ?>
-  <div class="row">
+  <div class="row" style="margin-bottom:15px;">
     <div class="col-lg-8">
       <div class="group-name">
         <h1><a id="GLOW" href="group.php"><?=$current_group_name ?></a></h1>

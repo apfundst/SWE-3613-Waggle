@@ -306,7 +306,7 @@ else{
   include('nav.php'); 
 } 
 ?>
-<div class="row">
+<div class="row" style="margin-bottom:15px;">
 <div class="col-lg-8">
 <div class="group_page_title">
 <div class="group-name"><h1 style="color:white;"><?=$current_group_name?> </h1>
