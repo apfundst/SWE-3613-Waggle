@@ -86,15 +86,19 @@ if($_GET['err']){
 			<img class="logoImg"src="LOGIN/LOGOWAGGLEv4.2.png" height="75">
 		</div>
 		<!--The big picture-->
-		<div class="col-lg-12" style="margin-left:15px;margin-right:15px;">
-			<div id="welcome">
-					<div id="cf">
-							<img class="bottom" src="LOGIN/beehive3.png"/>
-							<img class="top" src="LOGIN/beehive5.png"/>
-					</div>
+		
+			
+          
+          
+          <div class="col-lg-6" style="margin-left:25%; width:950px;">
 					<!--The Login section-->
-					<div class="panel-body">
-					<center>
+					<div class="panel-body" style="height:500px;">
+					
+          <div id="cf" style="height:300px; width:300px; margin-top:75px; float:left;">
+              <img class="bottom" src="LOGIN/beehive3.png" />
+              <img class="top" src="LOGIN/beehive5.png" />
+          </div>
+          <div style="float:right;margin-top:150px;">
 						<form action="login.php" method="post"enctype="multipart/form-data">
 							<!--<label for="file">Email:</label>-->
 							<input type="text" name="email" placeholder='SPSU Email' size="40" for="userid"><br>
@@ -106,9 +110,10 @@ if($_GET['err']){
 						<input type="button" value= "Forgot Password?"></a>
 						<a href="http://www.waggle.myskiprofile.com/new_user.php">
 						<input type="button" value= "New User Sign Up"></a>
-					</center>
 					</div>
-			</div>
-		</div>
+					</div>
+        </div>
+			
+		
 	</body>
 </html>

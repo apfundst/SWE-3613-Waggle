@@ -267,16 +267,18 @@ else{
   <div class="row">
     <div class="col-lg-8">
       <div class="group-name">
-        <h1><a href="group.php"><?=$current_group_name ?></a></h1>
+        <h1><a id="GLOW" href="group.php"><?=$current_group_name ?></a></h1>
       </div>
     </div>
     <div class="col-lg-4">
       <div class="panel panel-default">
         <div class="panel-heading">Group Members</div>
         <div class="panel-body">
-
+<div class="scroll_table_files" style="height:90px;background-color:#FFFFFF;color:#222222;">
+    
           <?=$group_member_list ?>
-
+    </div>
+          
 
         </div>
       </div>
@@ -289,8 +291,9 @@ else{
         <div class="panel-heading">Thread: <?=$thread_name;?>
         <?
         //if admin echo this html as string
-        $maker = do_get_thread_creator($_SESSION['thread_id']);
-        if(($_SESSION['is_admin'] == 1) || ($group_accessor == $_SESSION['email']) || ( $maker= $_SESSION['email'])){
+        $group_creator = do_get_creator($_SESSION['current_group_id']);
+        $thread_creator = do_get_thread_creator($_SESSION['current_thread_id']);
+        if(($_SESSION['is_admin'] == 1) || ( $_SESSION['email'] == $group_accessor) || (  $_SESSION['email'] == $thread_creator )){
           echo'
             <div style="float:right; display: inline; margin-right: 20px;">
               <form action="delete_thread.php" method="post" enctype="multipart/form-data">
@@ -316,7 +319,7 @@ else{
                 //alert( "Handler for .submit() called." );
                 //$(this).attr('disabled', 'disabled');
                 //$("new_post").submit();
-                var result = confirm("Are you sure you want to leave?");
+                var result = confirm("Are you sure you want to post?");
                 if(result){
                   //do nothing they want to leave
                 }
