@@ -90,15 +90,16 @@ if($_GET['err']){
 			
           
           
-          <div class="col-lg-6" style="margin-left:25%; width:950px;">
+          <div class="col-lg-4" style="margin-left:33%; ">
 					<!--The Login section-->
+          <div class="panel-heading">Log In</div>
 					<div class="panel-body" style="height:500px;">
 					
-          <div id="cf" style="height:300px; width:300px; margin-top:75px; float:left;">
+          <!--<div id="cf" style="height:300px; width:300px; margin-top:75px; float:left;">
               <img class="bottom" src="LOGIN/beehive3.png" />
               <img class="top" src="LOGIN/beehive5.png" />
-          </div>
-          <div style="float:right;margin-top:150px;">
+          </div>-->
+          <div style="margin-left:25%;margin-top:150px;">
 						<form action="login.php" method="post"enctype="multipart/form-data">
 							<!--<label for="file">Email:</label>-->
 							<input type="text" name="email" placeholder='SPSU Email' size="40" for="userid"><br>
